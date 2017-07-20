@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+  </head>
+  <body>
+  <form action="/sales/submit" method="post" class="pure-form pure-form-stacked pure-form-aligned" style="margin:0 auto;width: 512px;">
+    <fieldset>
+      <legend><%= title %></legend>
+
+      <label for="referralCode">推荐码</label>
+      <input id="referralCode" type="text" name="referralCode">
+
+      <label for="email">邮箱</label>
+      <input id="email" type="email" name="email" required>
+
+      <label for="lastName">姓</label>
+      <input id="lastName" type="text" name="lastName" required>
+
+      <label for="firstName">名</label>
+      <input id="firstName" type="text" name="firstName" required>
+
+      <label for="password">密码</label>
+      <input id="password" type="password" name="password" required>
+
+      <label for="passwordConfirm">确认密码</label>
+      <input id="passwordConfirm" type="password" name="passwordConfirm" required>
+
+      <label for="gender">性别</label>
+      <select name="gender">
+        <option value="M">男</option>
+        <option value="F">女</option>
+      </select>
+
+      <label for="DOB">出生年月</label>
+      <input id="DOB" type="date" name="DOB" required>
+
+      <label for="nationality">国籍</label>
+      <select name="nationality">
+        <option value="cn">中国</option>
+        <option value="au">澳大利亚</option>
+      </select>
+
+      <label for="identityStatus">身份</label>
+      <select name="identityStatus">
+        <option value="pr">永居居民</option>
+        <option value="citizen">公民</option>
+      </select>
+
+      <label for="phone">电话</label>
+      <input id="phone" type="text" name="phone" required>
+
+      <label for="address">地址</label>
+      <input id="address" type="text" name="address" required>
+    </fieldset>
+    <fieldset>
+      <legend>银行信息</legend>
+
+      <label for="bankName">银行名称</label>
+      <input id="bankName" type="text" name="bankName" required>
+
+      <label for="bankAccountName">账号名称</label>
+      <input id="bankAccountName" type="text" name="bankAccountName" required>
+
+      <label for="BSB">BSB</label>
+      <input id="BSB" type="text" name="BSB" required>
+
+      <label for="bankAccountNumber">账号ACC</label>
+      <input id="bankAccountNumber" type="text" name="bankAccountNumber" required>
+
+      <label for="ABN">ABN</label>
+      <input id="ABN" type="text" name="ABN" required>
+
+      <label for="certificatePath">从业证书</label>
+      <input id="certificatePath" type="file" name="certificatePath">
+
+      <label for="IDPath">ID上传</label>
+      <input id="IDPath" type="file" name="IDPath" required>
+
+      <button type="submit" class="pure-button pure-button-primary">创建</button>
+    </fieldset>
+  </form>
+  </body>
+</html>

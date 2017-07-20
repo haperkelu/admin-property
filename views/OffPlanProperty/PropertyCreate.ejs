@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+  </head>
+  <body>
+  <form action="/property/submit" method="post" class="pure-form pure-form-stacked pure-form-aligned" style="margin:0 auto;width: 512px;">
+    <fieldset>
+      <legend><%= title %></legend>
+
+      <label for="name">项目名称</label>
+      <input id="name" type="text" name="name">
+
+      <label for="type">类型</label>
+      <select id="type">
+        <option :key="apartment">公寓</option>
+        <option :key="house">别墅</option>
+      </select>
+
+      <label for="isHot" class="pure-checkbox">
+        <input id="isHot" type="checkbox"> 是否热门
+      </label>
+
+      <button type="submit" class="pure-button pure-button-primary">创建</button>
+    </fieldset>
+  </form>
+  </body>
+</html>
