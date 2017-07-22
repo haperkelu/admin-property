@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
+var fileUpload = require('express-fileupload');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -14,6 +15,7 @@ var propertySubmit = require('./routes/property-create');
 
 var salesCreateForm = require('./routes/sales-form');
 var salesCreateSubmit = require('./routes/Sales-create');
+var salesDetail = require('./routes/Sales-detail');
 
 var app = express();
 
@@ -25,10 +27,10 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload());
 
 app.use('/', index);
 app.use('/property/create', properties);
@@ -36,6 +38,13 @@ app.use('/users', users);
 app.use('/property/submit', propertySubmit);
 app.use('/sales/create', salesCreateForm);
 app.use('/sales/submit', salesCreateSubmit);
+app.use('/sales/detail/:id', salesDetail);
+
+/**
+app.post('/sales/submit',function (req, res){
+    console.log(req.files);
+});
+**/
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

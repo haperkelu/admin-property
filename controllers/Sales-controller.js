@@ -18,6 +18,9 @@ exports.sales_create_submit = function(req, res, next) {
     var BSB = req.sanitize('BSB').escape().trim();
     var ABN = req.sanitize('ABN').escape().trim();
 
+    console.log(req.files);
+
+    var S3 = require("../utility/S3.js");
     var dbcon = require('../utility/db');
     var post = {
         type: 2,
@@ -35,19 +38,54 @@ exports.sales_create_submit = function(req, res, next) {
         createdBy: 1
     };
     var query = dbcon.query('INSERT INTO Sales.BasicUser SET ?', post, function (err, result) {
-        if (err) throw err;
+        if (err) console.log(err);
 
         var id = result.insertId;
-        var post = {
+        var bucketName = 'salesprofiles';
+        var CertificatePath = '';
+        var IDPath = '';
+
+        if(req.files) {
+            for(var key in req.files) {
+                var keyName = id + '_' + key;
+                if(key == 'certificatePath') {
+                    CertificatePath = '/' + bucketName + '/' + keyName;
+                }else {
+                    IDPath = '/' + bucketName + '/' + keyName;
+                }
+                var params = {Bucket: bucketName, Key: keyName, Body:req.files[key].data};
+                S3.putObject(params, function(err, data) {
+                    if (err)
+                        console.log(err);
+                    else
+                        console.log("Successfully uploaded data to salesprofiles" + "/" + keyName);
+                });
+            }
+        }
+        var postSales = {
             BasicUserId: id,
             Level: 3,
             ReferralCode: referralCode,
-            CertificatePath: 'xxx',
-            IDPath: 'xxxx'
+            CertificatePath: CertificatePath,
+            IDPath: IDPath
         };
-        dbcon.query('INSERT INTO Sales.Sales SET ?', post, function (err, result){
-            if (err) throw err;
+        var salesQuery = dbcon.query('INSERT INTO Sales.Sales SET ?', postSales, function (err, result){
+            if (err) console.log(err);
+            var salesId  = result.insertId;
+            var postSalesBank = {
+                SalesId: salesId,
+                BankName: bankName,
+                BSB: BSB,
+                AccountName: bankAccountName,
+                AccountNumber: bankAccountNumber,
+                ABN: ABN
+            };
+            dbcon.query('INSERT INTO Sales.SalesBankDetail SET ?', postSalesBank, function (err, result){
+                if (err) console.log(err);
+                return res.redirect('/sales/detail/' + salesId);
+            });
         });
+        //console.log(salesQuery.sql);
     });
-    console.log(query.sql);
+
 }
