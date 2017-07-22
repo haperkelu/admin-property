@@ -82,6 +82,8 @@ exports.sales_create_submit = function(req, res, next) {
             };
             dbcon.query('INSERT INTO Sales.SalesBankDetail SET ?', postSalesBank, function (err, result){
                 if (err) console.log(err);
+                var EmailUtility = require('../utility/mail.js');
+                EmailUtility.sendEmail('Mailgun Sandbox <postmaster@sandbox433aec60d9004a9cb18cfabce6b66f9e.mailgun.org>','haperkelu@gmail.com','heloo', '<b>ggg</b>', 'ggg');
                 return res.redirect('/sales/detail/' + salesId);
             });
         });

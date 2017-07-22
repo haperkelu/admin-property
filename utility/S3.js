@@ -2,7 +2,7 @@
  * Created by LocalUser on 22/07/2017.
  */
 var AWS = require('aws-sdk');
-AWS.config.loadFromPath('./aws/config.json');
+AWS.config.loadFromPath('./config/aws/credentials.json');
 
 var S3 = new AWS.S3();
 module.exports = S3;
