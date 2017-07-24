@@ -10,7 +10,7 @@ var fileUpload = require('express-fileupload');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var properties = require('./routes/property');
+var propertyForm = require('./routes/property-form');
 var propertySubmit = require('./routes/property-create');
 
 var salesCreateForm = require('./routes/sales-form');
@@ -33,9 +33,9 @@ app.use(cookieParser());
 app.use(fileUpload());
 
 app.use('/', index);
-app.use('/property/create', properties);
+app.use('/offplanProperty/create', propertyForm);
 app.use('/users', users);
-app.use('/property/submit', propertySubmit);
+app.use('/offplanProperty/submit', propertySubmit);
 app.use('/sales/create', salesCreateForm);
 app.use('/sales/submit', salesCreateSubmit);
 app.use('/sales/detail/:id', salesDetail);

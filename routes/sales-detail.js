@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.get('/', function(req, res, next) {
 
-  res.render('OffPlanProperty/SalesDetail', { title: '销售详情' });
+  res.render('Sales/SalesDetail', { title: '销售详情' });
 });
 
 module.exports = router;
