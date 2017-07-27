@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   var allSuburbs = function () {
 
   }
-      SuburbService.getAllSuburbs();
+  SuburbService.getAllSuburbs();
   console.log(allSuburbs);
   res.render('OffPlanProperty/PropertyCreate', { title: '创建楼盘', allSuburbs: allSuburbs });
 });

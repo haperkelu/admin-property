@@ -21,7 +21,7 @@ exports.sales_create_submit = function(req, res, next) {
     console.log(req.files);
 
     var S3 = require("../utility/S3.js");
-    var dbcon = require('../utility/db');
+    var dbcon = require('../utility/db.js');
     var post = {
         type: 2,
         status:1,
@@ -90,4 +90,16 @@ exports.sales_create_submit = function(req, res, next) {
         //console.log(salesQuery.sql);
     });
 
+}
+
+exports.sales_detail = function(req, res, next) {
+    var dbcon = require('../utility/db.js');
+    dbcon.query("SELECT FirstName,LastName FROM Sales.BasicUser where ?",{Id: req.params.id}, function (err, result, fields) {
+        if (err) {
+            console.log(err); dbcon.end(); res.send('Server Error');
+        }
+        var model = JSON.parse(JSON.stringify(result));
+        //console.log(model[0]);
+        res.render('Sales/SalesDetail', model[0]);
+    });
 }

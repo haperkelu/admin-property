@@ -1,9 +1,7 @@
 var express = require('express');
-var router = express.Router();
+var sales_detail = require("../controllers/Sales-controller.js").sales_detail;
+var router = express.Router({mergeParams: true});
 
-router.get('/', function(req, res, next) {
-
-  res.render('Sales/SalesDetail', { title: '销售详情' });
-});
+router.get('/', sales_detail);
 
 module.exports = router;
