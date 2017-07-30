@@ -94,12 +94,77 @@ exports.sales_create_submit = function(req, res, next) {
 
 exports.sales_detail = function(req, res, next) {
     var dbcon = require('../utility/db.js');
-    dbcon.query("SELECT FirstName,LastName FROM Sales.BasicUser where ?",{Id: req.params.id}, function (err, result, fields) {
+
+    dbcon.query("SELECT FirstName,LastName,type,DateOfBirth,gender,email,phone,nationality,address FROM Sales.BasicUser where ?",{Id: req.params.id}, function (err, result, fields) {
         if (err) {
             console.log(err); dbcon.end(); res.send('Server Error');
         }
-        var model = JSON.parse(JSON.stringify(result));
-        //console.log(model[0]);
-        res.render('Sales/SalesDetail', model[0]);
+
+        var model1 = JSON.parse(JSON.stringify(result));
+        console.log(model1)
+
+        dbcon.query("SELECT Level,ReferralCode,CertificatePath,IDPath FROM Sales.Sales where ?",{BasicUserID: req.params.id}, function (err, result, fields) {
+            if (err) {
+                console.log(err); dbcon.end(); res.send('Server Error');
+            }
+
+            var model2 = JSON.parse(JSON.stringify(result));
+            console.log(model2)
+
+            if (model2.length == 0) {
+                model2 = [{
+                    Level:0,
+                    ReferralCode:"",
+                    CertificatePath:"",
+                    IDPath:""
+                }]
+            }
+            dbcon.query("SELECT BankName,BSB,AccountName,AccountNumber,ABN FROM Sales.SalesBankDetail where ?",{SalesId: req.params.id}, function (err, result, fields) {
+                if (err) {
+                    console.log(err); dbcon.end(); res.send('Server Error');
+                }
+
+                console.log("HH")
+                var model3 = JSON.parse(JSON.stringify(result));
+                console.log(model3)
+
+                if (model3.length == 0) {
+                    model3 = [{
+                        BankName:"",
+                        BSB:"",
+                        AccountName:"",
+                        AccountNumber:"",
+                        ABN:""
+                    }]
+                }
+
+                var model = Object.assign(model1[0], model2[0], model3[0])
+                console.log(model)
+
+                res.render('Sales/SalesDetail', model);
+
+            })
+
+        })
+
+    });
+}
+
+exports.sales_detail2 = function(req, res, next) {
+    var dbcon = require('../utility/db.js');
+
+    dbcon.query("SELECT FirstName,LastName,type,DateOfBirth,gender,email,phone,nationality,address FROM Sales.BasicUser where ?",{Id: req.params.id}, function (err, result, fields) {
+        if (err) {
+            console.log(err); dbcon.end(); res.send('Server Error');
+        }
+
+        var model1 = JSON.parse(JSON.stringify(result));
+        console.log(model1)
+
+        //dbcon.end();
+
+
+        res.render('Sales/SalesDetail', model1[0]);
+
     });
 }
