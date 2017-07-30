@@ -21,7 +21,7 @@ exports.sales_create_submit = function(req, res, next) {
     console.log(req.files);
 
     var S3 = require("../utility/S3.js");
-    var dbcon = require('../utility/db.js');
+    var DB = require('../utility/db.js');
     var post = {
         type: 2,
         status:1,
@@ -37,13 +37,13 @@ exports.sales_create_submit = function(req, res, next) {
         identityStatus: identityStatus,
         createdBy: 1
     };
-    var query = dbcon.query('INSERT INTO Sales.BasicUser SET ?', post, function (err, result) {
-        if (err) console.log(err);
+    DB.query('INSERT INTO Sales.BasicUser SET ?', post, function (err, result) {
+        if (err) {console.log(err);return res.send('Server Error');}
 
         var id = result.insertId;
         var bucketName = 'salesprofiles';
         var CertificatePath = '';
-        var IDPath = '';
+        var IDPath = ''; 
 
         if(req.files) {
             for(var key in req.files) {
@@ -69,8 +69,8 @@ exports.sales_create_submit = function(req, res, next) {
             CertificatePath: CertificatePath,
             IDPath: IDPath
         };
-        var salesQuery = dbcon.query('INSERT INTO Sales.Sales SET ?', postSales, function (err, result){
-            if (err) console.log(err);
+        DB.query('INSERT INTO Sales.Sales SET ?', postSales, function (err, result){
+            if (err) {console.log(err);return res.send('Server Error');}
             var salesId  = result.insertId;
             var postSalesBank = {
                 SalesId: salesId,
@@ -80,8 +80,8 @@ exports.sales_create_submit = function(req, res, next) {
                 AccountNumber: bankAccountNumber,
                 ABN: ABN
             };
-            dbcon.query('INSERT INTO Sales.SalesBankDetail SET ?', postSalesBank, function (err, result){
-                if (err) console.log(err);
+            DB.query('INSERT INTO Sales.SalesBankDetail SET ?', postSalesBank, function (err, result){
+                if (err) {console.log(err);return res.send('Server Error');}
                 //var EmailUtility = require('../utility/mail.js');
                 //EmailUtility.sendEmail('Mailgun Sandbox <postmaster@sandbox433aec60d9004a9cb18cfabce6b66f9e.mailgun.org>','haperkelu@gmail.com','heloo', '<b>ggg</b>', 'ggg');
                 return res.redirect('/sales/detail/' + salesId);
@@ -93,20 +93,17 @@ exports.sales_create_submit = function(req, res, next) {
 }
 
 exports.sales_detail = function(req, res, next) {
-    var dbcon = require('../utility/db.js');
 
-    dbcon.query("SELECT FirstName,LastName,type,DateOfBirth,gender,email,phone,nationality,address FROM Sales.BasicUser where ?",{Id: req.params.id}, function (err, result, fields) {
-        if (err) {
-            console.log(err); dbcon.end(); res.send('Server Error');
-        }
+    var DB = require('../utility/db.js');
+
+    DB.query("SELECT FirstName,LastName,type,DateOfBirth,gender,email,phone,nationality,address FROM Sales.BasicUser where ?",{Id: req.params.id}, function (err, result, fields) {
+        if (err) {console.log(err);return res.send('Server Error');}
 
         var model1 = JSON.parse(JSON.stringify(result));
         console.log(model1)
 
-        dbcon.query("SELECT Level,ReferralCode,CertificatePath,IDPath FROM Sales.Sales where ?",{BasicUserID: req.params.id}, function (err, result, fields) {
-            if (err) {
-                console.log(err); dbcon.end(); res.send('Server Error');
-            }
+        DB.query("SELECT Level,ReferralCode,CertificatePath,IDPath FROM Sales.Sales where ?",{BasicUserID: req.params.id}, function (err, result, fields) {
+            if (err) {console.log(err);return res.send('Server Error');}
 
             var model2 = JSON.parse(JSON.stringify(result));
             console.log(model2)
@@ -119,10 +116,8 @@ exports.sales_detail = function(req, res, next) {
                     IDPath:""
                 }]
             }
-            dbcon.query("SELECT BankName,BSB,AccountName,AccountNumber,ABN FROM Sales.SalesBankDetail where ?",{SalesId: req.params.id}, function (err, result, fields) {
-                if (err) {
-                    console.log(err); dbcon.end(); res.send('Server Error');
-                }
+            DB.query("SELECT BankName,BSB,AccountName,AccountNumber,ABN FROM Sales.SalesBankDetail where ?",{SalesId: req.params.id}, function (err, result, fields) {
+                if (err) {console.log(err);return res.send('Server Error');}
 
                 console.log("HH")
                 var model3 = JSON.parse(JSON.stringify(result));
@@ -146,25 +141,6 @@ exports.sales_detail = function(req, res, next) {
             })
 
         })
-
-    });
-}
-
-exports.sales_detail2 = function(req, res, next) {
-    var dbcon = require('../utility/db.js');
-
-    dbcon.query("SELECT FirstName,LastName,type,DateOfBirth,gender,email,phone,nationality,address FROM Sales.BasicUser where ?",{Id: req.params.id}, function (err, result, fields) {
-        if (err) {
-            console.log(err); dbcon.end(); res.send('Server Error');
-        }
-
-        var model1 = JSON.parse(JSON.stringify(result));
-        console.log(model1)
-
-        //dbcon.end();
-
-
-        res.render('Sales/SalesDetail', model1[0]);
 
     });
 }
