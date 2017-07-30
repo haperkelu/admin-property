@@ -12,24 +12,18 @@ var DB = (function () {
         pool.getConnection(function (err, connection) {
             if (err) {
                 connection.release();
-                callback(null, err);
+                callback(err, null);
                 throw err;
             }
 
             connection.query(query, params, function (err, rows) {
                 connection.release();
-                if (!err) {
-                    callback(err, rows);
-                }
-                else {
-                    callback(null, err);
-                }
-
+                callback(err, rows);
             });
 
             connection.on('error', function (err) {
                 connection.release();
-                callback(null, err);
+                callback(err, null);
                 throw err;
             });
         });
