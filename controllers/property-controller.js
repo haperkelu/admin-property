@@ -32,7 +32,7 @@ exports.property_submit = function(req, res, next) {
                 if (err)
                     console.log(err);
                 else
-                    console.log("Successfully uploaded data to salesprofiles" + "/" + keyName);
+                    console.log("Successfully uploaded data to" + keyName);
             });
         }
     }
@@ -59,7 +59,5 @@ exports.property_submit = function(req, res, next) {
             return res.redirect('/offplanproperty/detail/' + propertyId);
         });
     });
-
-    res.send('name is:' + req.body.name);
 
 }
