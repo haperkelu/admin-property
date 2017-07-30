@@ -63,5 +63,13 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+if(process.env.NODE_ENV = 'development') {
+  console.log('running in dev mode');
 
+}else {
+    process.on('uncaughtException', function (err) {
+        console.error(err);
+        console.log("Node NOT Exiting...");
+    });
+}
 module.exports = app;
