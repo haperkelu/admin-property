@@ -12,16 +12,15 @@
       <legend><%= title %></legend>
 
       <label for="Address">Street Address</label>
-      <input id="Address" type="text" name="Address">
+      <input id="Address" type="text" name="Address" required>
 
       <label for="Suburb">Suburb</label>
-      <input id="Suburb" type="text" name="Suburb">
-
-      <label for="State">State</label>
-      <input id="State" type="text" name="State">
-
-      <label for="PostalCode">Post Code</label>
-      <input id="PostalCode" type="text" name="PostalCode">
+      <select id="Suburb" name="Suburb">
+        <option id="0"> Please choose a Suburb </option>
+          <% allSuburbs.map(item=> { %>
+        <option value="<%= item.Id%>"> <%= item.name%>(<%=item.state%> <%=item.code%>) </option>
+          <% }) %>
+      </select>
 
       <label for="district">片区</label>
       <input id="district" type="text" name="district">
@@ -30,14 +29,14 @@
       <input id="name" type="text" name="name" required>
 
       <label for="type">类型</label>
-      <select id="type">
+      <select id="type" name="type">
         <option value="apartment">公寓</option>
         <option value="house">别墅</option>
         <option value="land">land</option>
       </select>
 
       <label for="isHot" class="pure-checkbox">
-        <input id="isHot" type="checkbox"> 是否热门
+        <input id="isHot" type="checkbox" name="isHot"> 是否热门
       </label>
 
       <label for="PicPath">上传图片</label>
@@ -50,7 +49,7 @@
       <input id="DeveloperAuthDate" type="text" name="DeveloperAuthDate">
 
       <label for="DeveloperAuthContractPath">授权协议书上传</label>
-      <input id="DeveloperAuthContractPath" type="file" name="DeveloperAuthContractPath">
+      <input id="DeveloperAuthContractPath" type="file" name="DeveloperAuthContractPath" required>
 
       <label for="comissionRate">佣金比例</label>
       <input id="comissionRate" type="text" name="comissionRate">
