@@ -13,8 +13,8 @@ exports.user_login_submit = function(req, res, next) {
 
         var usersSelected = JSON.parse(JSON.stringify(result));
         console.log(usersSelected);
-        if(usersSelected.length != 1)  return res.redirect(req.get('referer'));
-        if(!(Encryption.encrypt(password) === usersSelected[0].Password)) return res.redirect(req.get('referer'));
+        if(usersSelected.length != 1)  return res.redirect(req.get('referer') + '?msg=userNotFound');
+        if(!(Encryption.encrypt(password) === usersSelected[0].Password)) return res.redirect(req.get('referer') + '?msg=userNotFound');
         req.session.user = {Id: usersSelected[0].ID};
         return res.redirect('/user/' + req.session.user.Id);
     });
@@ -22,12 +22,14 @@ exports.user_login_submit = function(req, res, next) {
 }
 
 exports.user_create_submit = function(req, res, next) {
-    var referralCode = req.sanitize('referralCode').escape().trim();
+
+    var referralCode = req.sanitize('referralcode').escape().trim();
     var email = req.sanitize('email').escape().trim();
-    var firstName = req.sanitize('firstName').escape().trim();
-    var lastName = req.sanitize('lastName').escape().trim();
     var password = req.sanitize('password').escape().trim();
     var passwordConfirm = req.sanitize('passwordConfirm').escape().trim();
+    /**
+    var firstName = req.sanitize('firstName').escape().trim();
+    var lastName = req.sanitize('lastName').escape().trim();
     var DOB = req.sanitize('DOB').escape().trim();
     var gender = req.sanitize('gender').escape().trim();
     var nationality = req.sanitize('nationality').escape().trim();
@@ -35,26 +37,30 @@ exports.user_create_submit = function(req, res, next) {
     var phone = req.sanitize('phone').escape().trim();
     var address = req.sanitize('address').escape().trim();
 
+    console.log(email);
+    **/
+    if(!email || !password) return res.render('error/500');
+
     var DB = require('../../utility/db.js');
     var post = {
         type: 1,
         status:1,
-        firstname: firstName,
-        lastname: lastName,
-        DateOfBirth: DOB,
-        gender: gender,
+        //firstname: firstName,
+        //lastname: lastName,
+        //DateOfBirth: DOB,
+        //gender: gender,
         email: email,
-        phone: phone,
+        //phone: phone,
         password: password,
-        nationality: nationality,
-        address: address,
-        identityStatus: identityStatus,
+        //nationality: nationality,
+        //address: address,
+        //identityStatus: identityStatus,
         createdBy: 1
     };
     var query = DB.query('INSERT INTO Sales.BasicUser SET ?', post, function (err, result) {
         if (err) {console.log(err);return res.send('Server Error');}
         var id = result.insertId;
-        DB.query('INSERT INTO Sales.Customer SET ?', {BasicUserId:id,ReferralCode: ReferralCode}, function (err, result){
+        DB.query('INSERT INTO Sales.Customer SET ?', {BasicUserId:id, ReferralCode: referralCode}, function (err, result){
             if (err) {console.log(err);return res.send('Server Error');}
             return res.redirect('/user/' + result.insertId);
         });

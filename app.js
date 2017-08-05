@@ -13,6 +13,7 @@ var index = require('./routes/index');
 var userLogin = require('./routes/PublicSite/login');
 var userLoginSubmit = require('./routes/PublicSite/login-submit');
 var userDetail = require('./routes/PublicSite/user-detail');
+var userRegister = require('./routes/PublicSite/user-register');
 var propertyForm = require('./routes/property-form');
 var propertySubmit = require('./routes/property-create');
 
@@ -42,6 +43,7 @@ app.use('/offplanProperty/create', propertyForm);
 app.use('/login', userLogin);
 app.use('/loginSubmit', userLoginSubmit);
 app.use('/user/:id', userDetail);
+app.use('/user/register', userRegister);
 app.use('/offplanProperty/submit', propertySubmit);
 app.use('/sales/create', salesCreateForm);
 app.use('/sales/submit', salesCreateSubmit);

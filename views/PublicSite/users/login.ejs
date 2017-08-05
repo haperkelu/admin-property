@@ -66,6 +66,7 @@ License: You must have a valid license purchased only from themeforest(the above
   <!-- BEGIN LOGIN FORM -->
   <form class="login-form" action="/loginSubmit" method="post">
     <h3 class="form-title font-green">登 录</h3>
+    <div id="message"></div>
     <div class="alert alert-danger display-hide">
       <button class="close" data-close="alert"></button>
       <span> Enter any username and password. </span>
@@ -105,7 +106,7 @@ License: You must have a valid license purchased only from themeforest(the above
   </form>
   <!-- END FORGOT PASSWORD FORM -->
   <!-- BEGIN REGISTRATION FORM -->
-  <form class="register-form" action="index.html" method="post">
+  <form class="register-form" action="/user/register" method="post">
     <h3 class="font-green">注册</h3>
     <div class="form-group">
       <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
@@ -116,7 +117,7 @@ License: You must have a valid license purchased only from themeforest(the above
       <input class="form-control placeholder-no-fix" type="password" autocomplete="off" id="register_password" placeholder="密码" name="password" /> </div>
     <div class="form-group">
       <label class="control-label visible-ie8 visible-ie9">再次输入密码</label>
-      <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="再次输入密码" name="rpassword" /> </div>
+      <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="再次输入密码" name="passwordConfirm" /> </div>
     <div class="form-group">
       <label class="control-label visible-ie8 visible-ie9">推荐码</label>
       <input class="form-control placeholder-no-fix" type="text" placeholder="推荐码" name="referralcode" /> </div>
@@ -171,8 +172,25 @@ License: You must have a valid license purchased only from themeforest(the above
         {
             $('#radio1003').attr('checked', 'checked');
         });
-    })
+    });
+
+    function GetURLParameter(sParam){
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++)
+        {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) {
+                return sParameterName[1];
+            }
+        }
+    }
+    var msg  = GetURLParameter('msg');
+    //console.log(msg !== undefined);
+    if(msg !== undefined) {
+        $('#message').html('无法找到匹配的用户名密码');
+    }
+
 </script>
 </body>
-
 </html>
