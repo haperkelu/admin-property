@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.7
+Version: 4.7.5
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Contact: support@keenthemes.com
+Follow: www.twitter.com/keenthemes
+Dribbble: www.dribbble.com/keenthemes
+Like: www.facebook.com/keenthemes
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+Renew Support: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+    <!--<![endif]-->
+    <!-- BEGIN HEAD -->
+
+    <head>
+        <meta charset="utf-8" />
+        <title>Metronic Admin Theme #1 | New User Profile | Account</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <meta content="Preview page of Metronic Admin Theme #1 for user account page" name="description" />
+        <meta content="" name="author" />
+        <!-- BEGIN GLOBAL MANDATORY STYLES -->
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+        <link href="../../../public/assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../../public/assets/global/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../../public/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../../public/assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
+        <!-- END GLOBAL MANDATORY STYLES -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link href="../../../public/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css" rel="stylesheet" type="text/css" />
+        <link href="../../../public/assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" type="text/css" />
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL STYLES -->
+        <link href="../../../public/assets/global/css/components.min.css" rel="stylesheet" id="style_components" type="text/css" />
+        <link href="../../../public/assets/global/css/plugins.min.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME GLOBAL STYLES -->
+        <!-- BEGIN PAGE LEVEL STYLES -->
+        <link href="../../../public/assets/pages/css/profile.min.css" rel="stylesheet" type="text/css" />
+        <!-- END PAGE LEVEL STYLES -->
+        <!-- BEGIN THEME LAYOUT STYLES -->
+        <link href="../../../public/assets/layouts/layout/css/layout.css" rel="stylesheet" type="text/css" />
+        <link href="../../../public/assets/layouts/layout/css/themes/light.min.css" rel="stylesheet" type="text/css" id="style_color" />
+        <link href="../../../public/assets/layouts/layout/css/custom.min.css" rel="stylesheet" type="text/css" />
+        <!-- END THEME LAYOUT STYLES -->
+        <link rel="shortcut icon" href="favicon.ico" /> </head>
+    <!-- END HEAD -->
+
+    <body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white page-full-width page-container-bg-solid">
+        <div class="page-wrapper">
+            <!-- BEGIN HEADER -->
+            <div class="page-header navbar navbar-fixed-top">
+                <!-- BEGIN HEADER INNER -->
+                <div class="page-header-inner ">
+                    <!-- BEGIN LOGO -->
+                    <div class="page-logo">
+                        <a href="index.html">
+                            <img src="../../../public/assets/layouts/layout/img/logo.png" alt="logo" class="logo-default"> </a>
+                    </div>
+                    <!-- END LOGO -->
+                    <!-- BEGIN MEGA MENU -->
+                    <!-- DOC: Remove "hor-menu-light" class to have a horizontal menu with theme background instead of white background -->
+                    <!-- DOC: This is desktop version of the horizontal menu. The mobile version is defined(duplicated) in the responsive menu below along with sidebar menu. So the horizontal menu has 2 seperate versions -->
+                    <div class="hor-menu">
+                        <ul class="nav navbar-nav">
+                            <!-- DOC: Remove data-hover="megamenu-dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
+                            <li class="classic-menu-dropdown" aria-haspopup="true">
+                                <a href="javascript:;" data-hover="megamenu-dropdown" data-close-others="true"> 新 房
+                                </a>
+                                <ul class="dropdown-menu pull-left">
+                                    <li>
+                                        <a href="../newhome/newhomelist.html?city=sydney">
+                                            <i class="fa"></i> 悉尼 </a>
+                                    </li>
+                                    <li>
+                                        <a href="../newhome/newhomelist.html?city=melbourne">
+                                            <i class="fa"></i> 墨尔本 </a>
+                                    </li>
+                                    <li>
+                                        <a href="../newhome/newhomelist.html?city=brisbane">
+                                            <i class="fa"></i> 布里斯班 </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="classic-menu-dropdown" aria-haspopup="true">
+                                <a href="../resalehome/resalehomelist.html"> 二手房
+                                    <span class="selected"> </span>
+                                </a>
+                            </li>
+                            <li class="classic-menu-dropdown" aria-haspopup="true">
+                                <a href="../rent/rentlist.html"> 租 房
+                                    <span class="selected"> </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END MEGA MENU -->
+                    <!-- BEGIN TOP NAVIGATION MENU -->
+                    <div class="top-menu">
+                        <ul class="nav navbar-nav pull-right">
+                            <!-- END TODO DROPDOWN -->
+                            <!-- BEGIN USER LOGIN DROPDOWN -->
+                            <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                            <li class="dropdown dropdown-user">
+                                <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                    <img alt="" class="img-circle" src="../../../public/assets/layouts/layout/img/avatar3_small.jpg">
+                                    <span class="username username-hide-on-mobile"> Nick </span>
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-default">
+                                    <li>
+                                        <a href="page_user_profile.html">
+                                            <i class="icon-user"></i> 基本信息 </a>
+                                    </li>
+                                    <li>
+                                        <a href="page_user_groupon.html">
+                                            <i class="icon-envelope"></i> 我的卡券 </a>
+                                    </li>
+                                    <li>
+                                        <a href="page_user_newhome.html">
+                                            <i class="icon-home"></i> 我的新房 </a>
+                                    </li>
+                                    <li>
+                                        <a href="page_user_resalehome.html">
+                                            <i class="icon-home"></i> 我的二手房 </a>
+                                    </li>
+                                    <li>
+                                        <a href="page_user_rent.html">
+                                            <i class="icon-home"></i> 我的租房 </a>
+                                    </li>
+                                    <li>
+                                        <a href="page_user_login_1.html">
+                                            <i class="icon-key"></i> 退出登录 </a>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <!-- END USER LOGIN DROPDOWN -->
+                            <!-- BEGIN QUICK SIDEBAR TOGGLER -->
+                            <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
+                            <li class="dropdown dropdown-quick-sidebar-toggler">
+                                <a href="javascript:;" class="dropdown-toggle">
+                                    <i class="icon-logout"></i>
+                                </a>
+                            </li>
+                            <!-- END QUICK SIDEBAR TOGGLER -->
+                        </ul>
+                    </div>
+                    <!-- END TOP NAVIGATION MENU -->
+                </div>
+                <!-- END HEADER INNER -->
+            </div>
+            <!-- END HEADER -->
+            <!-- BEGIN HEADER & CONTENT DIVIDER -->
+            <div class="clearfix"> </div>
+            <!-- END HEADER & CONTENT DIVIDER -->
+            <!-- BEGIN BOX CONTAINER -->
+            <div class="container">
+                <!-- BEGIN CONTAINER -->
+                <div class="page-container">
+                <!-- BEGIN SIDEBAR -->
+                 <!-- END SIDEBAR -->
+                <!-- BEGIN CONTENT -->
+                <div class="page-content-wrapper">
+                    <!-- BEGIN CONTENT BODY -->
+                    <div class="page-content">
+                        <!-- BEGIN PAGE HEADER-->
+                        <!-- BEGIN THEME PANEL -->
+                        <!-- END THEME PANEL -->
+                        <!-- BEGIN PAGE BAR -->
+                        <div class="page-bar">
+                            <ul class="page-breadcrumb">
+                                <li>
+                                    <a href="index.html">首页</a>
+                                    <i class="fa fa-circle"></i>
+                                </li>
+                                <li>
+                                    <span>我的新房</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- END PAGE BAR -->
+                        <!-- BEGIN PAGE TITLE-->
+                        <h1 class="page-title"> 
+                        </h1>
+                        <!-- END PAGE TITLE-->
+                        <!-- END PAGE HEADER-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- BEGIN PROFILE SIDEBAR -->
+                                <div class="profile-sidebar">
+                                    <!-- PORTLET MAIN -->
+                                    <div class="portlet light profile-sidebar-portlet ">
+                                        <!-- SIDEBAR USERPIC -->
+                                        <!-- END SIDEBAR USERPIC -->
+                                        <!-- SIDEBAR USER TITLE -->
+                                        <div class="profile-usertitle">
+                                            <div class="profile-usertitle-name"> 个人中心 </div>
+                                        </div>
+                                        <!-- END SIDEBAR USER TITLE -->
+                                        <!-- SIDEBAR BUTTONS -->
+                                        <!-- END SIDEBAR BUTTONS -->
+                                        <!-- SIDEBAR MENU -->
+                                        <div class="profile-usermenu">
+                                            <ul class="nav">
+                                                <li>
+                                                    <a href="page_user_profile.html">
+                                                        <i class="icon-user"></i> 基本信息 </a>
+                                                </li>
+                                                <li>
+                                                    <a href="page_user_groupon.html">
+                                                        <i class="icon-envelope"></i> 我的卡券 </a>
+                                                </li>
+                                                <li class="active">
+                                                    <a href="page_user_newhome.html">
+                                                        <i class="icon-home"></i> 我的新房 </a>
+                                                </li>
+                                                <li>
+                                                    <a href="page_user_resalehome.html">
+                                                        <i class="icon-home"></i> 我的二手房 </a>
+                                                </li>
+                                                <li>
+                                                    <a href="page_user_rent.html">
+                                                        <i class="icon-home"></i> 我的租房 </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <!-- END MENU -->
+                                    </div>
+                                    <!-- END PORTLET MAIN -->
+                                    <!-- PORTLET MAIN -->
+                                    <!-- END PORTLET MAIN -->
+                                </div>
+                                <!-- END BEGIN PROFILE SIDEBAR -->
+                                <!-- BEGIN PROFILE CONTENT -->
+                                <div class="profile-content">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="portlet light ">
+                                                <div class="portlet-title tabbable-line">
+                                                    <div class="caption caption-md">
+                                                        <i class="icon-globe theme-font hide"></i>
+                                                        <span class="caption-subject font-blue-madison bold uppercase"> 我的新房</span>
+                                                    </div>
+                                                </div>
+                                                <div class="portlet-body">
+                                                    <div class="table-scrollable">
+                                                        <table class="table table-hover table-light">
+                                                <thead>
+                                                    <tr>
+                                                        <th> 编号 </th>
+                                                        <th> 日期 </th>
+                                                        <th> 房产名称 </th>
+                                                        <th> 房号 </th>
+                                                        <th> 价格 </th>
+                                                        <th> 销售姓名 </th>
+                                                        <th> 律师公司 </th>
+                                                        <th> 优惠信息 </th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td> 1 </td>
+                                                        <td> 1/7/17 </td>
+                                                        <td> Otto </td>
+                                                        <td> 2201 </td>
+                                                        <td> $1,000,000 </td>
+                                                        <td> Sam Zhang </td>
+                                                        <td> Martin </td>
+                                                        <td> 无 </td>
+                                                        <td>
+                                                            <a href="page_user_newhomedetail.html?id=1" class="btn btn-outline btn-circle btn-sm purple">
+                                                                <i class="fa fa-edit"></i> 详情 </a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END PROFILE CONTENT -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END CONTENT BODY -->
+                </div>
+                <!-- END CONTENT -->
+                <!-- BEGIN QUICK SIDEBAR -->
+                <!-- END QUICK SIDEBAR -->
+            </div>
+                <!-- END CONTAINER -->
+            </div>
+            <!-- END BOX CONTAINER -->
+            <!-- BEGIN FOOTER -->
+            <div class="page-footer">
+                <div class="page-footer-inner"> 2016 &copy; Metronic Theme By
+                    <a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;
+                    <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
+                </div>
+                <div class="scroll-to-top">
+                    <i class="icon-arrow-up"></i>
+                </div>
+            </div>
+            <!-- END FOOTER -->
+        </div>
+        <!-- BEGIN QUICK NAV -->
+        <!-- END QUICK NAV -->
+        <!--[if lt IE 9]>
+<script src="../../../public/assets/global/plugins/respond.min.js"></script>
+<script src="../../../public/assets/global/plugins/excanvas.min.js"></script> 
+<script src="../../../public/assets/global/plugins/ie8.fix.min.js"></script> 
+<![endif]-->
+        <!-- BEGIN CORE PLUGINS -->
+        <script src="../../../public/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
+        <script src="../../../public/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../public/assets/global/plugins/js.cookie.min.js" type="text/javascript"></script>
+        <script src="../../../public/assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+        <script src="../../../public/assets/global/plugins/jquery.blockui.min.js" type="text/javascript"></script>
+        <script src="../../../public/assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js" type="text/javascript"></script>
+        <!-- END CORE PLUGINS -->
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="../../../public/assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.js" type="text/javascript"></script>
+        <script src="../../../public/assets/global/plugins/jquery.sparkline.min.js" type="text/javascript"></script>
+        <script src="../../../public/assets/global/plugins/jquery-validation/js/jquery.validate.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL PLUGINS -->
+        <!-- BEGIN THEME GLOBAL SCRIPTS -->
+        <script src="../../../public/assets/global/scripts/app.min.js" type="text/javascript"></script>
+        <!-- END THEME GLOBAL SCRIPTS -->
+        <!-- BEGIN PAGE LEVEL SCRIPTS -->
+         <script src="../../../public/assets/pages/scripts/profile.js" type="text/javascript"></script>        <!-- END PAGE LEVEL SCRIPTS -->
+        
+        <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <script src="../../../public/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+        <script src="../../../public/assets/pages/scripts/components-date-time-pickers.min.js" type="text/javascript"></script>
+        <!-- END PAGE LEVEL SCRIPTS -->
+
+        <!-- BEGIN THEME LAYOUT SCRIPTS -->
+        <script src="../../../public/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+        <!-- END THEME LAYOUT SCRIPTS -->
+        <script>
+
+        </script>
+    </body>
+
+</html>
