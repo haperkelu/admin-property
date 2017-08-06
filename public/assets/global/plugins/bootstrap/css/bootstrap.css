@@ -3823,7 +3823,9 @@ tbody.collapse.in {
       float: left;
       margin: 0; }
       .navbar-nav > li {
-        float: left; }
+        float: left;
+        min-width:100px;
+        text-align:center; }
         .navbar-nav > li > a {
           padding-top: 15px;
           padding-bottom: 15px; } }

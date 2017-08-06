@@ -1,59 +1,138 @@
 var Profile = function() {
 
-    var dashboardMainChart = null;
+    var handlePersonalInfo = function() {
 
-    return {
+        $('.personalinfo').validate({
+            errorElement: 'span', //default input error message container
+            errorClass: 'help-block', // default input error message class
+            focusInvalid: false, // do not focus the last invalid input
+            rules: {
+                phone: {
+                    phone: true
+                }
+            },
+
+            messages: {
+            },
+
+             invalidHandler: function(event, validator) { //display error alert on form submit   
+
+            },
+
+            highlight: function(element) { // hightlight error inputs
+                $(element)
+                    .closest('.form-group').addClass('has-error'); // set error class to the control group
+            },
+
+            success: function(label) {
+                label.closest('.form-group').removeClass('has-error');
+                label.remove();
+            },
+
+            errorPlacement: function(error, element) {
+                if (element.attr("name") == "tnc") { // insert checkbox errors after the container                  
+                    error.insertAfter($('#register_tnc_error'));
+                } else if (element.closest('.input-icon').size() === 1) {
+                    error.insertAfter(element.closest('.input-icon'));
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+
+            submitHandler: function(form) {
+                form.submit(); // form validation success, call ajax form submit
+            }
+        });
+
+        $('.personalinfo input').keypress(function(e) {
+            if (e.which == 13) {
+                if ($('.personalinfo').validate().form()) {
+                    $('.personalinfo').submit(); //form validation success, call ajax form submit
+                }
+                return false;
+            }
+        });
+        
+        $('.mt-clipboard').each(function(){
+            var clipboard = new Clipboard(this);	
+
+            clipboard.on('success', function(e) {
+                paste_text = e.text;
+                console.log(paste_text);
+            });
+        });
+
+    }
+
+    var handleResetPassword = function() {
+        $('.resetpassword').validate({
+            errorElement: 'span', //default input error message container
+            errorClass: 'help-block', // default input error message class
+            focusInvalid: false, // do not focus the last invalid input
+            ignore: "",
+            rules: {
+
+                newpassword: {
+                    required: true,
+                    minlength:8,
+                    maxlength:20
+                },
+                oldpassword: {
+                    required: true
+                },
+                rpassword: {
+                    equalTo: "#register_password"
+                }
+            },
+
+            messages: { // custom messages for radio buttons and checkboxes
+                tnc: {
+                    required: "Please accept TNC first."
+                }
+            },
+
+            invalidHandler: function(event, validator) { //display error alert on form submit   
+
+            },
+
+            highlight: function(element) { // hightlight error inputs
+                $(element)
+                    .closest('.form-group').addClass('has-error'); // set error class to the control group
+            },
+
+            success: function(label) {
+                label.closest('.form-group').removeClass('has-error');
+                label.remove();
+            },
+
+            errorPlacement: function(error, element) {
+                if (element.attr("name") == "tnc") { // insert checkbox errors after the container                  
+                    error.insertAfter($('#register_tnc_error'));
+                } else if (element.closest('.input-icon').size() === 1) {
+                    error.insertAfter(element.closest('.input-icon'));
+                } else {
+                    error.insertAfter(element);
+                }
+            },
+
+            submitHandler: function(form) {
+                form[0].submit();
+            }
+        });
+
+    }
+
+     
+   return {
 
         //main function
         init: function() {
-        
-            Profile.initMiniCharts();
+            //$("form").validate();
+            handlePersonalInfo();
+            handleResetPassword();
         },
-
-        initMiniCharts: function() {
-
-            // IE8 Fix: function.bind polyfill
-            if (App.isIE8() && !Function.prototype.bind) {
-                Function.prototype.bind = function(oThis) {
-                    if (typeof this !== "function") {
-                        // closest thing possible to the ECMAScript 5 internal IsCallable function
-                        throw new TypeError("Function.prototype.bind - what is trying to be bound is not callable");
-                    }
-
-                    var aArgs = Array.prototype.slice.call(arguments, 1),
-                        fToBind = this,
-                        fNOP = function() {},
-                        fBound = function() {
-                            return fToBind.apply(this instanceof fNOP && oThis ? this : oThis,
-                                aArgs.concat(Array.prototype.slice.call(arguments)));
-                        };
-
-                    fNOP.prototype = this.prototype;
-                    fBound.prototype = new fNOP();
-
-                    return fBound;
-                };
-            }
-
-            $("#sparkline_bar").sparkline([8, 9, 10, 11, 10, 10, 12, 10, 10, 11, 9, 12, 11], {
-                type: 'bar',
-                width: '100',
-                barWidth: 6,
-                height: '45',
-                barColor: '#F36A5B',
-                negBarColor: '#e02222'
-            });
-
-            $("#sparkline_bar2").sparkline([9, 11, 12, 13, 12, 13, 10, 14, 13, 11, 11, 12, 11], {
-                type: 'bar',
-                width: '100',
-                barWidth: 6,
-                height: '45',
-                barColor: '#5C9BD1',
-                negBarColor: '#e02222'
-            });
-        }
-
+        
+        
     };
 
 }();
