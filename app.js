@@ -4,7 +4,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var session = require('express-session');
+var cookieSession = require('cookie-session');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var fileUpload = require('express-fileupload');
@@ -35,7 +35,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 app.use(cookieParser());
-app.use(session({resave: true, saveUninitialized: true, secret: '!@#$%67890'}));
+app.use(cookieSession({name: 'session', keys: ['key1', 'key2']}));
 app.use(fileUpload());
 
 app.use('/', index);
