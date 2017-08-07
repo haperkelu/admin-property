@@ -277,22 +277,22 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">姓</label>
-                                                                    <input type="text" placeholder="请输入姓" class="form-control" name="surname"/> </div>
+                                                                    <input type="text" placeholder="请输入姓" class="form-control" name="LastName" value="<%= LastName %>" /> </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">名</label>
-                                                                    <input type="text" placeholder="请输入名" class="form-control" name="firstname" /> </div>
+                                                                    <input type="text" placeholder="请输入名" class="form-control" name="FirstName" value="<%= FirstName %>" /> </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">出生日期</label>
-                                                                    <input class="form-control form-control-inline input-medium date-picker placeholder-no-fix" size="16" type="text" value="" name="dateofbirth"/></div>
+                                                                    <input class="form-control form-control-inline input-medium date-picker placeholder-no-fix" size="16" type="text" value="<%= DateOfBirth %>" name="DateOfBirth"/></div>
                                                                 <div>
                                                                 <label class="control-label">性别</label>
                                                                 <div class="mt-radio-inline">
                                                                     <label class="mt-radio">
-                                                                        <input type="radio" name="sex" id="sexmale" value="male" checked> 男
+                                                                        <input type="radio" name="Gender" id="sexmale" value="M" <% if(Gender == 'M'){ %> checked="checked" <% } %> /> 男
                                                                         <span></span>
                                                                     </label>
                                                                     <label class="mt-radio">
-                                                                        <input type="radio" name="sex" id="sexfemale" value="female"> 女
+                                                                        <input type="radio" name="Gender" id="sexfemale" value="F" <% if(Gender == 'F'){ %> checked="checked" <% } %>> 女
                                                                         <span></span>
                                                                     </label>
                                                                 </div>
@@ -540,17 +540,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <div class="form-group">
                                                                     <label>澳洲身份</label>
                                                                     <select class="form-control" name="shenfen">
-                                                                        <option>公民</option>
-                                                                        <option>PR</option>
-                                                                        <option>海外</option>
+                                                                        <option <% if(IdentityStatus == 'Citizen'){ %> selected <% } %>>公民</option>
+                                                                        <option <% if(IdentityStatus == 'PR'){ %> selected <% } %>>PR</option>
+                                                                        <option <% if(IdentityStatus == 'Overseas'){ %> selected <% } %>>海外</option>
                                                                     </select>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">电话号码</label>
-                                                                    <input type="text" placeholder="例如：+86 138 6688 6688 或 0438 668 668" class="form-control" name="phone" type="text"/> </div>
+                                                                    <input type="text" placeholder="例如：+86 138 6688 6688 或 0438 668 668" class="form-control" name="phone" type="text"  value="<%= Phone %>" /> </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">地址</label>
-                                                                    <textarea class="form-control" rows="3" name="address"></textarea></div>
+                                                                    <textarea class="form-control" rows="3" name="address"> <%= Address %></textarea></div>
                                                                 <div class="form-actions">
                                                                     <button type="submit" id="profile-submit-btn" class="btn btn-success uppercase">保存修改</button>
                                                                 </div>
