@@ -10,7 +10,6 @@ router.get('/', function(req, res, next) {
         if (err) {console.log(err);return res.render('error/500');}
         return res.render('PublicSite/users/UserNewHomeList', {Id:req.session.user.Id, data:result});
     });
-
 });
 
 module.exports = router;

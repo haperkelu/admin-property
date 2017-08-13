@@ -246,44 +246,206 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <div class="portlet-title tabbable-line">
                                                     <div class="caption caption-md">
                                                         <i class="icon-globe theme-font hide"></i>
-                                                        <span class="caption-subject font-blue-madison bold uppercase"> 我的新房</span>
+                                                        <span class="caption-subject font-blue-madison bold uppercase"> 新房详情</span>
                                                     </div>
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active">
+                                                            <a href="#tab_1_1" data-toggle="tab">房产信息</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#tab_1_2" data-toggle="tab">销售信息</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#tab_1_3" data-toggle="tab">律师信息</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#tab_1_4" data-toggle="tab">优惠信息</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#tab_1_5" data-toggle="tab">客户信息</a>
+                                                        </li>
+                                                    </ul>
+
                                                 </div>
                                                 <div class="portlet-body">
-                                                    <div class="table-scrollable">
-                                                        <table class="table table-hover table-light">
-                                                <thead>
-                                                    <tr>
-                                                        <th> 编号 </th>
-                                                        <th> 日期 </th>
-                                                        <th> 房产名称 </th>
-                                                        <th> 房号 </th>
-                                                        <th> 价格 </th>
-                                                        <th> 销售姓名 </th>
-                                                        <th> 律师公司 </th>
-                                                        <th> 优惠信息 </th>
-                                                        <th>操作</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                <% for(var i=0; i < data.length; i++) { %>
-                                                    <tr>
-                                                        <td><%= data[i].Id %></td>
-                                                        <td><%= data[i].OrderDate.substring(0, data[i].OrderDate.indexOf('T')) %></td>
-                                                        <td><%= data[i].Name %></td>
-                                                        <td><%= data[i].pId %></td>
-                                                        <td><%= data[i].Price %></td>
-                                                        <td><%= data[i].SalesName %></td>
-                                                        <td><%= data[i].SolicitorCompany %></td>
-                                                        <td>无</td>
-                                                        <td>
-                                                            <a href="/user/<%=Id%>/userNewHomeDetail/<%= data[i].Id %>" class="btn btn-outline btn-circle btn-sm purple">
-                                                                <i class="fa fa-edit"></i> 详情 </a>
-                                                        </td>
-                                                    </tr>
-                                                <% } %>
-                                                </tbody>
-                                            </table>
+                                                    <div class="tab-content">
+                                                        <!-- Property INFO TAB -->
+                                                        <div class="tab-pane active" id="tab_1_1">
+                                                            <form class="form-horizontal">
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">购买日期</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"><%= data.OrderDate.substring(0, data.OrderDate.indexOf('T')) %></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">类型</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"> <% if(data.PropertyType == 1){ %> 新房 <% } %> <% if(data.PropertyType == 2){ %> Home/Land <% } %> </p>
+                                                                    </div>
+                                                                </div>
+                                                               <div class="form-group">
+                                                                    <label class="control-label col-md-2">房产名称</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"> <%= data.Name %> </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">Unit No.</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"><%= data.UnitNumber %>  </p>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                                <!--Show when property type is house&land-->
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">Lot No.</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"> <%= data.LotNumber %>  </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">价格</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"> $<%= data.Price %>  </p>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </form>
+                                                        </div>
+                                                        <!-- END Property INFO TAB -->
+                                                        <!-- Sales TAB -->
+                                                        <div class="tab-pane" id="tab_1_2">
+                                                            <form class="form-horizontal">
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">销售姓名</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"><%= data.SalesName %></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">销售电话</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"><%= data.SalesMobile %></p>
+                                                                    </div>
+                                                                </div>
+                                                               <div class="form-group">
+                                                                    <label class="control-label col-md-2">销售邮箱</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"> <%= data.SalesEmail %></p>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </form>
+                                                        </div>
+                                                        <!-- END Sales TAB -->
+                                                        <!-- Lawyer INFO TAB -->
+                                                        <div class="tab-pane" id="tab_1_3">
+                                                            <form class="form-horizontal">
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">公司名称</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"><%= data.SolicitorCompany %></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">律师名称</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"><%= data.SolicitorName %> </p>
+                                                                    </div>
+                                                                </div>
+                                                               <div class="form-group">
+                                                                    <label class="control-label col-md-2">电话</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"> <%= data.SolicitorPhone %> </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">邮箱</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"><%= data.SolicitorEmail %> </p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">地址</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"> <%= data.SolicitorAddress %> </p>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </form>
+                                                        </div>
+                                                        <!-- END Layer INFO TAB -->
+                                                        <!-- Groupon TAB -->
+                                                        <div class="tab-pane" id="tab_1_4">
+                                                            <form class="form-horizontal" method="post" action="/user/<%=Id%>/userNewHomeDetail/<%=data.Id%>/applyCoupon">
+                                                                <!--卡券无值时显示 -->
+                                                                <% if(!data.CouponId){ %>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">卡券</label>
+                                                                    <div class="col-md-8">
+                                                                        <select class="form-control" name="couponList">
+                                                                            <option>请选择</option>
+                                                                            <% for(var i=0; i < couponList.length; i++) { %>
+                                                                            <option value="<%=couponList[i].ID%>"><%=couponList[i].Name%></option>
+                                                                            <% } %>
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="form-actions">
+                                                                        <button type="submit" id="submit-btn" class="btn btn-success uppercase">确认使用</button>
+                                                                    </div>
+                                                                </div>
+                                                                <% } %>
+                                                                <!--卡券有值时显示 -->
+                                                                <% if(data.CouponId){ %>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">卡券</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static">
+                                                                            <% for(var i=0; i < couponList.length; i++) { %>
+                                                                                <% if(couponList[i].ID == data.CouponId){ %>
+                                                                                    <%=couponList[i].Name%>
+                                                                                <% } %>
+                                                                            <% } %>
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <% } %>
+                                                            </form>
+                                                        </div>
+                                                        <!-- END Groupon TAB -->
+                                                        <!-- Customer TAB -->
+                                                        <div class="tab-pane" id="tab_1_5">
+                                                            <form class="form-horizontal">
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">客户姓名</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"><%= data.CustomerName %></p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-2">客户电话</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"><%= data.CustomerPhone %></p>
+                                                                    </div>
+                                                                </div>
+                                                               <div class="form-group">
+                                                                    <label class="control-label col-md-2">客户邮箱</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"><%= data.CustomerEmail %></p>
+                                                                    </div>
+                                                                </div>
+                                                               <div class="form-group">
+                                                                    <label class="control-label col-md-2">客户地址</label>
+                                                                    <div class="col-md-8">
+                                                                        <p class="form-control-static"><%= data.CustomerAddress %></p>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </form>
+                                                        </div>
+                                                        <!-- END Customer TAB -->
                                                     </div>
                                                 </div>
                                             </div>

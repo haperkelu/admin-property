@@ -105,3 +105,20 @@ exports.user_update_basic = function(req, res, next) {
     });
 
 }
+
+exports.apply_coupon_submit = function (req, res, next) {
+    if(req.session.user == undefined)
+        return res.redirect('/login');
+    var homeId = req.params.homeId;
+    console.log(homeId);
+    if(homeId == undefined) return res.send('Server Error');
+    var CouponService = require('../../Biz-Service/CouponService');
+    var couponSelected = req.sanitize('couponList').escape().trim();
+    console.log(couponSelected);
+    CouponService.applyCoupon(req.session.user.Id, homeId, couponSelected, function (err, result) {
+        if (err) {console.log(err);return res.send('Server Error');}
+        return res.redirect('/user/' + req.session.user.Id + '/userNewHomeDetail/' + homeId);
+    });
+
+
+}
