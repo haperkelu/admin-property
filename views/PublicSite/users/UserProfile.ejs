@@ -115,15 +115,15 @@ License: You must have a valid license purchased only from themeforest(the above
                                         </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="page_user_profile.html">
+                                        <a href="/user/<%=Id%>">
                                             <i class="icon-user"></i> 基本信息 </a>
                                     </li>
                                     <li>
-                                        <a href="page_user_groupon.html">
+                                        <a href="/user/<%=Id%>/coupon">
                                             <i class="icon-envelope"></i> 我的卡券 </a>
                                     </li>
                                     <li>
-                                        <a href="page_user_newhome.html">
+                                        <a href="/user/<%=Id%>/userNewHomeList">
                                             <i class="icon-home"></i> 我的新房 </a>
                                     </li>
                                     <li>
@@ -207,28 +207,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <!-- END SIDEBAR BUTTONS -->
                                         <!-- SIDEBAR MENU -->
                                         <div class="profile-usermenu">
-                                            <ul class="nav">
-                                                <li class="active">
-                                                    <a href="page_user_profile.html">
-                                                        <i class="icon-user"></i> 基本信息 </a>
-                                                </li>
-                                                <li>
-                                                    <a href="page_user_groupon.html">
-                                                        <i class="icon-envelope"></i> 我的卡券 </a>
-                                                </li>
-                                                <li>
-                                                    <a href="page_user_newhome.html">
-                                                        <i class="icon-home"></i> 我的新房 </a>
-                                                </li>
-                                                <li>
-                                                    <a href="page_user_resalehome.html">
-                                                        <i class="icon-home"></i> 我的二手房 </a>
-                                                </li>
-                                                <li>
-                                                    <a href="page_user_rent.html">
-                                                        <i class="icon-home"></i> 我的租房 </a>
-                                                </li>
-                                            </ul>
+                                            <% include nav.html %>
                                         </div>
                                         <!-- END MENU -->
                                     </div>
@@ -260,7 +239,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <div class="tab-content">
                                                         <!-- PERSONAL INFO TAB -->
                                                         <div class="tab-pane active" id="tab_1_1">
-                                                            <form action="#" class="personalinfo">
+                                                            <form action="/user/updateBasic" class="personalinfo" method="post">
+                                                                <input type="text" name="Id" hidden value="<%= Id %>">
                                                                 <div class="form-group">
                                                                     <label class="control-label">电子邮箱</label>
                                                                     <input class="form-control" type="text" placeholder="电子邮箱" name="Email" readonly value="<%= Email %>" />
@@ -299,7 +279,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                     </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">国籍</label>
-                                                                    <select name="country" class="form-control">
+                                                                    <select id="Nationality" name="Nationality" class="form-control">
                                                                         <option value="">Country</option>
                                                                         <option value="AF">Afghanistan</option>
                                                                         <option value="AL">Albania</option>
@@ -539,7 +519,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>澳洲身份</label>
-                                                                    <select class="form-control" name="shenfen">
+                                                                    <select class="form-control" name="IdentityStatus">
                                                                         <option <% if(IdentityStatus == 'Citizen'){ %> selected <% } %>>公民</option>
                                                                         <option <% if(IdentityStatus == 'PR'){ %> selected <% } %>>PR</option>
                                                                         <option <% if(IdentityStatus == 'Overseas'){ %> selected <% } %>>海外</option>
@@ -547,10 +527,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">电话号码</label>
-                                                                    <input type="text" placeholder="例如：+86 138 6688 6688 或 0438 668 668" class="form-control" name="phone" type="text"  value="<%= Phone %>" /> </div>
+                                                                    <input type="text" placeholder="例如：+86 138 6688 6688 或 0438 668 668" class="form-control" name="Phone" type="text"  value="<%= Phone %>" /> </div>
                                                                 <div class="form-group">
                                                                     <label class="control-label">地址</label>
-                                                                    <textarea class="form-control" rows="3" name="address"> <%= Address %></textarea></div>
+                                                                    <textarea class="form-control" rows="3" name="Address"> <%= Address %></textarea></div>
                                                                 <div class="form-actions">
                                                                     <button type="submit" id="profile-submit-btn" class="btn btn-success uppercase">保存修改</button>
                                                                 </div>
@@ -645,8 +625,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="../../../public/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
-        <script>
-
+        <script type="application/javascript">
+            var country = '<%=Nationality%>';
+            //$('#Nationality option:eq("CN")').prop('selected', true);
+            $('#Nationality option[value="CN"]').attr("selected", "selected");
         </script>
     </body>
 

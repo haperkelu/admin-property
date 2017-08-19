@@ -13,7 +13,13 @@ var index = require('./routes/index');
 var userLogin = require('./routes/PublicSite/login');
 var userLoginSubmit = require('./routes/PublicSite/login-submit');
 var userDetail = require('./routes/PublicSite/user-detail');
+var userDetailCoupon = require('./routes/PublicSite/user-detail-coupon');
 var userRegister = require('./routes/PublicSite/user-register');
+var userUpdateBasic = require('./routes/PublicSite/user-updateBasic');
+var userNewHomeList = require('./routes/PublicSite/user-detail-newhomelist');
+var userNewHomeDetail = require('./routes/PublicSite/user-detail-newhome-detail');
+var userEstablishedHomeList = require('./routes/PublicSite/user-detail-establishedhomelist');
+var userApplyCouponSubmit = require('./routes/PublicSite/apply-coupon-submit');
 var propertyForm = require('./routes/property-form');
 var propertySubmit = require('./routes/property-create');
 
@@ -43,7 +49,13 @@ app.use('/offplanProperty/create', propertyForm);
 app.use('/login', userLogin);
 app.use('/loginSubmit', userLoginSubmit);
 app.use('/user/:id', userDetail);
+app.use('/user/:id/coupon', userDetailCoupon);
+app.use('/user/:id/userNewHomeList', userNewHomeList);
+app.use('/user/:id/userEstablishedHomeList', userEstablishedHomeList);
+app.use('/user/:id/userNewHomeDetail/:homeId', userNewHomeDetail);
+app.use('/user/:id/userNewHomeDetail/:homeId/applyCoupon', userApplyCouponSubmit);
 app.use('/user/register', userRegister);
+app.use('/user/updateBasic', userUpdateBasic);
 app.use('/offplanProperty/submit', propertySubmit);
 app.use('/sales/create', salesCreateForm);
 app.use('/sales/submit', salesCreateSubmit);
@@ -67,12 +79,14 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-if(process.env.NODE_ENV = 'development') {
-  console.log('running in dev mode');
-}else {
+//if(process.env.NODE_ENV = 'development') {
+  //console.log('running in dev mode');
+//}else {
+/**
     process.on('uncaughtException', function (err) {
         console.error(err);
         console.log("Node NOT Exiting...");
     });
-}
+**/
+//}
 module.exports = app;
