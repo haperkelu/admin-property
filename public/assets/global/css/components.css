@@ -5819,6 +5819,14 @@ Form Layouts
   margin-bottom: 0px !important; }
 
 /* Control Label */
+.label-left {
+    float: left;
+    margin-left: 15px;
+}
+
+.label-left-nomargin {
+    float: left;
+}
 .control-label {
   margin-top: 1px;
   font-weight: normal; }
