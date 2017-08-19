@@ -37,7 +37,7 @@ var UserService = {
             'join Sales.Property as p on o.PropertyId = p.ID \n' +
             'join Sales.OrderSales as os on o.ID = os.OrderId\n' +
             'join Sales.OrderCustomer as oc on o.ID = oc.OrderId\n' +
-            'join Sales.OrderSolicitor as osl on o.ID = osl.OrderID where oc.CustomerEmail = "' + email + '"';
+            'join Sales.OrderSolicitor as osl on o.ID = osl.OrderID where p.IsEstablished = 0 and p.Status = 1 and oc.CustomerEmail = "' + email + '"';
         DB.query(sql, null,function (err, result) {
             if (err) {console.log(err); callback(err, result); return;}
             if(!result) {
@@ -56,6 +56,21 @@ var UserService = {
             'join Sales.OrderSales as os on o.ID = os.OrderId\n' +
             'join Sales.OrderCustomer as oc on o.ID = oc.OrderId\n' +
             'join Sales.OrderSolicitor as osl on o.ID = osl.OrderID where o.Id = ' + Id;
+        DB.query(sql, null,function (err, result) {
+            if (err) {console.log(err); callback(err, result); return;}
+            if(!result) {
+                callback(err, []);
+            } else {
+                callback(err, JSON.parse(JSON.stringify(result)));
+            }
+        });
+    },
+    getEstablishedHomeList: function (userId, callback) {
+        var DB = require('../utility/db.js');
+        var sql = 'select * from Sales.Property as p\n' +
+            'inner join Sales.PropertySalePost as sp on p.ID = sp.PropertyId\n' +
+            'inner join Sales.PropertySpec as ps on p.ID = ps.PropertyId ' +
+        'where sp.CustomerId = ' + userId;
         DB.query(sql, null,function (err, result) {
             if (err) {console.log(err); callback(err, result); return;}
             if(!result) {
