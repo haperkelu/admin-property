@@ -12,7 +12,9 @@ router.get('/', function(req, res, next) {
         console.log(result.length / pageSize);
         if (err) {console.log(err);return res.render('error/500');}
         return res.render('PublicSite/users/UserEstablishedHomeList',
-            {Id:req.session.user.Id, pageCount: result.length / pageSize, pageSize: pageSize, currentPage: currentPage, data:result});
+            {Id:req.session.user.Id, pageCount: result.length / pageSize, pageSize: pageSize, currentPage: currentPage,
+                currentURL: '/user/' + req.session.user.Id + '/userEstablishedHomeList',
+                data:result});
     });
 });
 
