@@ -120,5 +120,113 @@ exports.apply_coupon_submit = function (req, res, next) {
         return res.redirect('/user/' + req.session.user.Id + '/userNewHomeDetail/' + homeId);
     });
 
+}
 
+exports.user_detail_establishhome_submit = function(req, res, next) {
+
+    var Id = req.params.id;
+    var PropertyType = req.sanitize('PropertyType').escape().trim();
+    var NumOfRoom = req.sanitize('NumOfRoom').escape().trim();
+    var NumOfBath = req.sanitize('NumOfBath').escape().trim();
+    var NumOfPark = req.sanitize('NumOfPark').escape().trim();
+    var PurchaseType = req.sanitize('PurchaseType').escape().trim();
+    var Source = req.sanitize('Source').escape().trim();
+    var Address = req.sanitize('Address').escape().trim();
+    var Title = req.sanitize('Title').escape().trim();
+
+    var Subtitle = req.sanitize('Subtitle')? req.sanitize('Subtitle').escape().trim():'';
+    var Description = req.sanitize('Description')? req.sanitize('Subtitle').escape().trim():'';
+    var Email = req.sanitize('Email').escape().trim();
+    var Phone = req.sanitize('Phone').escape().trim();
+    var OtherContact = req.sanitize('OtherContact').escape().trim();
+
+    var DB = require('../../utility/db.js');
+    var post = {
+        Name: 'Customer upload established property',
+        Status: 0,
+        PropertyType: PropertyType,
+        Address: Address,
+        IsEstablished: 1,
+        Source: Source
+    };
+    DB.query('INSERT INTO Sales.Property SET ?', post, function (err, result) {
+        if (err) {console.log(err);return res.send('Server Error');}
+        var propertyId  = result.insertId;
+        var specPost = {
+            PropertyId:propertyId,
+            NumOfRoom:NumOfRoom,
+            NumOfBath: NumOfBath,
+            NumOfPark:NumOfPark
+        };
+        DB.query('INSERT INTO Sales.PropertySpec SET ?', specPost, function (err, result){
+            if (err) {console.log(err);return res.send('Server Error');}
+
+            var S3 = require("../../utility/S3.js");
+            var bucketName = 'propertypicsstore';
+            var PicPath = '';
+            var count = 1;
+            var MainPicPath = '';
+            var PicPath2 = '';
+            var PicPath3 = '';
+            var PicPath4 = '';
+            if(req.files) {
+                for(var key in req.files) {
+                    var keyName = new Date().getTime() + '_' + key;
+                    PicPath = '/' + bucketName + '/' + keyName;
+                    if(count++ == 1) MainPicPath = PicPath;
+                    if(count++ == 2) PicPath2 = PicPath;
+                    if(count++ == 3) PicPath3 = PicPath;
+                    if(count++ == 4) PicPath4 = PicPath;
+                    var params = {Bucket: bucketName, Key: keyName, Body:req.files[key].data, ACL:'public-read'};
+                    S3.putObject(params, function(err, data) {
+                        if (err)
+                            console.log(err);
+                        else
+                            console.log("Successfully uploaded data to" + keyName);
+                    });
+                }
+            }
+
+            var mainPost = {
+                PropertyId:propertyId,
+                CustomerId: Id,
+                PurchaseType: PurchaseType,
+                MainPicPath:MainPicPath,
+                PicPath2: PicPath2,
+                PicPath3: PicPath3,
+                PicPath4:PicPath4,
+                Title: Title,
+                Subtitle: Subtitle,
+                Description: Description,
+                Email: Email,
+                Phone: Phone,
+                OtherContact: OtherContact,
+                PropertySalePostCreatedByDate: new Date(),
+                PropertySalePostUpdatedByDate: new Date()
+            };
+            DB.query('INSERT INTO Sales.PropertySalePost SET ?', mainPost, function (err, result){
+                if (err) {console.log(err);return res.send('Server Error');}
+                var items = Address.split(',');
+                if(items.length >= 3){
+                    var SuburbService = require('../../Biz-Service/SuburbService');
+                    SuburbService.getSuburbByName(items[1].trim(), items[2].trim(),function (err, result) {
+                        if (err || result.length == 0) {
+                            console.log(err);
+                            return res.redirect('/user/' + Id + '/userEstablishedHomeList');
+                        }
+                        var suburbId = result[0].Id;
+                        DB.query('Update Sales.Property SET ? where ID = ' + propertyId, {SuburbId:suburbId}, function (err, result){
+                            console.log(err);
+                            return res.redirect('/user/' + Id + '/userEstablishedHomeList');
+                        });
+                    })
+                } else {
+                    return res.redirect('/user/' + Id + '/userEstablishedHomeList');
+                }
+
+            });
+        });
+
+
+    });
 }
