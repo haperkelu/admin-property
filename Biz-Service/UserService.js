@@ -79,6 +79,21 @@ var UserService = {
                 callback(err, JSON.parse(JSON.stringify(result)));
             }
         });
+    },
+    getRentList: function (userId, callback) {
+        var DB = require('../utility/db.js');
+        var sql = 'select * from Sales.Property as p\n' +
+            'inner join Sales.PropertyRentPost as sp on p.ID = sp.PropertyId\n' +
+            'inner join Sales.PropertySpec as ps on p.ID = ps.PropertyId ' +
+            'where sp.CustomerId = ' + userId;
+        DB.query(sql, null,function (err, result) {
+            if (err) {console.log(err); callback(err, result); return;}
+            if(!result) {
+                callback(err, []);
+            } else {
+                callback(err, JSON.parse(JSON.stringify(result)));
+            }
+        });
     }
 }
 module.exports = UserService;

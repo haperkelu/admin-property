@@ -12,7 +12,6 @@ exports.user_login_submit = function(req, res, next) {
         if (err) {console.log(err);return res.render('error/500');}
 
         var usersSelected = JSON.parse(JSON.stringify(result));
-        console.log(usersSelected);
         if(usersSelected.length != 1)  return res.redirect(req.get('referer') + '?msg=userNotFound');
         if(!(Encryption.encrypt(password) === usersSelected[0].Password)) return res.redirect(req.get('referer') + '?msg=userNotFound');
         req.session.user = {Id: usersSelected[0].ID, Email: usersSelected[0].Email};
@@ -229,4 +228,124 @@ exports.user_detail_establishhome_submit = function(req, res, next) {
 
 
     });
+}
+
+exports.user_detail_rent_submit = function(req, res, next) {
+
+    var Id = req.params.id;
+    var PropertyType = req.sanitize('PropertyType').escape().trim();
+    var RentType = req.sanitize('RentType').escape().trim();
+    var NumOfRoom = req.sanitize('NumOfRoom').escape().trim();
+    var NumOfBath = req.sanitize('NumOfBath').escape().trim();
+    var NumOfPark = req.sanitize('NumOfPark').escape().trim();
+
+    var Source = req.sanitize('Source').escape().trim();
+    var Address = req.sanitize('Address').escape().trim();
+    var Title = req.sanitize('Title').escape().trim();
+    var SubTitle = req.sanitize('SubTitle')? req.sanitize('SubTitle').escape().trim():'';
+
+    var Description = req.sanitize('Description')? req.sanitize('Description').escape().trim():'';
+    var Email = req.sanitize('Email').escape().trim();
+    var Phone = req.sanitize('Phone').escape().trim();
+    var OtherContact = req.sanitize('OtherContact').escape().trim();
+    console.log(Description);
+    console.log(Email);
+    console.log(Phone);
+    var DB = require('../../utility/db.js');
+    var post = {
+        Name: 'Customer upload rent property',
+        Status: 0,
+        PropertyType: PropertyType,
+        Address: Address,
+        IsEstablished: 1,
+        Source: Source
+    };
+    DB.query('INSERT INTO Sales.Property SET ?', post, function (err, result) {
+        if (err) {console.log(err);return res.send('Server Error');}
+        var propertyId  = result.insertId;
+        var specPost = {
+            PropertyId:propertyId,
+            NumOfRoom:NumOfRoom,
+            NumOfBath: NumOfBath,
+            NumOfPark:NumOfPark
+        };
+        DB.query('INSERT INTO Sales.PropertySpec SET ?', specPost, function (err, result){
+            if (err) {console.log(err);return res.send('Server Error');}
+            var imagePath = saveAllImages(req);
+
+            var mainPost = {
+                PropertyId:propertyId,
+                CustomerId: Id,
+                RentType: RentType,
+                MainPicPath: imagePath.MainPicPath,
+                PicPath2: imagePath.PicPath2,
+                PicPath3: imagePath.PicPath3,
+                PicPath4: imagePath.PicPath4,
+                Title: Title,
+                SubTitle: SubTitle,
+                Description: Description,
+                Email: Email,
+                Phone: Phone,
+                OtherContact: OtherContact,
+                PropertyRentPostCreatedByDate: new Date(),
+                PropertyRentPostUpdatedByDate: new Date()
+            };
+            DB.query('INSERT INTO Sales.PropertyRentPost SET ?', mainPost, function (err, result){
+                if (err) {console.log(err);return res.send('Server Error');}
+                var items = Address.split(',');
+                if(items.length >= 3){
+                    var SuburbService = require('../../Biz-Service/SuburbService');
+                    SuburbService.getSuburbByName(items[1].trim(), items[2].trim(),function (err, result) {
+                        if (err || result.length == 0) {
+                            console.log(err);
+                            return res.redirect('/user/' + Id + '/rentlist');
+                        }
+                        var suburbId = result[0].Id;
+                        DB.query('Update Sales.Property SET ? where ID = ' + propertyId, {SuburbId:suburbId}, function (err, result){
+                            console.log(err);
+                            return res.redirect('/user/' + Id + '/rentlist');
+                        });
+                    })
+                } else {
+                    return res.redirect('/user/' + Id + '/rentlist');
+                }
+
+            });
+        });
+
+    });
+}
+
+var saveAllImages = function (req) {
+    var S3 = require("../../utility/S3.js");
+    var bucketName = 'propertypicsstore';
+    var PicPath = '';
+    var count = 1;
+    var MainPicPath = '';
+    var PicPath2 = '';
+    var PicPath3 = '';
+    var PicPath4 = '';
+    if(req.files) {
+        for(var key in req.files) {
+            var keyName = new Date().getTime() + '_' + key;
+            PicPath = '/' + bucketName + '/' + keyName;
+            if(key == 'img1') MainPicPath = PicPath;
+            if(key == 'img2') PicPath2 = PicPath;
+            if(key == 'img3') PicPath3 = PicPath;
+            if(key == 'img4') PicPath4 = PicPath;
+            var params = {Bucket: bucketName, Key: keyName, Body:req.files[key].data, ACL:'public-read'};
+            S3.putObject(params, function(err, data) {
+                if (err)
+                    console.log(err);
+                else
+                    console.log("Successfully uploaded data to" + keyName);
+            });
+        }
+    }
+    return {
+        MainPicPath:MainPicPath,
+        PicPath2: PicPath2,
+        PicPath3: PicPath3,
+        PicPath4:PicPath4
+    }
 }
