@@ -1,0 +1,76 @@
+/* Cubic Bezier Transition */
+/* 
+Search Page
+***/
+
+.search-page .search-pagination {
+  text-align: center; }
+  .search-page .search-pagination > .pagination > li > a {
+    margin: 0 3px;
+    border: none;
+    background: #ddd;
+    color: #666; }
+    .search-page .search-pagination > .pagination > li > a:hover {
+      text-decoration: none;
+      color: #fff;
+      background-color: #3598DC; }
+  .search-page .search-pagination > .pagination > .page-active > a {
+    background-color: #3598DC;
+    color: #fff; }
+  .search-page .search-pagination.pagination-rounded > .pagination > li > a {
+    border-radius: 50% !important; }
+
+.search-content-1 .search-container {
+  background-color: #fff; }
+  .search-content-1 .search-container > div {
+    padding: 0;
+    margin-bottom: 0; }
+    .search-content-1 .search-container > div > a .search-item {
+      list-style: none;
+      padding: 0;
+      border-bottom: 1px solid;
+      border-color: #f4f6f8; 
+      text-align: center;}
+      .search-content-1 .search-container > div > a .search-item > .search-content {
+        padding-left: 120px; }
+        .search-content-1 .search-container > div > a .search-item > .search-content > .search-desc {
+          font-size: 15px;
+          font-weight:600}
+        .search-content-1 .search-container > div > a .search-item > .search-content > .search-desc2 {
+          color: #a0a9b4;
+          font-size: 15px;
+          margin: 5px; }
+          .search-content-1 .search-container > div > a {
+            color: #4e5a64; }
+            .search-content-1 .search-container > div > a:hover {
+              text-decoration: none;
+              color: #49a7fa; }
+      .search-content-1 .search-container > div .search-item:last-child {
+        border: none; }
+
+.img-div {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size:cover;
+    background-position: center;
+    height: 400px;
+    box-sizing: border-box;
+    width: 50%;
+    border: 1em solid white;
+    float: left;
+    -moz-box-sizing: border-box;
+}
+
+.search-title {
+    position: absolute;
+    width: 500px;
+    text-align: left;
+    bottom: 0px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    opacity: 1;
+    height: 50px;
+    padding-top: 15px;
+}

@@ -289,7 +289,7 @@
     position: relative;
     display: block;
     margin: 0;
-    padding: 5px 15px 5px 38px;
+    padding: 5px 15px 5px 15px;
     font-size: 13px;
     line-height: 17px;
     color: #fff;
@@ -312,6 +312,7 @@
         overflow: hidden;
         background: url(line.png) no-repeat;
         border: none;
+        visibility: hidden;
     }
     .icheckbox_line-aero.hover,
     .icheckbox_line-aero.checked.hover,
@@ -320,11 +321,13 @@
     }
     .icheckbox_line-aero.checked,
     .iradio_line-aero.checked {
-        background: #9cc2cb;
+        background: #669999;
+        padding-left: 38px;
     }
         .icheckbox_line-aero.checked .icheck_line-icon,
         .iradio_line-aero.checked .icheck_line-icon {
             background-position: -15px 0;
+            visibility: visible;
         }
     .icheckbox_line-aero.disabled,
     .iradio_line-aero.disabled {
