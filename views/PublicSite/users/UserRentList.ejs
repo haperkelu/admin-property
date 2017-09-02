@@ -251,46 +251,34 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <span class="caption-subject font-blue-madison bold uppercase"> 我的出租房</span>
                                                 </div>
                                                 <div style="float: right">
-                                                    <a href="page_user_addrent.html" class="btn green"> 发布出租房信息 </a>
+                                                    <a href="/user/<%=Id%>/userRent/create" class="btn green"> 发布出租房信息 </a>
                                                 </div>
                                             </div>
                                             <div class="portlet-body search-page search-content-1">
                                                 <div class="search-container">
                                                     <ul>
-                                                        <a><li class="search-item clearfix">
+                                                        <% for(var i=0; i < data.length; i++) { %>
+                                                        <a>
+                                                            <li class="search-item clearfix">
 
-                                                            <img src="../../../public/assets/pages/img/page_general_search/01.jpg">
+                                                                <img src="<%='https://s3-ap-southeast-2.amazonaws.com' + data[i].MainPicPath%>">
 
-                                                            <div class="search-content">
+                                                                <div class="search-content">
 
-                                                                <div class="search-title">
-                                                                    Camperdown 步行usyd十分钟内两室一卫 三室两卫豪华公寓 可整租可单间
+                                                                    <div class="search-title">
+                                                                        <%=data[i].Title%>
+                                                                    </div>
+                                                                    <p class="search-desc"> <%=data[i].SubTitle%> </p>
+                                                                    <p class="search-desc2"> 最后更新时间：<%= data[i].PropertyRentPostUpdatedByDate.substring(0, data[i].PropertyRentPostUpdatedByDate.indexOf('T')) %> </p>
+                                                                    <p class="search-desc2"><%if(data[i].Status == 0)  { %>待审核<% } %></p>
+
                                                                 </div>
-                                                                <p class="search-desc"> 整租 / Unit  $ 600 / 周 </p>
-                                                                <p class="search-desc2"> 最后更新时间：11:10 am 8/8/2017 </p>
-                                                                <p class="search-desc2"> 待审核 </p>
 
-                                                            </div>
-
-                                                        </li>
+                                                            </li>
                                                         </a>
+                                                        <% } %>
                                                     </ul>
-                                                    <div class="search-pagination">
-                                                        <ul class="pagination">
-                                                            <li class="page-active">
-                                                                <a href="javascriptt:;"> 1 </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascriptt:;"> 2 </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascriptt:;"> 3 </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascriptt:;"> 4 </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                    <% include pagination.html%>
                                                 </div>
                                             </div>
                                         </div>

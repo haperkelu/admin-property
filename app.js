@@ -21,6 +21,10 @@ var userNewHomeDetail = require('./routes/PublicSite/user-detail-newhome-detail'
 var userEstablishedHomeList = require('./routes/PublicSite/user-detail-establishedhomelist');
 var userEstablishedHomeForm = require('./routes/PublicSite/user-detail-createestablishedhome');
 var userEstablishedHomeSubmit = require('./routes/PublicSite/user-detail-establishedhome-submit');
+var userRentList = require('./routes/PublicSite/user-detail-rentlist');
+var userRentForm = require('./routes/PublicSite/user-detail-createrent');
+var userRentFormSubmit = require('./routes/PublicSite/user-detail-rent-submit');
+
 var userApplyCouponSubmit = require('./routes/PublicSite/apply-coupon-submit');
 var propertyForm = require('./routes/property-form');
 var propertySubmit = require('./routes/property-create');
@@ -56,6 +60,9 @@ app.use('/user/:id/userNewHomeList', userNewHomeList);
 app.use('/user/:id/userEstablishedHomeList', userEstablishedHomeList);
 app.use('/user/:id/userEstablishedHome/create', userEstablishedHomeForm);
 app.use('/user/:id/userEstablishedHome/submit', userEstablishedHomeSubmit);
+app.use('/user/:id/rentlist', userRentList);
+app.use('/user/:id/userRent/create', userRentForm);
+app.use('/user/:id/userRent/submit', userRentFormSubmit);
 app.use('/user/:id/userNewHomeDetail/:homeId', userNewHomeDetail);
 app.use('/user/:id/userNewHomeDetail/:homeId/applyCoupon', userApplyCouponSubmit);
 app.use('/user/register', userRegister);
