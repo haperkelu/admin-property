@@ -49,14 +49,19 @@ Search Page
         border: none; }
 .search-item {
     width: 50%;
-    height: 400px;
+    height: 440px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     float: left;
     border: 1em solid white;
 }
+.card-div {
+    width: 100%;
+    height: 410px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
 .img-div {
-     position:relative;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -64,34 +69,36 @@ Search Page
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-    height: 100%;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    height: 350px;
 }
 
 .img-div:hover {
 
 }
 
-.search-title {
-    position: absolute;
-    text-align: left;
-    left: 20px;
-    bottom: 30px;
-    font-size: 18px;
-    font-weight: 500;
-    color: #fff;
+.search-description {
+    width: 100%;
     opacity: 1;
     height: 50px;
-    padding-top: 15px;
+    margin: 0;
+    position: relative;
 }
 
+.search-title {
+    width: 80%;
+    text-align: left;
+    color: gray;
+    font-size: 15px;
+    font-weight: 500;
+    margin-left: 20px;
+}
 .search-button {
-    right: 20px;
-    bottom: 15px;
-    position: absolute;
     font-size: 15px; 
     width: 100px; 
     text-align: center; 
+    position: absolute;
+    right: 10px;
+    bottom: 20px;
 }
 
 /** Carousel **/
