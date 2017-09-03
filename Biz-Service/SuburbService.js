@@ -28,6 +28,23 @@ var SuburbService = {
             return result;
         });
     },
+
+    getAllSuburbsByCity: function(city, callback) {
+        var dbcon = require('../utility/db');
+        city = city.toLowerCase();
+        var cityNum = '';
+        if(city == 'sydney') cityNum = 1;
+        if(city == 'melbourne') cityNum = 2;
+        if(city == 'brisbane') cityNum = 3;
+        dbcon.query("SELECT Id,name,code FROM Sales.Suburbs where ?",{City: cityNum}, function (err, result) {
+            if (err) {console.log(err); callback(err, result); return;}
+            if(!result) {
+                callback(err, []);
+            } else {
+                callback(err, JSON.parse(JSON.stringify(result)));
+            }
+        });
+    },
     getSuburbByName: function (name, state, callback) {
         var DB = require('../utility/db');
         var abbreviation = '';

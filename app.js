@@ -72,6 +72,10 @@ app.use('/sales/create', salesCreateForm);
 app.use('/sales/submit', salesCreateSubmit);
 app.use('/sales/detail/:id', salesDetail);
 
+//public site portal
+app.use('/public/offplan/list',require('./routes/PublicSite/propertybrowse/offplanlist'));
+//rest api
+app.use('/rest/suburb/get', require('./routes/Rest/suburb-auto'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

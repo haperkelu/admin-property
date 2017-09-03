@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
     if(req.session.user == undefined)
         return res.redirect('/login');
     var pageSize = 10;
-    var currentPage = req.params.currentPage? req.params.currentPage:1;
+    var currentPage = req.query.currentPage? req.query.currentPage:1;
 
     var UserService = require('../../Biz-Service/UserService');
     UserService.getRentList(req.session.user.Id, function (err, result) {
