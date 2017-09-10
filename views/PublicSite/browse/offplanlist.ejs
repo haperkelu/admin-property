@@ -213,51 +213,51 @@ License: You must have a valid license purchased only from themeforest(the above
                 <label class="caption-subject uppercase col-md-1 control-label" style="float: left;color: gray">片区</label>
                 <div class="icheck-inline col-md-11">
                     <label class="">
-                        <input type="radio" name="district" checked="" class="icheck" data-radio="iradio_line-aero" data-label="不限" style="position: absolute; opacity: 0;">
+                        <input type="radio" name="district" <%if(currentDistrict == ''){%>checked<%}%> class="icheck" data-radio="iradio_line-aero" data-label="不限" style="position: absolute; opacity: 0;" value="">
                     </label>
                     <label class="">
-                        <input type="radio" name="district" class="icheck" data-radio="iradio_line-aero" data-label="City及周边" style="position: absolute; opacity: 0;">
+                        <input type="radio" name="district" <%if(currentDistrict == 'citynearby'){%>checked<%}%> class="icheck" data-radio="iradio_line-aero" data-label="City及周边" style="position: absolute; opacity: 0;" value="citynearby">
                     </label>
                     <label class="">
-                        <input type="radio" name="district" class="icheck" data-radio="iradio_line-aero" data-label="东区" style="position: absolute; opacity: 0;">
+                        <input type="radio" name="district" <%if(currentDistrict == 'east'){%>checked<%}%> class="icheck" data-radio="iradio_line-aero" data-label="东区" style="position: absolute; opacity: 0;" value="east">
                     </label>
                     <label class="">
-                        <input type="radio" name="district" class="icheck" data-radio="iradio_line-aero" data-label="北区" style="position: absolute; opacity: 0;">
+                        <input type="radio" name="district" <%if(currentDistrict == 'north'){%>checked<%}%> class="icheck" data-radio="iradio_line-aero" data-label="北区" style="position: absolute; opacity: 0;" value="north">
                     </label>
                     <label class="">
-                        <input type="radio" name="district" class="icheck" data-radio="iradio_line-aero" data-label="南区" style="position: absolute; opacity: 0;">
+                        <input type="radio" name="district" <%if(currentDistrict == 'south'){%>checked<%}%> class="icheck" data-radio="iradio_line-aero" data-label="南区" style="position: absolute; opacity: 0;" value="south">
                     </label>
                     <label class="">
-                        <input type="radio" name="district" class="icheck" data-radio="iradio_line-aero" data-label="内西" style="position: absolute; opacity: 0;">
+                        <input type="radio" name="district" <%if(currentDistrict == 'innnerwest'){%>checked<%}%> class="icheck" data-radio="iradio_line-aero" data-label="内西" style="position: absolute; opacity: 0;" value="innnerwest">
                     </label>
                     <label class="">
-                        <input type="radio" name="district" class="icheck" data-radio="iradio_line-aero" data-label="西区" style="position: absolute; opacity: 0;">
+                        <input type="radio" name="district" <%if(currentDistrict == 'west'){%>checked<%}%> class="icheck" data-radio="iradio_line-aero" data-label="西区" style="position: absolute; opacity: 0;" value="west">
                     </label>
                     <label class="">
-                        <input type="radio" name="district" class="icheck" data-radio="iradio_line-aero" data-label="西北" style="position: absolute; opacity: 0;">
+                        <input type="radio" name="district" <%if(currentDistrict == 'northwest'){%>checked<%}%> class="icheck" data-radio="iradio_line-aero" data-label="西北" style="position: absolute; opacity: 0;" value="northwest">
                     </label>
                     <label class="">
-                        <input type="radio" name="district" class="icheck" data-radio="iradio_line-aero" data-label="西南" style="position: absolute; opacity: 0;">
+                        <input type="radio" name="district" <%if(currentDistrict == 'southwest'){%>checked<%}%> class="icheck" data-radio="iradio_line-aero" data-label="西南" style="position: absolute; opacity: 0;" value="southwest">
                     </label>
                 </div>
             </div>
             <div class="form-group col-md-12">
                 <label class="caption-subject col-md-1 control-label" style="float: left;color: gray">Suburb</label>
                 <div class="icheck-inline col-md-3" id="prefetch" style="margin-top: -5px;">
-                    <input class="typeahead" name="suburbs" type="text" placeholder="Suburb">
+                    <input class="typeahead" name="suburb" type="text" placeholder="Suburb" value="<%=currentSuburb%>">
                 </div>
             </div>
                 <div class="form-group col-md-12">
                 <label class="caption-subject uppercase col-md-1 control-label" style="float: left;color: gray">类型</label>
                 <div class="icheck-inline col-md-9">
                     <label class="">
-                        <input type="radio" name="radio3" checked="" class="icheck" data-radio="iradio_line-aero" data-label="不限" style="position: absolute; opacity: 0;">
+                        <input type="radio" name="type" <%if(currentType == ''){%>checked<%}%> class="icheck" data-radio="iradio_line-aero" data-label="不限" style="position: absolute; opacity: 0;" value="">
                     </label>
                     <label class="">
-                        <input type="radio" name="radio3" class="icheck" data-radio="iradio_line-aero" data-label="新房" style="position: absolute; opacity: 0;">
+                        <input type="radio" name="type"  <%if(currentType == 'apartment'){%>checked<%}%> class="icheck" data-radio="iradio_line-aero" data-label="新房" style="position: absolute; opacity: 0;" value="apartment">
                     </label>
                     <label class="">
-                        <input type="radio" name="radio3" class="icheck" data-radio="iradio_line-aero" data-label="House&Land" style="position: absolute; opacity: 0;">
+                        <input type="radio" name="type" <%if(currentType == 'houseland'){%>checked<%}%>  class="icheck" data-radio="iradio_line-aero" data-label="House&Land" style="position: absolute; opacity: 0;" value="houseland">
                     </label>
                 </div>
                 
@@ -272,7 +272,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <% for(var i=0; i < offplanList.length; i++) { %>
                     <div class="search-item">
                         <div class="card-div">
-                            <a href="newhomedetail.html">
+                            <a href="/public/offplan/detail/<%=offplanList[i].PropertyId%>">
                                 <div class="img-div" style="background-image: url(<%='https://s3-ap-southeast-2.amazonaws.com' + offplanList[i].PicPath%>);">
                                 </div>
                             </a>
@@ -283,30 +283,6 @@ License: You must have a valid license purchased only from themeforest(the above
                         </div>
                     </div>
                     <% } %>
-                        <div class="search-item">
-                            <div class="card-div">
-                                <a href="newhomedetail.html">
-                                    <div class="img-div" style="background-image: url(../../../public/assets/pages/img/background/3.jpg);">
-                                    </div>
-                                </a>
-                                <div class="search-description">
-                                    <p class="search-title">悉尼 - 城市花园</p>
-                                    <a href="consultant.html" class="btn green search-button" style="float: right">咨 询</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="search-item">
-                            <div class="card-div">
-                                <a href="newhomedetail.html">
-                                    <div class="img-div" style="background-image: url(../../../public/assets/pages/img/background/3.jpg);">
-                                    </div>
-                                </a>
-                                <div class="search-description">
-                                    <p class="search-title">悉尼 - 城市花园</p>
-                                    <a href="consultant.html" class="btn green search-button" style="float: right">咨 询</a>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <% include pagination.html%>
                 </div>                                               
@@ -401,14 +377,21 @@ License: You must have a valid license purchased only from themeforest(the above
                 name: 'suburbs',
                 source: suburbs.ttAdapter(),
                 displayKey: function(item) {
-                    return item.name + ' ' + item.code;
+                    return item.name + ' ' + '(' + item.code + ')';
                 }
+            }).on('typeahead:selected', function(event, item) {
+                event.target.form.submit();
             });
 
             $('input').on('ifChecked', function(event){
-                //console.log(event.target.form);
+                console.log(event.target.name);
+                if(event.target.name == 'city'){
+                    window.location.href = '<%=currentURL%>?city=' + event.target.value;
+                } else {
+                    event.target.form.submit();
+                }
                 //alert(event.type + ' callback');
-                event.target.form.submit();
+                //event.target.form.submit();
             });
           </script>
     </body>

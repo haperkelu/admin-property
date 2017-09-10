@@ -1,6 +1,6 @@
-var MapsGoogle = function () {
+var MapsGoogle = function (address) {
 
-    var mapGeocoding = function () {
+    var mapGeocoding = function (address) {
 
         var map = new GMaps({
             div: '#gmap_marker',
@@ -8,8 +8,8 @@ var MapsGoogle = function () {
             lng: -77.028333
         });
 
-        var handleAction = function () {
-            var text = '20 george st, sydney';
+        var handleAction = function (address) {
+            var text = address;
             GMaps.geocode({
                 address: text,
                 callback: function (results, status) {
@@ -29,20 +29,16 @@ var MapsGoogle = function () {
             });
         }
         
-        handleAction();
+        handleAction(address);
     }
 
 
     return {
         //main function to initiate map samples
-        init: function () {
-            mapGeocoding();
+        init: function (address) {
+            mapGeocoding(address);
         }
 
     };
 
 }();
-
-jQuery(document).ready(function() {
-    MapsGoogle.init();
-});

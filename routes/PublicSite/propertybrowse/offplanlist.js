@@ -8,13 +8,15 @@ router.get('/', function(req, res, next) {
 
     var cityId = req.query.city? req.query.city:1;
     var district = req.query.district? req.query.district:'';
-    var suburb = req.query.suburb? req.query.surburb:'';
+    var suburbStr = req.query.suburb? req.query.suburb:'';
+    var suburbCode = suburbStr? suburbStr.substr(suburbStr.indexOf('(') + 1, 4):'';
+    console.log(suburbCode);
     var type = req.query.type? req.query.type:'';
 
     var PropertyService = require('../../../Biz-Service/PropertyService');
     PropertyService.getOffplanList(function (err, result){
         if (err) {console.log(err);return res.render('error/500');}
-        var filteredResult = filterResultByCondition(result,cityId,suburb,district,type);
+        var filteredResult = filterResultByCondition(result,cityId,suburbCode,district,type);
         var hotList = [];
         for(var i in filteredResult){
             if(filteredResult[i].IsHot && filteredResult[i].IsHot == 1){
@@ -29,22 +31,25 @@ router.get('/', function(req, res, next) {
         res.render('PublicSite/browse/offplanlist', {
             title: '新房',
             currentCity: cityId,
+            currentDistrict: district,
+            currentSuburb: suburbStr,
+            currentType: type,
             hotPropertyList: hotList,
             offplanList: paginationResult,
             currentPage:currentPage,
             pageCount: pageCount,
-            currentURL: '',
+            currentURL: '/public/offplan/list',
             cityId: cityId
         });
     });
 
 });
 
-var filterResultByCondition = function (result, cityId, suburb, district, type) {
+var filterResultByCondition = function (result, cityId, suburbCode, district, type) {
     var filteredResult = [];
     for(var i in result){
         var item = result[i];
-        if(item.CityId == cityId && (!suburb || item.suburbId == suburb)) {
+        if(item.CityId == cityId && (!suburbCode || item.SuburbCode == suburbCode)) {
             if(!district || item.district == district) {
                 if(!type || item.PropertyType == type){
                     filteredResult.push(item);

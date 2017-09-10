@@ -74,8 +74,9 @@ app.use('/sales/detail/:id', salesDetail);
 
 //public site portal
 app.use('/public/offplan/list',require('./routes/PublicSite/propertybrowse/offplanlist'));
+app.use('/public/offplan/detail/:propertyId',require('./routes/PublicSite/propertybrowse/offplandetail'));
 //rest api
-app.use('/rest/suburb/get', require('./routes/Rest/suburb-auto'));
+//app.use('/rest/suburb/get', require('./routes/Rest/suburb-auto'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
