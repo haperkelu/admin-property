@@ -45,8 +45,6 @@ Search Page
             .search-content-1 .search-container > div > a:hover {
               text-decoration: none;
               color: #49a7fa; }
-      .search-content-1 .search-container > div .search-item:last-child {
-        border: none; }
 .search-item {
     width: 50%;
     height: 440px;
