@@ -16,6 +16,34 @@ var PropertyService = {
                 callback(err, JSON.parse(JSON.stringify(result)));
             }
         });
+    },
+    getOffplanList: function(callback) {
+        var DB = require('../utility/db.js');
+        var sql = 'select * from Sales.Property as p\n' +
+            'join Sales.PropertyOffplanExt poe on p.ID = poe.PropertyId\n' +
+            'where p.Status = 1';
+        DB.query(sql, function (err, result) {
+            if (err) {console.log(err); callback(err, result); return;}
+            if(!result) {
+                callback(err, []);
+            } else {
+                callback(err, JSON.parse(JSON.stringify(result)));
+            }
+        });
+    },
+    getOffplanDetail: function (Id, callback) {
+        var DB = require('../utility/db.js');
+        var sql = 'select * from Sales.Property as p\n' +
+            'join Sales.PropertyOffplanExt poe on p.ID = poe.PropertyId\n' +
+            'where p.Id = ' + Id;
+        DB.query(sql, function (err, result) {
+            if (err) {console.log(err); callback(err, result); return;}
+            if(!result) {
+                callback(err, []);
+            } else {
+                callback(err, JSON.parse(JSON.stringify(result)));
+            }
+        });
     }
 }
 module.exports = PropertyService;

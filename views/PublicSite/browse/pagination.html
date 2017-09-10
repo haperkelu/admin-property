@@ -1,0 +1,13 @@
+<div class="search-pagination">
+    <ul class="pagination">
+        <% for(var i=0; i < pageCount; i++) { %>
+        <%if(i + 1== currentPage)  { %>
+        <li class="page-active">
+            <% } else{ %>
+        <li>
+            <% } %>
+            <a href="<%=currentURL%>?currentPage=<%=i+1%>"><%=i+1%></a>
+        </li>
+        <% } %>
+    </ul>
+</div>
