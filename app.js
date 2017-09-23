@@ -75,6 +75,7 @@ app.use('/sales/detail/:id', salesDetail);
 //public site portal
 app.use('/public/offplan/list',require('./routes/PublicSite/propertybrowse/offplanlist'));
 app.use('/public/offplan/detail/:propertyId',require('./routes/PublicSite/propertybrowse/offplandetail'));
+app.use('/public/offplan/query', require('./routes/PublicSite/propertybrowse/querySubmit'));
 //rest api
 //app.use('/rest/suburb/get', require('./routes/Rest/suburb-auto'));
 
