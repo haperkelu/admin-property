@@ -1,5 +1,5 @@
 /**
- * Created by LocalUser on 20/07/2017.
+ * Created by LocalUser on 20/07/2017. ddd
  */
 var mysql = require('mysql');
 var fs = require('fs');
@@ -15,11 +15,12 @@ var DB = (function () {
                 callback(err, null);
                 throw err;
             }
-
-            connection.query(query, params, function (err, rows) {
+            //console.log(query);
+            var currentQuery = connection.query(query, params, function (err, rows) {
                 connection.release();
                 callback(err, rows);
             });
+            //console.log(currentQuery.sql);
 
             connection.on('error', function (err) {
                 connection.release();
