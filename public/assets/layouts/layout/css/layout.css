@@ -2548,3 +2548,15 @@ Page Loading
   .page-on-load > .clearfix {
     display: none;
     transition: all 2s; }
+
+
+.title-div {
+    margin: 0 auto;
+    margin-top: 70px;
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 1000px;
+    color: gray; 
+    font-size: 18px;
+    font-weight: 600;
+}
