@@ -6,6 +6,7 @@ var EmailUtility = {
 
         var fs = require('fs');
         var cfg = JSON.parse(fs.readFileSync('./config/MailGun_Cfg.json', 'utf8'));
+        //var cfg = JSON.parse(fs.readFileSync('../config/MailGun_Cfg.json', 'utf8'));
         var mailgun = require('mailgun-js')({apiKey: cfg.api_key, domain: cfg.domain});
         var data = {
             from: from,
@@ -22,4 +23,5 @@ var EmailUtility = {
     }
 };
 //EmailUtility.sendEmail('Mailgun Sandbox <postmaster@sandbox433aec60d9004a9cb18cfabce6b66f9e.mailgun.org>','haperkelu@gmail.com','heloo', '<b>ggg</b>', 'ggg');
+//EmailUtility.sendEmail('Smart Property <admin@smartproperty.com>','haperkelu@gmail.com','heloo', '<b>ggg</b>', 'ggg');
 module.exports = EmailUtility;
