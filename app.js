@@ -76,6 +76,10 @@ app.use('/sales/detail/:id', salesDetail);
 app.use('/public/offplan/list',require('./routes/PublicSite/propertybrowse/offplanlist'));
 app.use('/public/offplan/detail/:propertyId',require('./routes/PublicSite/propertybrowse/offplandetail'));
 app.use('/public/offplan/query', require('./routes/PublicSite/propertybrowse/querySubmit'));
+
+app.use('/public/rent/list',require('./routes/PublicSite/propertybrowse/rentlist'));
+app.use('/public/rent/detail/:propertyId',require('./routes/PublicSite/propertybrowse/rentdetail'));
+
 //rest api
 //app.use('/rest/suburb/get', require('./routes/Rest/suburb-auto'));
 

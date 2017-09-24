@@ -44,6 +44,35 @@ var PropertyService = {
                 callback(err, JSON.parse(JSON.stringify(result)));
             }
         });
+    },
+    getRentList: function(callback) {
+        var DB = require('../utility/db.js');
+        var sql = 'select * from Sales.Property as p\n' +
+            'join Sales.PropertyRentPost as sp on p.ID = sp.PropertyId\n' +
+            'join Sales.PropertySpec as ps on p.ID = ps.PropertyId where p.Status = 1'
+        DB.query(sql, function (err, result) {
+            if (err) {console.log(err); callback(err, result); return;}
+            if(!result) {
+                callback(err, []);
+            } else {
+                callback(err, JSON.parse(JSON.stringify(result)));
+            }
+        });
+    },
+    getRentDetail: function (Id, callback) {
+        var DB = require('../utility/db.js');
+        var sql = 'select * from Sales.Property as p\n' +
+            'join Sales.PropertyRentPost as sp on p.ID = sp.PropertyId\n' +
+            'join Sales.PropertySpec as ps on p.ID = ps.PropertyId ' +
+            'where p.Id = ' + Id;
+        DB.query(sql, function (err, result) {
+            if (err) {console.log(err); callback(err, result); return;}
+            if(!result) {
+                callback(err, []);
+            } else {
+                callback(err, JSON.parse(JSON.stringify(result)));
+            }
+        });
     }
 }
 module.exports = PropertyService;
