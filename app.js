@@ -80,6 +80,9 @@ app.use('/public/offplan/query', require('./routes/PublicSite/propertybrowse/que
 app.use('/public/rent/list',require('./routes/PublicSite/propertybrowse/rentlist'));
 app.use('/public/rent/detail/:propertyId',require('./routes/PublicSite/propertybrowse/rentdetail'));
 
+app.use('/public/established/list',require('./routes/PublicSite/propertybrowse/establishedhomelist'));
+app.use('/public/sales/detail/:propertyId',require('./routes/PublicSite/propertybrowse/salesdetail'));
+
 //rest api
 //app.use('/rest/suburb/get', require('./routes/Rest/suburb-auto'));
 

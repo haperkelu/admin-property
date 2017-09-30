@@ -9,9 +9,9 @@ router.get('/', function(req, res, next) {
     if(propertyId == 'favicon.ico') return res.status(204);
 
     var PropertyService = require('../../../Biz-Service/PropertyService');
-    PropertyService.getRentDetail(propertyId, function (err, result){
+    PropertyService.getSalesDetail(propertyId, function (err, result){
         if (err) {console.log(err);return res.render('error/500');}
-        res.render('PublicSite/browse/rentdetail', {data: result[0]});
+        res.render('PublicSite/browse/salesdetail', {data: result[0]});
     });
 
 });
