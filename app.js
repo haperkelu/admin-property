@@ -24,10 +24,7 @@ var userEstablishedHomeSubmit = require('./routes/PublicSite/user-detail-establi
 var userRentList = require('./routes/PublicSite/user-detail-rentlist');
 var userRentForm = require('./routes/PublicSite/user-detail-createrent');
 var userRentFormSubmit = require('./routes/PublicSite/user-detail-rent-submit');
-
 var userApplyCouponSubmit = require('./routes/PublicSite/apply-coupon-submit');
-var propertyForm = require('./routes/property-form');
-var propertySubmit = require('./routes/property-create');
 
 var salesCreateForm = require('./routes/sales-form');
 var salesCreateSubmit = require('./routes/Sales-create');
@@ -51,7 +48,6 @@ app.use(cookieSession({name: 'session', keys: ['key1', 'key2']}));
 app.use(fileUpload());
 
 app.use('/', index);
-app.use('/offplanProperty/create', propertyForm);
 app.use('/login', userLogin);
 app.use('/loginSubmit', userLoginSubmit);
 app.use('/user/:id', userDetail);
@@ -67,7 +63,6 @@ app.use('/user/:id/userNewHomeDetail/:homeId', userNewHomeDetail);
 app.use('/user/:id/userNewHomeDetail/:homeId/applyCoupon', userApplyCouponSubmit);
 app.use('/user/register', userRegister);
 app.use('/user/updateBasic', userUpdateBasic);
-app.use('/offplanProperty/submit', propertySubmit);
 app.use('/sales/create', salesCreateForm);
 app.use('/sales/submit', salesCreateSubmit);
 app.use('/sales/detail/:id', salesDetail);
@@ -82,6 +77,9 @@ app.use('/public/rent/detail/:propertyId',require('./routes/PublicSite/propertyb
 
 app.use('/public/established/list',require('./routes/PublicSite/propertybrowse/establishedhomelist'));
 app.use('/public/sales/detail/:propertyId',require('./routes/PublicSite/propertybrowse/salesdetail'));
+
+app.use('/internal/offplanProperty/create', require('./routes/property-form'));
+app.use('/internal/offplanProperty/submit', require('./routes/property-create'));
 
 //rest api
 //app.use('/rest/suburb/get', require('./routes/Rest/suburb-auto'));
