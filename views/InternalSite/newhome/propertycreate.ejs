@@ -159,7 +159,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <div class="tab-content">
                                                         <!-- PERSONAL INFO TAB -->
                                                         <div class="tab-pane active form" id="tab_1_1">
-                                                            <form action="/internal/offplanProperty/submit" class="form-horizontal addOrder" name="addProperty" method="post">
+                                                            <form action="/internal/offplanProperty/submit" class="form-horizontal addOrder" name="addProperty" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">地址<span class="required" aria-required="true">*</span></label>
                                                                     <div id="locationField" class="col-md-9">
@@ -462,7 +462,14 @@ License: You must have a valid license purchased only from themeforest(the above
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8ndJ6gLThwNptg293aNENd9Gp9pqKvJs&libraries=places&callback=initAutocomplete"
         async defer></script>
-        <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+        <script type="text/javascript">
+            bkLib.onDomLoaded(function() {
+                nicEditors.editors.push(
+                    new nicEditor().panelInstance(
+                        document.getElementById('Description')
+                    )
+                );
+            });</script>
     </body>
 
 </html>

@@ -78,8 +78,9 @@ app.use('/public/rent/detail/:propertyId',require('./routes/PublicSite/propertyb
 app.use('/public/established/list',require('./routes/PublicSite/propertybrowse/establishedhomelist'));
 app.use('/public/sales/detail/:propertyId',require('./routes/PublicSite/propertybrowse/salesdetail'));
 
-app.use('/internal/offplanProperty/create', require('./routes/property-form'));
-app.use('/internal/offplanProperty/submit', require('./routes/property-create'));
+app.use('/internal/offplanProperty/create', require('./routes/internal/property-form'));
+app.use('/internal/offplanProperty/submit', require('./routes/internal/property-create'));
+app.use('/internal/offplanProperty/list', require('./routes/internal/offplan-list'));
 
 //rest api
 //app.use('/rest/suburb/get', require('./routes/Rest/suburb-auto'));

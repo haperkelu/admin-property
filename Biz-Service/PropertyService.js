@@ -103,6 +103,19 @@ var PropertyService = {
                 callback(err, JSON.parse(JSON.stringify(result)));
             }
         });
+    },
+    getOffplanListWithAllStatus: function(callback) {
+        var DB = require('../utility/db.js');
+        var sql = 'select * from Sales.Property as p\n' +
+            'join Sales.PropertyOffplanExt poe on p.ID = poe.PropertyId';
+        DB.query(sql, function (err, result) {
+            if (err) {console.log(err); callback(err, result); return;}
+            if(!result) {
+                callback(err, []);
+            } else {
+                callback(err, JSON.parse(JSON.stringify(result)));
+            }
+        });
     }
 }
 module.exports = PropertyService;

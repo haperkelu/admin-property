@@ -9,11 +9,11 @@ exports.property_submit = function(req, res, next) {
     if(State == 'QLD') {cityId = 3;}
     var District = req.sanitize('District').escape().trim();
     var name = req.sanitize('Name').escape().trim();
-    var propertyType = req.sanitize('PropertyType').escape().trim();
+    var propertyType = decodeURIComponent(req.sanitize('PropertyType').trim());
     var isHot = req.sanitize('IsHot').escape().trim();
     var Description = req.sanitize('Description').escape().trim();
-    var DeveloperAuthDate = req.sanitize('AuthBegindate').escape().trim() + ' ' + req.sanitize('AuthEnddate').escape().trim();
-
+    var DeveloperAuthDate = decodeURIComponent(req.sanitize('AuthBegindate').trim() + ' ' + req.sanitize('AuthEnddate').trim());
+    console.log(DeveloperAuthDate);
     var commissionRate = req.sanitize('CommissionRate').escape().trim();
     var memo = req.sanitize('Memo').escape().trim();
     var DetailLink = req.sanitize('DetailLink').escape().trim();
@@ -62,7 +62,7 @@ exports.property_submit = function(req, res, next) {
 
         DB.query('INSERT INTO Sales.PropertyOffplanExt SET ?', post, function (err, result){
             if (err) {console.log(err);return res.send('Server Error');}
-            return res.redirect('/offplanproperty/detail/' + propertyId);
+            return res.redirect('/internal/offplanProperty/list');
         });
     });
 
