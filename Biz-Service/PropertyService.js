@@ -108,6 +108,7 @@ var PropertyService = {
         var DB = require('../utility/db.js');
         var sql = 'select * from Sales.Property as p\n' +
             'join Sales.PropertyOffplanExt poe on p.ID = poe.PropertyId';
+            //'left join Sales.Suburbs as s on p.SuburbCode = s.PropertyId ';
         DB.query(sql, function (err, result) {
             if (err) {console.log(err); callback(err, result); return;}
             if(!result) {

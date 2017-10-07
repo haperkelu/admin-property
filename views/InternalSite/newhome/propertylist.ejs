@@ -192,21 +192,20 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <tr class="odd gradeX">
                                                 <td> <%if(data[i].CityId == 1)  { %>悉尼<% } %><%if(data[i].CityId == 2)  { %>墨尔本<% } %><%if(data[i].CityId == 3)  { %>布里斯班<% } %> </td>
                                                 <td><%=data[i].District%></td>
-                                                <td> Burwood </td>
+                                                <td><%=data[i].SuburbName%></td>
                                                 <td> <%=data[i].PropertyType%></td>
                                                 <td> <%=data[i].Name%> </td>
                                                 <td><%if(data[i].IsHot == 1)  { %>是<% } %><%if(data[i].IsHot == 0)  { %>否<% } %></td>
-                                                <td> 1/8/2017 </td>
+                                                <td><%if(data[i].OffplanCreatedDate) { %><%= data[i].OffplanCreatedDate.substring(0, data[i].OffplanCreatedDate.indexOf('T')) %> <% } %></td>
                                                 <td> <%=data[i].CommissionRate%></td>
                                                 <td> <%=data[i].DetailLink%></td>
                                                 <td> <%=data[i].Memo%> </td>
-                                                <td> <%if(data[i].Status == 1)  { %><span class="label label-sm label-default"> Approved </span><% } %></td>
+                                                <td> <%if(data[i].Status == 1) { %><span class="label label-sm label-default"> Approved </span><% } %><%if(data[i].Status == 0) { %>待审核<% } %></td>
                                                 <td>
-                                                    <a href="page_user_newhomedetail.html?id=1" class="btn btn-outline btn-circle btn-sm purple">
+                                                    <a href="/internal/offplanProperty/detail/<%=data[i].PropertyId%>" class="btn btn-outline btn-circle btn-sm purple">
                                                         <i class="fa fa-edit"></i> 详情 </a>
                                                 </td>
                                             </tr>
-
                                             <% } %>
                                             </tbody>
                                         </table>
