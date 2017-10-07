@@ -1,16 +1,21 @@
 exports.property_submit = function(req, res, next) {
     var Address = req.sanitize('Address').escape().trim();
-    var Suburb = req.sanitize('Suburb').escape().trim();
-    var district = req.sanitize('district').escape().trim();
-    var name = req.sanitize('name').escape().trim();
-    var type = req.sanitize('type').escape().trim();
-    var isHot = req.sanitize('isHot').escape().trim();
+    //console.log(req.sanitize('SuburbCode'));
+    var State = req.sanitize('State').escape().trim();
+    var SuburbCode = req.sanitize('SuburbCode').escape().trim();
+    var cityId = 0;
+    if(State == 'NSW') {cityId = 1;}
+    if(State == 'VIC') {cityId = 2;}
+    if(State == 'QLD') {cityId = 3;}
+    var District = req.sanitize('District').escape().trim();
+    var name = req.sanitize('Name').escape().trim();
+    var propertyType = decodeURIComponent(req.sanitize('PropertyType').trim());
+    var isHot = req.sanitize('IsHot').escape().trim();
     var Description = req.sanitize('Description').escape().trim();
-    var DeveloperAuthDate = req.sanitize('DeveloperAuthDate').escape().trim();
-    console.log(Suburb);
-    console.log(isHot);
-    var commissionRate = req.sanitize('comissionRate').escape().trim();
-    var memo = req.sanitize('memo').escape().trim();
+    var DeveloperAuthDate = decodeURIComponent(req.sanitize('AuthBegindate').trim() + ' ' + req.sanitize('AuthEnddate').trim());
+    console.log(DeveloperAuthDate);
+    var commissionRate = req.sanitize('CommissionRate').escape().trim();
+    var memo = req.sanitize('Memo').escape().trim();
     var DetailLink = req.sanitize('DetailLink').escape().trim();
 
     var S3 = require("../utility/S3.js");
@@ -38,13 +43,14 @@ exports.property_submit = function(req, res, next) {
     }
     var DB = require('../utility/db.js');
     var post = {
-        name: name,
-        status: 0,
+        Name: name,
+        Status: 0,
         IsEstablished: 0,
         Address: Address,
-        SuburbId: Suburb,
-        district: district,
-        type: type,
+        District: District,
+        SuburbCode:SuburbCode,
+        CityId:cityId,
+        PropertyType: propertyType,
         PicPath: PicPath,
         Description: Description
     };
@@ -52,11 +58,11 @@ exports.property_submit = function(req, res, next) {
         if (err) {console.log(err);return res.send('Server Error');}
         var propertyId  = result.insertId;
         var post = {propertyId: propertyId,
-        isHot:(isHot ='On'?1:0), DeveloperAuthDate: DeveloperAuthDate,DeveloperAuthContractPath:DeveloperAuthContractPath,commissionRate:commissionRate, memo:memo, DetailLink:DetailLink};
+        isHot:(isHot == '1' ? 1:0), DeveloperAuthDate: DeveloperAuthDate,DeveloperAuthContractPath:DeveloperAuthContractPath,commissionRate:commissionRate, memo:memo, DetailLink:DetailLink};
 
         DB.query('INSERT INTO Sales.PropertyOffplanExt SET ?', post, function (err, result){
             if (err) {console.log(err);return res.send('Server Error');}
-            return res.redirect('/offplanproperty/detail/' + propertyId);
+            return res.redirect('/internal/offplanProperty/list');
         });
     });
 
