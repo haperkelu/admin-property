@@ -78,6 +78,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <span class="selected"> </span>
                                         </a>
                                     </li>
+                                    <li class="classic-menu-dropdown" aria-haspopup="true">
+                                        <a href="../order/order_detail.html"> 订单管理
+                                            <span class="selected"> </span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                             <!-- END MEGA MENU -->
@@ -152,7 +157,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <div class="portlet-title tabbable-line">
                                                     <div class="caption caption-md">
                                                         <i class="icon-globe theme-font hide"></i>
-                                                        <span class="caption-subject font-blue-madison bold uppercase"> 新建楼盘</span>
+                                                        <span class="caption-subject font-blue-madison bold uppercase"> 新建订单</span>
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
@@ -161,154 +166,267 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <div class="tab-pane active form" id="tab_1_1">
                                                             <form action="#" class="form-horizontal addOrder" name="addOrder">
                                                                 <div class="form-group">
-                                                                    <label class="col-md-3 control-label">地址<span class="required" aria-required="true">*</span></label>
-                                                                    <div id="locationField" class="col-md-9">
-                                                                      <input id="autocomplete" placeholder="Enter your address"
-                                                                             onFocus="geolocate()" type="text" class="form-control" name="address"></input>
-                                                                    </div>
-                                                                </div>
-
-
-                                                                <div class="form-group" style="display: none">
-                                                                    <label class="col-md-3 control-label">Street address</label>
-                                                                        <div class="col-md-2">
-                                                                            <input class="form-control" id="street_number"
-                                                                              disabled="true"></input>
-                                                                        </div>
-                                                                        <div class="col-md-7">
-                                                                            <input class="form-control" id="route"
-                                                                              disabled="true"></input>
-                                                                        </div>
-                                                                </div>
-                                                                <div class="form-group" style="display: none">
-                                                                    <label class="col-md-3 control-label">City</label>
-                                                                        <!-- Note: Selection of address components in this example is typical.
-                                                                             You may need to adjust it for the locations relevant to your app. See
-                                                                             https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
-                                                                        -->
-                                                                    <div class="col-md-6">
-                                                                        <input class="form-control" id="locality"
-                                                                              disabled="true"></input>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group" style="display: none">
-                                                                        <label class="col-md-3 control-label">State</label>
-                                                                        <div class="col-md-2">
-                                                                            <input class="form-control"
-                                                                              id="administrative_area_level_1" disabled="true"></input>
-                                                                        </div>
-                                                                        <label class="col-md-2 control-label">Zip code</label>
-                                                                        <div class="col-md-2">
-                                                                            <input class="form-control" id="postal_code"
-                                                                              disabled="true"></input>
-                                                                        </div>
-                                                                </div>
-                                                                <div class="form-group" style="display: none">
-                                                                        <label class="col-md-3 control-label">Country</label>
-                                                                        <div class="col-md-6" colspan="3">
-                                                                            <input class="form-control"
-                                                                              id="country" disabled="true"></input>
-                                                                        </div>
+                                                                    <label class="col-md-3 control-label bold" style="font-size: 15px; color: #578ebe">销售信息</label>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="col-md-3 control-label">片区<span class="required" aria-required="true">*</span></label>
+                                                                    <label class="col-md-3 control-label">日期<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-4">
-                                                                        <select name="area" class="form-control input-medium">
-                                                                            <option>City及周边</option>
-                                                                            <option>东区</option>
-                                                                            <option>北区</option>
-                                                                            <option>南区</option>
-                                                                            <option>内西</option>
-                                                                            <option>西区</option>
-                                                                            <option>西北</option>
-                                                                            <option>西南</option>
-                                                                       </select>
+                                                                        <input class="form-control form-control-inline input-medium date-picker placeholder-no-fix" size="16" type="text" value="" name="date"/>
                                                                     </div>
-                                                                </div>                                                       <div class="form-group">
+                                                                </div>
+                                                                <div class="form-group">
                                                                     <label class="col-md-3 control-label">房屋类型<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-4">
-                                                                        <select name="propertytype" class="form-control input-medium">
+                                                                        <select name="type" class="form-control input-medium">
                                                                             <option>新房</option>
-                                                                            <option>Land&#38House</option>
+                                                                            <option>Land & House</option>
                                                                        </select>
                                                                     </div>
-                                                                </div>
+                                                                </div>                                                       
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">项目名称<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-9">
-                                                                        <input name="name" placeholder="名称"
-                                                                               type="text" class="form-control" minlength="6" maxlength="50"></input>
+                                                                    <div class="col-md-4">
+                                                                        <select name="projectname" class="form-control input-medium">
+                                                                            <option>generate</option>
+                                                                            <option>from</option>
+                                                                            <option>database</option>
+                                                                       </select>
+                                                                    </div>
+                                                                    <div class="col-md-5" style="text-align: left">
+                                                                        <label class=" control-label" >佣金比例：5%</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="col-md-3 control-label">是否热门<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-6">
-                                                                        <label class="mt-radio-inline" style="float:left!important"> 否
-                                                                            <input type="radio" value="no" name="popular">
-                                                                            <span></span>
-                                                                        </label>
-                                                                        <label class="mt-radio-inline" style="float:left!important; margin-left: 20px"> 是
-                                                                            <input type="radio" value="yes" name="popular">
-                                                                            <span></span>
-                                                                        </label>
+                                                                    <label class="col-md-3 control-label">Unit No.<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-3">
+                                                                        <input name="UnitNum" placeholder=""
+                                                                               type="text" class="form-control" minlength="1" maxlength="10"></input>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label class="control-label">Lot No.<span class="required" aria-required="true">*</span></label>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <input name="LotNum" placeholder=""
+                                                                               type="text" class="form-control" minlength="1" maxlength="10"></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">建筑价格<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-3">
+                                                                        <input name="propertyprice" placeholder=""
+                                                                               type="text" class="form-control" minlength="1" maxlength="10"></input>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <label class="control-label">土地价格<span class="required" aria-required="true">*</span></label>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <input name="landprice" placeholder=""
+                                                                               type="text" class="form-control" minlength="1" maxlength="10"></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group" style="margin-top: 30px;">
+                                                                    <label class="col-md-3 control-label bold" style="font-size: 15px; color: #578ebe">客户信息</label>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">客户姓名<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-3">
+                                                                        <input name="clientname" placeholder=""
+                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">客户电话<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-3">
+                                                                        <input name="clientphone" placeholder=""
+                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">客户邮箱<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-9">
+                                                                        <input name="clientemail" placeholder=""
+                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">客户地址<span class="required" aria-required="true">*</span></label>
+                                                                    <div id="locationField" class="col-md-9">
+                                                                      <input id="autocomplete" placeholder="Enter address"
+                                                                             onFocus="geolocate()" type="text" class="form-control" name="clientaddress"></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label"></label>
+                                                                    <div class="col-md-9">
+                                                                    <label class="mt-radio-inline" style="float:left!important"> 自住
+                                                                        <input type="radio" value="live" name="purpose">
+                                                                        <span></span>
+                                                                    </label>
+                                                                    <label class="mt-radio-inline" style="float:left!important; margin-left: 20px"> 投资
+                                                                        <input type="radio" value="investment" name="purpose">
+                                                                        <span></span>
+                                                                    </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label"></label>
+                                                                    <div class="col-md-9">
+                                                                    <label class="mt-radio-inline" style="float:left!important"> 海外
+                                                                        <input type="radio" value="oversea" name="clientfrom">
+                                                                        <span></span>
+                                                                    </label>
+                                                                    <label class="mt-radio-inline" style="float:left!important; margin-left: 20px"> 本地
+                                                                        <input type="radio" value="local" name="clientfrom">
+                                                                        <span></span>
+                                                                    </label>
                                                                     </div>
                                                                 </div>
                                                             
                                                                 <div class="form-group">
-                                                                    <label class="control-label col-md-3">图片<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-9">
-                                                                        <div class="fileinput fileinput-new" data-provides="fileinput" style="float: left">
-                                                                            <span class="btn btn-outline btn-circle btn-sm purple  btn-file">
-                                                                                <span class="fileinput-new"> 选择文件 </span>
-                                                                                <span class="fileinput-exists"> 重新选择 </span>
-                                                                                <input type="file" name="img">
-                                                                            </span>
-                                                                            <span class="fileinput-filename"> </span> &nbsp;
-                                                                            <a href="javascript:;" class="close fileinput-exists" data-dismiss="fileinput"> </a>
+                                                                <div class="form-group" style="margin-top: 30px;">
+                                                                    <label class="col-md-3 control-label bold" style="font-size: 15px; color: #578ebe">律师信息</label>
+                                                                </div>
+                                                                
+                                                                    <ul class="nav nav-tabs" style="margin-left: 180px; margin-top: 10px">
+                                                                        <li class="active">
+                                                                            <a href="#tab_1_3" data-toggle="tab"> 使用公司推荐律师 </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="#tab_1_2" data-toggle="tab"> 使用个人律师 </a>
+                                                                        </li>
+                                                                    </ul>
+                                                                    <div class="tab-content">
+                                                                        <div class="tab-pane fade active in" id="tab_1_3">
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-3 control-label">公司名称</label>
+                                                                                <div class="col-md-9" style="text-align: left">
+                                                                                    <label class="control-label">公司名称</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-3 control-label">律师姓名</label>
+                                                                                <div class="col-md-9" style="text-align: left">
+                                                                                    <label class="control-label">律师姓名</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-3 control-label">电话</label>
+                                                                                <div class="col-md-9" style="text-align: left">
+                                                                                    <label class="control-label">电话</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-3 control-label">邮箱</label>
+                                                                                <div class="col-md-9" style="text-align: left">
+                                                                                    <label class="control-label">邮箱</label>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="col-md-3 control-label">地址</label>
+                                                                                <div class="col-md-9" style="text-align: left">
+                                                                                    <label class="control-label">地址</label>
+                                                                                </div>
+                                                                            </div>
                                                                         </div>
-                                                                        <div id="imgerror"></div>
-                                                                    </div>
-                                                                </div>
+                                                                <div class="tab-pane fade" id="tab_1_2">
                                                                 <div class="form-group">
-                                                                    <label class="col-md-3 control-label">项目介绍</label>
+                                                                    <label class="col-md-3 control-label">公司名称<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-9">
-                                                                        <div name="description" id="summernote_1"> </div>
+                                                                        <input name="lawyercompany" placeholder=""
+                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="col-md-3 control-label">授权时间<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-4">
-                                                                        <input class="form-control form-control-inline input-medium date-picker placeholder-no-fix" size="16" type="text" value="" name="begindate"/>
+                                                                    <label class="col-md-3 control-label">律师姓名<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-3">
+                                                                        <input name="lawyername" placeholder=""
+                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
                                                                     </div>
-                                                                    <label class="col-md-1 control-label" style="text-align: left">至</label>
-                                                                    <div class="col-md-4">
-                                                                         <input class="form-control form-control-inline input-medium date-picker placeholder-no-fix" size="16" type="text" value="" name="enddate"/>
-                                                                    </div> 
-                                                                    
                                                                 </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">电话<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-3">
+                                                                        <input name="lawyerphone" placeholder=""
+                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">邮箱<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-9">
+                                                                        <input name="lawyeremail" placeholder=""
+                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
+                                                                    </div>
+                                                                </div>
+                                                                 <div class="form-group">
+                                                                    <label class="col-md-3 control-label">地址<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-9" id="locationField">
+                                                                      <input id="autocomplete" placeholder="Enter address"
+                                                                             onFocus="geolocate()" type="text" class="form-control" name="lawyeraddress"></input>
+                                                                    </div>
+                                                                </div>
+                                                                           
+                                                                        </div>
+                                                                    </div>
 
+                                                                </div>
+                                                                <div class="form-group" style="margin-top: 30px;">
+                                                                    <label class="col-md-3 control-label bold" style="font-size: 15px; color: #578ebe">其他信息</label>
+                                                                </div>
                                                                 <div class="form-group">
-                                                                    <label class="control-label col-md-3">授权协议书</label>
+                                                                    <label class="control-label col-md-3">定金截图<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-9">
                                                                         <div class="fileinput fileinput-new" data-provides="fileinput" style="float: left">
                                                                             <span class="btn btn-outline btn-circle btn-sm purple  btn-file">
                                                                                 <span class="fileinput-new"> 选择文件 </span>
                                                                                 <span class="fileinput-exists"> 重新选择 </span>
-                                                                                <input type="file" name="authorization">
+                                                                                <input type="file" name="deposit">
                                                                             </span>
                                                                             <span class="fileinput-filename"> </span> &nbsp;
                                                                             <a href="javascript:;" class="close fileinput-exists" data-dismiss="fileinput"> </a>
                                                                         </div>
-                                                                        <div id="authorizationerror"></div>
+                                                                        <div id="dipositError"></div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="control-label col-md-3">项目佣金比例</label>
-                                                                    <div class="col-md-1">
-                                                                        <input class="form-control" type="text" maxlength="2" name="commission" style="width: 45px;"/>
+                                                                    <label class="control-label col-md-3">客户ID<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-9">
+                                                                        <div class="fileinput fileinput-new" data-provides="fileinput" style="float: left">
+                                                                            <span class="btn btn-outline btn-circle btn-sm purple  btn-file">
+                                                                                <span class="fileinput-new"> 选择文件 </span>
+                                                                                <span class="fileinput-exists"> 重新选择 </span>
+                                                                                <input type="file" name="clientIDPhoto">
+                                                                            </span>
+                                                                            <span class="fileinput-filename"> </span> &nbsp;
+                                                                            <a href="javascript:;" class="close fileinput-exists" data-dismiss="fileinput"> </a>
+                                                                        </div>
+                                                                        <div id="clientIDPhotoError"></div>
                                                                     </div>
-                                                                    <div class="col-md-1" style="padding-left: 0px;">
-                                                                        <span style="float: left; margin-top: 6px;">%</span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">销售姓名<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-3">
+                                                                        <input name="salesname" placeholder=""
+                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">电话<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-3">
+                                                                        <input name="salesphone" placeholder=""
+                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">邮箱<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-9">
+                                                                        <input name="salesemail" placeholder=""
+                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3">个人佣金比例</label>
+                                                                    <div class="col-md-2">
+                                                                        <label class="control-label" style="float: left">50%</label>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -317,12 +435,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                         <textarea class="form-control" type="text" placeholder="" maxlength="200" name="comment"></textarea>
                                                                     </div>
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label col-md-3">详细信息链接</label>
-                                                                    <div class="col-md-9">
-                                                                        <input class="form-control" type="text" placeholder="" maxlength="100" name="link"/>
-                                                                    </div>
-                                                                </div>                                                       <div class="form-actions" style="margin-left: 100px; margin-top: 50px">
+                                                                <div class="form-actions" style="margin-left: 100px; margin-top: 50px">
                                                                     <button type="submit" name="addOrder_submit" class="btn btn-success uppercase addOrder_submit" style="padding-left: 25px; padding-right: 25px">保&nbsp存</button>
                                                                 </div>
 
@@ -383,7 +496,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="../../../public/assets/global/scripts/app.min.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-         <script src="../../../public/assets/pages/scripts/newhome_add.js" type="text/javascript"></script>           <script src="../../../public/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.js" type="text/javascript"></script>        <!-- END PAGE LEVEL SCRIPTS -->
+         <script src="../../../public/assets/pages/scripts/order_add.js" type="text/javascript"></script>           <script src="../../../public/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.js" type="text/javascript"></script>        <!-- END PAGE LEVEL SCRIPTS -->
         
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <script src="../../../public/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
