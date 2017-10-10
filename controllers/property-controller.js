@@ -3,6 +3,7 @@ exports.property_submit = function(req, res, next) {
     //console.log(req.sanitize('SuburbCode'));
     var State = req.sanitize('State').escape().trim();
     var SuburbCode = req.sanitize('SuburbCode').escape().trim();
+    var locality = req.sanitize('locality').escape().trim();
     var cityId = 0;
     if(State == 'NSW') {cityId = 1;}
     if(State == 'VIC') {cityId = 2;}
@@ -49,6 +50,7 @@ exports.property_submit = function(req, res, next) {
         Address: Address,
         District: District,
         SuburbCode:SuburbCode,
+        SuburbName: locality,
         CityId:cityId,
         PropertyType: propertyType,
         PicPath: PicPath,
@@ -58,7 +60,8 @@ exports.property_submit = function(req, res, next) {
         if (err) {console.log(err);return res.send('Server Error');}
         var propertyId  = result.insertId;
         var post = {propertyId: propertyId,
-        isHot:(isHot == '1' ? 1:0), DeveloperAuthDate: DeveloperAuthDate,DeveloperAuthContractPath:DeveloperAuthContractPath,commissionRate:commissionRate, memo:memo, DetailLink:DetailLink};
+        isHot:(isHot == '1' ? 1:0), DeveloperAuthDate: DeveloperAuthDate,DeveloperAuthContractPath:DeveloperAuthContractPath,
+            commissionRate:commissionRate, memo:memo, DetailLink:DetailLink, OffplanCreatedDate: new Date(),OffplanUpdateDate:new Date()};
 
         DB.query('INSERT INTO Sales.PropertyOffplanExt SET ?', post, function (err, result){
             if (err) {console.log(err);return res.send('Server Error');}
