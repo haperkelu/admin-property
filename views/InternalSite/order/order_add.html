@@ -289,10 +289,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 
                                                                     <ul class="nav nav-tabs" style="margin-left: 180px; margin-top: 10px">
                                                                         <li class="active">
-                                                                            <a href="#tab_1_3" data-toggle="tab"> 使用公司推荐律师 </a>
+                                                                            <a href="#tab_1_3" data-toggle="tab" id="defaultLawyer"> 使用公司推荐律师 </a>
                                                                         </li>
                                                                         <li>
-                                                                            <a href="#tab_1_2" data-toggle="tab"> 使用个人律师 </a>
+                                                                            <a href="#tab_1_2" data-toggle="tab" id="clientlawyer"> 使用个人律师 </a>
                                                                         </li>
                                                                     </ul>
                                                                     <div class="tab-content">
@@ -435,10 +435,34 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                         <textarea class="form-control" type="text" placeholder="" maxlength="200" name="comment"></textarea>
                                                                     </div>
                                                                 </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">订单状态</label>
+                                                                    <div class="col-md-4">
+                                                                        <select name="orderstatus" class="form-control input-medium">
+                                                                            <option>已出合同</option>
+                                                                            <option>合同已交换</option>
+                                                                       </select>
+                                                                    </div>
+                                                                </div>                                                       
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3">合同首页</label>
+                                                                    <div class="col-md-9">
+                                                                        <div class="fileinput fileinput-new" data-provides="fileinput" style="float: left">
+                                                                            <span class="btn btn-outline btn-circle btn-sm purple  btn-file">
+                                                                                <span class="fileinput-new"> 选择文件 </span>
+                                                                                <span class="fileinput-exists"> 重新选择 </span>
+                                                                                <input type="file" name="clientIDPhoto">
+                                                                            </span>
+                                                                            <span class="fileinput-filename"> </span> &nbsp;
+                                                                            <a href="javascript:;" class="close fileinput-exists" data-dismiss="fileinput"> </a>
+                                                                        </div>
+                                                                        <div id="clientIDPhotoError"></div>
+                                                                    </div>
+                                                                </div>
                                                                 <div class="form-actions" style="margin-left: 100px; margin-top: 50px">
                                                                     <button type="submit" name="addOrder_submit" class="btn btn-success uppercase addOrder_submit" style="padding-left: 25px; padding-right: 25px">保&nbsp存</button>
                                                                 </div>
-
+ 
                                                             </form>
                                                         </div>
                                                         <!-- END PERSONAL INFO TAB -->

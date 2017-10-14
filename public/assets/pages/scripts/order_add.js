@@ -57,8 +57,8 @@ var Profile = function() {
                     }
                 };
             
-            var toggle = true;
-            if(toggle) {
+            var toggle = $('#defaultLawyer').parent().hasClass("active");
+            if(!toggle) {
                jsonRules.lawyercompany = {
                         required: true
                     };
