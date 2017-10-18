@@ -4,7 +4,7 @@ var router = express.Router();
 router.post('/', function(req, res, next){
 
     var OrderDate = decodeURIComponent(req.sanitize('OrderDate').trim());
-    console.log(OrderDate);
+    //console.log(OrderDate);
     var PropertyId = req.sanitize('PropertyName').escape().trim();
     //var PropertyType = req.sanitize('PropertyType').escape().trim();s
     var UnitNumber = req.sanitize('UnitNumber').escape().trim();

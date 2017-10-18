@@ -84,6 +84,10 @@ app.use('/internal/offplanProperty/list', require('./routes/internal/offplan-lis
 app.use('/internal/offplanProperty/detail/:propertyId', require('./routes/internal/offplan-detail'));
 app.use('/internal/ordder/create', require('./routes/internal/order-form'));
 app.use('/internal/ordder/submit', require('./routes/internal/order-create'));
+
+app.use('/internal/user/create', require('./routes/internal/user-form'));
+app.use('/internal/user/submit', require('./routes/internal/user-create'));
+
 //rest api
 //app.use('/rest/suburb/get', require('./routes/Rest/suburb-auto'));
 
