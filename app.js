@@ -84,6 +84,10 @@ app.use('/internal/offplanProperty/list', require('./routes/internal/offplan-lis
 app.use('/internal/offplanProperty/detail/:propertyId', require('./routes/internal/offplan-detail'));
 app.use('/internal/ordder/create', require('./routes/internal/order-form'));
 app.use('/internal/ordder/submit', require('./routes/internal/order-create'));
+app.use('/internal/ordder/update', require('./routes/internal/order-update'));
+app.use('/internal/ordder/list', require('./routes/internal/order-list'));
+app.use('/internal/ordder/detail/:orderId', require('./routes/internal/order-detail'));
+app.use('/internal/ordder/edit/:orderId', require('./routes/internal/order-edit'));
 
 app.use('/internal/user/create', require('./routes/internal/user-form'));
 app.use('/internal/user/submit', require('./routes/internal/user-create'));

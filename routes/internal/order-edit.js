@@ -1,0 +1,31 @@
+var express = require('express');
+var router = express.Router({mergeParams: true});
+
+router.get('/', function(req, res, next){
+
+    var orderId = req.params.orderId;
+    if(!orderId) return res.render('error/500');
+    if(!req.session.user)
+        return res.redirect('/login');
+    console.log(req.session.user);
+    var OrderService = require('../../Biz-Service/OrderService.js');
+    OrderService.getOrderDetail(orderId, function (err, result) {
+        if (err || result.length == 0) {console.log(err); return res.render('error/500');}
+
+        if(result[0].SalesEmail != req.session.user.Email && req.session.user.UserType != 0 && req.session.user.UserType != 4){
+            return res.render('error/500');
+        }
+        var currentProperty = result[0];
+        var PropertyService = require('../../Biz-Service/PropertyService.js');
+        var fs = require('fs');
+        var companyLayers = JSON.parse(fs.readFileSync('./config/Company_Lawyer.json', 'utf8'));
+        PropertyService.getOffplanListWithAllStatus(function (err, result) {
+            if (err) {console.log(err); return res.render('error/500');}
+            res.render('InternalSite/Order/order_edit', {
+                offplanList: result, companyLawyers: companyLayers, data: currentProperty});
+        });
+    });
+
+});
+
+module.exports = router;

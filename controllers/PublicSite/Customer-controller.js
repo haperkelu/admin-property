@@ -7,14 +7,15 @@ exports.user_login_submit = function(req, res, next) {
 
     var Encryption = require('../../utility/Encryption');
     var DB = require('../../utility/db.js');
-    DB.query('Select ID, Email, Password from Sales.BasicUser where type = 1 and status = 1 and ?', {Email: username}, function (err, result) {
+    DB.query('Select ID, Email, Password,Type from Sales.BasicUser where status = 1 and ?', {Email: username}, function (err, result) {
 
         if (err) {console.log(err);return res.render('error/500');}
-
+        console.log(Encryption.encrypt('5555'));
         var usersSelected = JSON.parse(JSON.stringify(result));
         if(usersSelected.length != 1)  return res.redirect(req.get('referer') + '?msg=userNotFound');
         if(!(Encryption.encrypt(password) === usersSelected[0].Password)) return res.redirect(req.get('referer') + '?msg=userNotFound');
-        req.session.user = {Id: usersSelected[0].ID, Email: usersSelected[0].Email};
+        req.session.user = {Id: usersSelected[0].ID, Email: usersSelected[0].Email, UserType: usersSelected[0].Type};
+        console.log(req.session.user);
         return res.redirect('/user/' + req.session.user.Id);
     });
 
