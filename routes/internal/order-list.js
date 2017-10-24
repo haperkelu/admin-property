@@ -5,6 +5,9 @@ var util = require('util');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
+    if(!req.session.user)
+        return res.redirect('/login');
+
   var OrderService = require('../../Biz-Service/OrderService.js');
     OrderService.getAllOrders(function (err, result) {
       if (err) {console.log(err);}

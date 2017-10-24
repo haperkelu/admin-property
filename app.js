@@ -91,6 +91,10 @@ app.use('/internal/ordder/edit/:orderId', require('./routes/internal/order-edit'
 
 app.use('/internal/user/create', require('./routes/internal/user-form'));
 app.use('/internal/user/submit', require('./routes/internal/user-create'));
+app.use('/internal/user/update', require('./routes/internal/user-update'));
+app.use('/internal/user/list', require('./routes/internal/user-list'));
+app.use('/internal/user/detail/:userId', require('./routes/internal/user-edit'));
+
 
 //rest api
 //app.use('/rest/suburb/get', require('./routes/Rest/suburb-auto'));

@@ -2,13 +2,15 @@ var express = require('express');
 var router = express.Router();
 
 router.post('/', function(req, res, next){
+
+    var userId = decodeURIComponent(req.sanitize('userId').trim());
     var Type = decodeURIComponent(req.sanitize('Type').trim());
     var Email = req.sanitize('Email').escape().trim();
     var Level = req.sanitize('Level').escape().trim();
     var LastName = req.sanitize('LastName').escape().trim();
     var FirstName = req.sanitize('FirstName').escape().trim();
     var UserPassword = req.sanitize('password').escape().trim();
-    //console.log('pwd:' + UserPassword);
+
     var DateOfBirth = decodeURIComponent(req.sanitize('DateOfBirth').trim())
     var Gender = req.sanitize('Gender').escape().trim();
     var Nationality = req.sanitize('Nationality').escape().trim();
@@ -21,7 +23,7 @@ router.post('/', function(req, res, next){
     var Encryption = require('../../utility/Encryption');
     var post = {
         Type: parseInt(Type),
-        Status: CertificateStatus,
+        Status: parseInt(CertificateStatus),
         FirstName: FirstName,
         LastName: LastName,
         Password: Encryption.encrypt(UserPassword),
@@ -30,13 +32,11 @@ router.post('/', function(req, res, next){
         Nationality: Nationality,
         IdentityStatus: IdentityStatus,
         Phone: Phone,
-        Email: Email,
-        CreatedDate: new Date(),
-        createdBy: req.session.user.Id
+        Email: Email
     };
-    DB.query('INSERT INTO Sales.BasicUser SET ?', post, function (err, result) {
+    console.log(userId);
+    DB.query('UPDATE Sales.BasicUser SET ? where Id=' + userId, post, function (err, result) {
         if (err) {console.log(err);return res.send('Server Error');}
-        var userId  = result.insertId;
         var AccountName = req.sanitize('AccountName').escape().trim();
         var BankName = req.sanitize('BankName').escape().trim();
         var BSB = req.sanitize('BSB').escape().trim();
@@ -53,7 +53,7 @@ router.post('/', function(req, res, next){
             ABN: ABN
         };
 
-        DB.query('INSERT INTO Sales.SalesBankDetail SET ?', post, function (err, result) {
+        DB.query('UPDATE Sales.SalesBankDetail SET ? where SalesId=' + userId, post, function (err, result) {
             if (err) {console.log(err);return res.send('Server Error');}
             var S3 = require("../../utility/S3.js");
             var bucketName = 'salesprofiles';
@@ -81,21 +81,17 @@ router.post('/', function(req, res, next){
                 if(Level == SalesLevelArr.data[1].Level) SalesCommissionRate = SalesLevelArr.data[1].Value;
                 if(Level == SalesLevelArr.data[2].Level) SalesCommissionRate = SalesLevelArr.data[2].Value;
             }
-            var shortid = require('shortid');
             var post = {
                 BasicUserId: userId,
                 Level: Level,
-                GeneratedToken: shortid.generate(),
                 CertificatePath: CertificatePath,
                 CertificateStatus: CertificateStatus,
                 SalesCommissionRate:SalesCommissionRate
             };
 
-
-            DB.query('INSERT INTO Sales.Sales SET ?', post, function (err, result) {
+            DB.query('UPDATE Sales.Sales SET ? where BasicUserId=' + userId, post, function (err, result) {
                 if (err) {console.log(err);return res.send('Server Error');}
-
-                return res.redirect('/internal/offplanProperty/list');
+                return res.redirect('/internal/user/list');
             });
 
         });
