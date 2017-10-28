@@ -100,6 +100,14 @@ app.use('/internal/user/update', require('./routes/internal/user-update'));
 app.use('/internal/user/list', require('./routes/internal/user-list'));
 app.use('/internal/user/detail/:userId', require('./routes/internal/user-edit'));
 
+app.use('/internal/established/list',require('./routes/internal/establishedhomelist'));
+app.use('/internal/established/detail/:propertyId',require('./routes/internal/establishedhome-detail'));
+app.use('/internal/established/approve/:propertyId',require('./routes/internal/establish-approve'));
+
+app.use('/internal/rent/list',require('./routes/internal/rentlist'));
+app.use('/internal/rent/detail/:propertyId',require('./routes/internal/rent-detail'));
+app.use('/internal/rent/approve/:propertyId',require('./routes/internal/rent-approve'));
+
 
 //rest api
 //app.use('/rest/suburb/get', require('./routes/Rest/suburb-auto'));
