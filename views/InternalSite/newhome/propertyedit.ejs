@@ -145,172 +145,116 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <div class="portlet-title tabbable-line">
                                                     <div class="caption caption-md">
                                                         <i class="icon-globe theme-font hide"></i>
-                                                        <span class="caption-subject font-blue-madison bold uppercase"> 新建用户</span>
+                                                        <span class="caption-subject font-blue-madison bold uppercase"> 新建楼盘</span>
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
                                                     <div class="tab-content">
                                                         <!-- PERSONAL INFO TAB -->
                                                         <div class="tab-pane active form" id="tab_1_1">
-                                                            <form action="/internal/user/submit" class="form-horizontal addOrder" name="adduser" method="post" enctype="multipart/form-data">
+                                                            <form action="/internal/offplanProperty/update" class="form-horizontal addOrder" name="addProperty" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+                                                                <div style="display: none"><input name="propertyId" type="text" value="<%=data.PropertyId%>"></div>
                                                                 <div class="form-group">
-                                                                    <label class="col-md-3 control-label bold" style="font-size: 15px; color: #578ebe">基本信息</label>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-3 control-label">角色<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-4">
-                                                                        <select name="Type" class="form-control input-medium">
-                                                                            <option value="2">推荐人</option>
-                                                                            <option value="3">市场人员</option>
-                                                                            <option value="4">合同人员</option>
-                                                                            <option value="0">系统管理员</option>
-                                                                       </select>
-                                                                    </div>
-                                                                </div>                                                       <div class="form-group">
-                                                                    <label class="col-md-3 control-label">邮箱<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-4">
-                                                                        <input name="Email" placeholder="名称"
-                                                                               type="text" class="form-control" minlength="6" maxlength="50"></input>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-3 control-label">级别<span class="required" aria-required="true">*</span></label>
-                                                                   <div class="col-md-4">
-                                                                        <select name="Level" class="form-control input-medium">
-                                                                            <option value="C">C级</option>
-                                                                            <option value="B">B级</option>
-                                                                            <option value="A">A级</option>
-                                                                       </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-3 control-label">姓<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-6">
-                                                                        <input name="LastName" placeholder="名称"
-                                                                               type="text" class="form-control" minlength="6" maxlength="50"></input>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-3 control-label">名<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-6">
-                                                                        <input name="FirstName" placeholder="名称"
-                                                                               type="text" class="form-control" minlength="6" maxlength="50"></input>
-                                                                    </div>
-                                                                </div>
-                                                                 <div class="form-group">
-                                                                    <label class="col-md-3 control-label">密码<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-6">
-                                                                        <input name="password" placeholder="名称"
-                                                                               type="password" class="form-control" minlength="6" maxlength="50"></input>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-3 control-label">确认密码<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-6">
-                                                                        <input name="Passwordconfirm" placeholder="名称"
-                                                                               type="password" class="form-control" minlength="6" maxlength="50"></input>
-                                                                    </div>
-                                                                </div>
-                                                           
-                                                               <div class="form-group">
-                                                                    <label class="col-md-3 control-label">出生年月</label>
-                                                                    <div class="col-md-4">
-                                                                        <input class="form-control form-control-inline input-medium date-picker placeholder-no-fix" size="16" type="text" value="" name="DateOfBirth"/>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-3 control-label">性别</label>
-                                                                    <div class="col-md-6">
-                                                                        <label class="mt-radio-inline" style="float:left!important"> 男
-                                                                            <input type="radio" value="M" name="Gender">
-                                                                            <span></span>
-                                                                        </label>
-                                                                        <label class="mt-radio-inline" style="float:left!important; margin-left: 20px"> 女
-                                                                            <input type="radio" value="F" name="Gender">
-                                                                            <span></span>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-3 control-label">国籍</label>
-                                                                   <div class="col-md-4">
-                                                                        <select name="Nationality" class="form-control input-medium">
-                                                                            <option value="AUS">Australia</option>
-                                                                            <option value="CN">China</option>
-                                                                       </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-3 control-label">身份</label>
-                                                                   <div class="col-md-4">
-                                                                        <select name="IdentityStatus" class="form-control input-medium">
-                                                                            <option value="Citizen">公民</option>
-                                                                            <option value="Perm">永居</option>
-                                                                            <option value="Overseas">海外</option>
-                                                                       </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-3 control-label">电话</label>
-                                                                    <div class="col-md-9">
-                                                                        <input name="Phone" placeholder=""
-                                                                               type="text" class="form-control" minlength="6" maxlength="50"></input>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-3 control-label">地址</label>
+                                                                    <label class="col-md-3 control-label">地址<span class="required" aria-required="true">*</span></label>
                                                                     <div id="locationField" class="col-md-9">
                                                                       <input id="autocomplete" placeholder="Enter your address"
-                                                                             onFocus="geolocate()" type="text" class="form-control" name="Address"></input>
+                                                                             onFocus="geolocate()" type="text" class="form-control" name="Address" value="<%=data.Address%>"></input>
                                                                     </div>
                                                                 </div>
-                                                                
-                                                                <div class="form-group">
-                                                                    <label class="col-md-3 control-label bold" style="font-size: 15px; color: #578ebe">银行信息</label>
+
+                                                                <div class="form-group" style="display: none">
+                                                                    <label class="col-md-3 control-label">Street address</label>
+                                                                        <div class="col-md-2">
+                                                                            <input class="form-control" id="street_number"
+                                                                              disabled="true"></input>
+                                                                        </div>
+                                                                        <div class="col-md-7">
+                                                                            <input class="form-control" id="route"
+                                                                              disabled="true"></input>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="form-group" style="display: none">
+                                                                    <label class="col-md-3 control-label">City</label>
+                                                                        <!-- Note: Selection of address components in this example is typical.
+                                                                             You may need to adjust it for the locations relevant to your app. See
+                                                                             https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+                                                                        -->
+                                                                    <div class="col-md-6">
+                                                                        <input class="form-control" id="locality" name="locality"
+                                                                              ></input>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group" style="display: none">
+                                                                        <label class="col-md-3 control-label">State</label>
+                                                                        <div class="col-md-2">
+                                                                            <input class="form-control"
+                                                                              id="administrative_area_level_1" name="State"></input>
+                                                                        </div>
+                                                                        <label class="col-md-2 control-label">Zip code</label>
+                                                                        <div class="col-md-2">
+                                                                            <input class="form-control" id="postal_code" name="SuburbCode"></input>
+                                                                        </div>
+                                                                </div>
+                                                                <div class="form-group" style="display: none">
+                                                                        <label class="col-md-3 control-label">Country</label>
+                                                                        <div class="col-md-6" colspan="3">
+                                                                            <input class="form-control"
+                                                                              id="country" disabled="true"></input>
+                                                                        </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="col-md-3 control-label">姓名<span class="required" aria-required="true">*</span></label>
+                                                                    <label class="col-md-3 control-label">片区<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-4">
+                                                                        <select name="District" class="form-control input-medium">
+                                                                            <option <%if(data.District == 'City及周边') { %> selected<% } %>>City及周边</option>
+                                                                            <option <%if(data.District == '东区') { %> selected<% } %>>东区</option>
+                                                                            <option <%if(data.District == '北区') { %> selected<% } %>>北区</option>
+                                                                            <option <%if(data.District == '南区') { %> selected<% } %>>南区</option>
+                                                                            <option <%if(data.District == '内西') { %> selected<% } %>>内西</option>
+                                                                            <option <%if(data.District == '西区') { %> selected<% } %>>西区</option>
+                                                                            <option <%if(data.District == '西区') { %> selected<% } %>>西区</option>
+                                                                            <option <%if(data.District == '西南') { %> selected<% } %>>西南</option>
+                                                                       </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">房屋类型<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-4">
+                                                                        <select name="PropertyType" class="form-control input-medium">
+                                                                            <option value="apartment" <%if(data.PropertyType == 'apartment') { %> selected<% } %>>新房</option>
+                                                                            <option value="land/package"  <%if(data.PropertyType == 'land/package') { %> selected<% } %>>Land&#38House</option>
+                                                                       </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">项目名称<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-9">
-                                                                        <input name="AccountName" placeholder=""
-                                                                               type="text" class="form-control" minlength="6" maxlength="50"></input>
+                                                                        <input name="Name" placeholder="名称"
+                                                                               type="text" class="form-control" minlength="6" maxlength="50" value="<%=data.Name%>"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="col-md-3 control-label">银行名称<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-9">
-                                                                        <input name="BankName" placeholder=""
-                                                                               type="text" class="form-control" minlength="6" maxlength="50"></input>
+                                                                    <label class="col-md-3 control-label">是否热门<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-6">
+                                                                        <label class="mt-radio-inline" style="float:left!important"> 否
+                                                                            <input type="radio" value="0" name="IsHot" <%if(data.IsHot == 0) { %> checked<% } %>>
+                                                                            <span></span>
+                                                                        </label>
+                                                                        <label class="mt-radio-inline" style="float:left!important; margin-left: 20px"> 是
+                                                                            <input type="radio" value="1" name="IsHot" <%if(data.IsHot == 1) { %> checked<% } %>>
+                                                                            <span></span>
+                                                                        </label>
                                                                     </div>
                                                                 </div>
+                                                            
                                                                 <div class="form-group">
-                                                                    <label class="col-md-3 control-label">BSB<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-9">
-                                                                        <input name="BSB" placeholder=""
-                                                                               type="text" class="form-control" minlength="6" maxlength="50"></input>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-3 control-label">ACC<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-9">
-                                                                        <input name="AccountNumber" placeholder=""
-                                                                               type="text" class="form-control" minlength="6" maxlength="50"></input>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="col-md-3 control-label">ABN<span class="required" aria-required="true">*</span></label>
-                                                                    <div class="col-md-9">
-                                                                        <input name="ABN" placeholder=""
-                                                                               type="text" class="form-control" minlength="6" maxlength="50"></input>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label class="control-label col-md-3">从业证书</label>
+                                                                    <label class="control-label col-md-3">图片</label>
                                                                     <div class="col-md-9">
                                                                         <div class="fileinput fileinput-new" data-provides="fileinput" style="float: left">
                                                                             <span class="btn btn-outline btn-circle btn-sm purple  btn-file">
                                                                                 <span class="fileinput-new"> 选择文件 </span>
                                                                                 <span class="fileinput-exists"> 重新选择 </span>
-                                                                                <input type="file" name="CertificatePath">
+                                                                                <input type="file" name="PicPath">
                                                                             </span>
                                                                             <span class="fileinput-filename"> </span> &nbsp;
                                                                             <a href="javascript:;" class="close fileinput-exists" data-dismiss="fileinput"> </a>
@@ -319,16 +263,70 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label class="col-md-3 control-label">状态</label>
-                                                                    <div class="col-md-4">
-                                                                       <select name="CertificateStatus" class="form-control input-medium">
-                                                                            <option value="1">可用</option>
-                                                                            <option value="0">停用</option>
-                                                                       </select>
+                                                                    <label class="col-md-3 control-label">项目介绍</label>
+                                                                    <div class="col-md-9">
+                                                                        <textarea id="Description" name="Description" style="width:500px;height: 300px">
+                                                                            <%- data.Description%>
+                                                                        </textarea>
                                                                     </div>
                                                                 </div>
-                                                      <div class="form-actions" style="margin-left: 100px; margin-top: 50px">
-                                                                    <button type="submit" name="adduser_submit" class="btn btn-success uppercase addOrder_submit" style="padding-left: 25px; padding-right: 25px">保&nbsp存</button>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">授权时间<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-4">
+                                                                        <input class="form-control form-control-inline input-medium date-picker placeholder-no-fix" size="16" type="text" value="" name="AuthBegindate" id="AuthBegindate"/>
+                                                                    </div>
+                                                                    <label class="col-md-1 control-label" style="text-align: left">至</label>
+                                                                    <div class="col-md-4">
+                                                                         <input class="form-control form-control-inline input-medium date-picker placeholder-no-fix" size="16" type="text" value="" name="AuthEnddate" id="AuthEnddate" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3">授权协议书</label>
+                                                                    <div class="col-md-9">
+                                                                        <div class="fileinput fileinput-new" data-provides="fileinput" style="float: left">
+                                                                            <span class="btn btn-outline btn-circle btn-sm purple  btn-file">
+                                                                                <span class="fileinput-new"> 选择文件 </span>
+                                                                                <span class="fileinput-exists"> 重新选择 </span>
+                                                                                <input type="file" name="DeveloperAuthContractPath">
+                                                                            </span>
+                                                                            <span class="fileinput-filename"> </span> &nbsp;
+                                                                            <a href="javascript:;" class="close fileinput-exists" data-dismiss="fileinput"> </a>
+                                                                        </div>
+                                                                        <div id="authorizationerror"></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="col-md-3 control-label">状态<span class="required" aria-required="true">*</span></label>
+                                                                    <div class="col-md-4">
+                                                                        <select name="Status" class="form-control input-medium">
+                                                                            <option value="0" <%if(data.Status == 0) { %> selected<% } %>>等待审核</option>
+                                                                            <option value="1" <%if(data.Status == 1) { %> selected<% } %>>审核通过</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3">项目佣金比例</label>
+                                                                    <div class="col-md-1">
+                                                                        <input class="form-control" type="text" maxlength="2" name="CommissionRate" style="width: 45px;" value="<%=data.CommissionRate%>"/>
+                                                                    </div>
+                                                                    <div class="col-md-1" style="padding-left: 0px;">
+                                                                        <span style="float: left; margin-top: 6px;">%</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3">备注</label>
+                                                                    <div class="col-md-9">
+                                                                        <textarea class="form-control" type="text" placeholder="" maxlength="200" name="Memo" value="<%=data.Memo%>"></textarea>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label class="control-label col-md-3">详细信息链接</label>
+                                                                    <div class="col-md-9">
+                                                                        <input class="form-control" type="text" placeholder="" maxlength="100" name="DetailLink" value="<%=data.DetailLink%>"/>
+                                                                    </div>
+                                                                </div>                                                       <div class="form-actions" style="margin-left: 100px; margin-top: 50px">
+                                                                    <button type="submit" name="addOrder_submit" class="btn btn-success uppercase addOrder_submit" style="padding-left: 25px; padding-right: 25px">保&nbsp存</button>
                                                                 </div>
 
                                                             </form>
@@ -367,10 +365,10 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN QUICK NAV -->
         <!-- END QUICK NAV -->
         <!--[if lt IE 9]>
-<script src="../../../public/assets/global/plugins/respond.min.js"></script>
-<script src="../../../public/assets/global/plugins/excanvas.min.js"></script> 
-<script src="../../../public/assets/global/plugins/ie8.fix.min.js"></script> 
-<![endif]-->
+        <script src="../../../public/assets/global/plugins/respond.min.js"></script>
+        <script src="../../../public/assets/global/plugins/excanvas.min.js"></script>
+        <script src="../../../public/assets/global/plugins/ie8.fix.min.js"></script>
+        <![endif]-->
         <!-- BEGIN CORE PLUGINS -->
         <script src="../../../public/assets/global/plugins/jquery.min.js" type="text/javascript"></script>
         <script src="../../../public/assets/global/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -388,7 +386,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="../../../public/assets/global/scripts/app.min.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-         <script src="../../../public/assets/pages/scripts/user-add.js" type="text/javascript"></script>           <script src="../../../public/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.js" type="text/javascript"></script>        <!-- END PAGE LEVEL SCRIPTS -->
+         <script src="../../../public/assets/pages/scripts/newhome_add.js" type="text/javascript"></script>           <script src="../../../public/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.js" type="text/javascript"></script>        <!-- END PAGE LEVEL SCRIPTS -->
         
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <script src="../../../public/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
@@ -400,22 +398,21 @@ License: You must have a valid license purchased only from themeforest(the above
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="../../../public/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
         <!-- END THEME LAYOUT SCRIPTS -->
+        <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
         <script>
             // This example displays an address form, using the autocomplete feature
             // of the Google Places API to help users fill in the information.
 
             // This example requires the Places library. Include the libraries=places
             // parameter when you first load the API. For example:
-            // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-            var placeSearch, autocomplete;
+            // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">var placeSearch, autocomplete;
         var componentForm = {
-        street_number: 'short_name',
-        route: 'long_name',
-        locality: 'long_name',
-        administrative_area_level_1: 'short_name',
-        country: 'long_name',
-        postal_code: 'short_name'
+            street_number: 'short_name',
+            route: 'long_name',
+            locality: 'long_name',
+            administrative_area_level_1: 'short_name',
+            country: 'long_name',
+            postal_code: 'short_name'
         };
 
         function initAutocomplete() {
@@ -445,6 +442,7 @@ License: You must have a valid license purchased only from themeforest(the above
         var addressType = place.address_components[i].types[0];
         if (componentForm[addressType]) {
         var val = place.address_components[i][componentForm[addressType]];
+        console.log(document.getElementById(addressType));
         document.getElementById(addressType).value = val;
         }
         }
@@ -470,7 +468,20 @@ License: You must have a valid license purchased only from themeforest(the above
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8ndJ6gLThwNptg293aNENd9Gp9pqKvJs&libraries=places&callback=initAutocomplete"
         async defer></script>
+        <script type="text/javascript">
+            console.log('sss');
+            bkLib.onDomLoaded(function() {
+                nicEditors.editors.push(
+                    new nicEditor().panelInstance(
+                        document.getElementById('Description')
+                    )
+                );
+                //console.log('<%- data.Description%>');
+                //$('#Description').html($("<div/>").html('<%- data.Description%>').text());
+                $("#AuthBegindate").datepicker( "setDate" , "<%=data.DeveloperAuthBeginDate%>" );
+                $("#AuthEnddate").datepicker( "setDate" , "<%=data.DeveloperAuthEndDate%>" );
 
+            });</script>
     </body>
 
 </html>

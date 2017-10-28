@@ -71,14 +71,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- DOC: Remove "hor-menu-light" class to have a horizontal menu with theme background instead of white background -->
                             <!-- DOC: This is desktop version of the horizontal menu. The mobile version is defined(duplicated) in the responsive menu below along with sidebar menu. So the horizontal menu has 2 seperate versions -->
                             <div class="hor-menu">
-                                <ul class="nav navbar-nav">
-                                    <!-- DOC: Remove data-hover="megamenu-dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
-                                    <li class="classic-menu-dropdown" aria-haspopup="true">
-                                        <a href="../newhome/newhome_list.html"> 楼盘管理
-                                            <span class="selected"> </span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <% include ../common/Nav.ejs%>
                             </div>
                             <!-- END MEGA MENU -->
                             <!-- BEGIN TOP NAVIGATION MENU -->
@@ -155,7 +148,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <span class="caption-subject font-blue-madison bold uppercase"> 新建楼盘</span>
                                                     </div>
                                                     <div style="float: right">
-                                                    <a href="page_user_addrent.html" class="btn green"> 修改 </a>
+                                                    <a href="/internal/offplanProperty/edit/<%=data.PropertyId%>" class="btn green"> 修改 </a>
                                                     </div>
                                                 </div>
                                                 <div class="portlet-body">
@@ -199,13 +192,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <div class="form-group">
                                                                     <label class="control-label col-md-3">图片<span class="required" aria-required="true">*</span></label>
                                                                      <div class="col-md-9"  style="text-align: left">
-                                                                      <img src="<%='https://s3-ap-southeast-2.amazonaws.com' + data.PicPath%>" style="width: 200px; height: 150px">
+                                                                      <img <%if(data.PicPath){ %>src="<%='https://s3-ap-southeast-2.amazonaws.com' + data.PicPath%>"<% } %> style="width: 200px; height: 150px">
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">项目介绍</label>
                                                                     <div id="description" class="col-md-9"  style="text-align: left">
-
+                                                                        <%- data.Description%>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -379,7 +372,7 @@ License: You must have a valid license purchased only from themeforest(the above
         }
         };
             jQuery(document).ready(function() {
-                $('#description').html($("<div/>").html('<%- data.Description%>').text());
+                //$('#description').html($("<div/>").html('<%- data.Description%>').text());
             });
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8ndJ6gLThwNptg293aNENd9Gp9pqKvJs&libraries=places&callback=initAutocomplete"

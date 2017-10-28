@@ -156,7 +156,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="btn-group">
-                                                        <a href="user_add.html" class="btn green"> 新建用户 </a>
+                                                        <a href="/internal/user/create" class="btn green"> 新建用户 </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -190,7 +190,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <td> <%=data[i].DateOfBirth%></td>
                                                 <td><%if(data[i].Status == 1) { %>可用<% } %><%if(data[i].Status == 0) { %>停用<% } %></td>
                                                 <td>
-                                                    <a href="/internal/user/detail/<%=data[i].ID%>" class="btn btn-outline btn-circle btn-sm purple">
+                                                    <a href="/internal/user/detail/<%=data[i].ID%>" class="btn btn-outline btn-circle btn-sm purple" target="_blank">
                                                         <i class="fa fa-edit"></i> 详情 </a>
                                                 </td>
                                             </tr>

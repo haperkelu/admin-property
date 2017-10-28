@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.post('/', function(req, res, next){
 
-    if(req.session.user == undefined || req.session.UserType == 1)
+    if(!req.session.user || (req.session.user.UserType != 2 && req.session.user.UserType != 0 && req.session.user.UserType != 4))
         return res.redirect('/login');
 
     var OrderId = decodeURIComponent(req.sanitize('OrderId').trim());

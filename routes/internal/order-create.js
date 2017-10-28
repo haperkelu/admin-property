@@ -3,7 +3,7 @@ var router = express.Router();
 
 router.post('/', function(req, res, next){
 
-    if(req.session.user == undefined || req.session.UserType == 1)
+    if(!req.session.user || (req.session.user.UserType != 2 && req.session.user.UserType != 0))
         return res.redirect('/login');
 
     var OrderDate = decodeURIComponent(req.sanitize('OrderDate').trim());
@@ -19,6 +19,7 @@ router.post('/', function(req, res, next){
     var CustomerPhone = req.sanitize('CustomerPhone').escape().trim();
     var CustomerEmail = req.sanitize('CustomerEmail').escape().trim();
     var CustomerAddress = req.sanitize('CustomerAddress').escape().trim();
+    var CommissionRateTxt = req.sanitize('CommissionRateTxt').escape().trim();
 
     var DB = require('../../utility/db.js');
     var post = {
@@ -27,7 +28,8 @@ router.post('/', function(req, res, next){
         UnitNumber: UnitNumber,
         BuildingPrice: BuildingPrice,
         LotNumber: LotNumber,
-        LandPrice: LandPrice
+        LandPrice: LandPrice,
+        CommissionRate: CommissionRateTxt
     };
     DB.query('INSERT INTO Sales.Order SET ?', post, function (err, result) {
         if (err) {console.log(err);return res.send('Server Error');}
@@ -69,7 +71,7 @@ router.post('/', function(req, res, next){
         DB.query('INSERT INTO Sales.OrderCustomer SET ?', post, function (err, result){
             if (err) {console.log(err);return res.send('Server Error');}
             var post;
-            if(req.sanitize('SolicitorCompany')) {
+            if(req.sanitize('SolicitorCompany').escape()) {
                 post = {
                     OrderId: orderId,
                     SolicitorCompany: req.sanitize('SolicitorCompany').escape().trim(),
@@ -80,6 +82,8 @@ router.post('/', function(req, res, next){
                 };
             } else {
                 var CompanyLaywers = req.sanitize('CompanyLaywers').escape().trim();
+                console.log(CompanyLaywers);
+                var fs = require('fs');
                 var companyLayersArr = JSON.parse(fs.readFileSync('./config/Company_Lawyer.json', 'utf8'));
                 var itemSelected = companyLayersArr.data[parseInt(CompanyLaywers.split(',')[0])];
                 post = {
@@ -101,9 +105,14 @@ router.post('/', function(req, res, next){
                     SalesEmail: req.sanitize('SalesEmail').escape().trim(),
                     SalesMemo: req.sanitize('Memo')? req.sanitize('Memo').escape().trim(): ''
                 };
-                DB.query('INSERT INTO Sales.OrderSales SET ?', post, function (err, result){
+                DB.query('Select * from Sales.Sales as s\n' +
+                    'join Sales.BasicUser as bu on s.BasicUserId = bu.ID where ?', {Email: req.sanitize('SalesEmail').escape().trim()}, function (err, result){
                     if (err) {console.log(err);return res.send('Server Error');}
-                    return res.redirect('/internal/ordder/list');
+                    if(result[0]) {post.SalesCommissionRate = result[0].SalesCommissionRate;}
+                    DB.query('INSERT INTO Sales.OrderSales SET ?', post, function (err, result){
+                        if (err) {console.log(err);return res.send('Server Error');}
+                        return res.redirect('/internal/ordder/list');
+                    });
                 });
 
             });

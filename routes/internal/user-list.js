@@ -9,7 +9,12 @@ router.get('/', function(req, res, next) {
     var InternalUserService = require('../../Biz-Service/InternalUserService.js');
     InternalUserService.getAllUsers(function (err, result) {
         if (err) {console.log(err);}
-        res.render('InternalSite/user/user_list', { data: result?result: [], isSystemAdmin:true});
+        res.render('InternalSite/user/user_list', { data: result?result: [],
+            isEstablishAccessible: true,
+            isPropertyAccessible: true,
+            isRentAccessible: true,
+            isOrderAccessible: true,
+            isSystemAdmin:true});
     });
 
 });

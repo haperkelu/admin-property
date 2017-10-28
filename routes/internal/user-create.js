@@ -95,7 +95,7 @@ router.post('/', function(req, res, next){
             DB.query('INSERT INTO Sales.Sales SET ?', post, function (err, result) {
                 if (err) {console.log(err);return res.send('Server Error');}
 
-                return res.redirect('/internal/offplanProperty/list');
+                return res.redirect('/internal/user/list');
             });
 
         });

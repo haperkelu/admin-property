@@ -10,12 +10,17 @@ exports.user_login_submit = function(req, res, next) {
     DB.query('Select ID, Email, Password,Type from Sales.BasicUser where status = 1 and ?', {Email: username}, function (err, result) {
 
         if (err) {console.log(err);return res.render('error/500');}
-        console.log(Encryption.encrypt('5555'));
+        //console.log(Encryption.encrypt('5555'));
         var usersSelected = JSON.parse(JSON.stringify(result));
         if(usersSelected.length != 1)  return res.redirect(req.get('referer') + '?msg=userNotFound');
+        console.log(Encryption.encrypt(password));
+        console.log(usersSelected[0]);
         if(!(Encryption.encrypt(password) === usersSelected[0].Password)) return res.redirect(req.get('referer') + '?msg=userNotFound');
         req.session.user = {Id: usersSelected[0].ID, Email: usersSelected[0].Email, UserType: usersSelected[0].Type};
         console.log(req.session.user);
+        if(usersSelected[0].Type == 2 || usersSelected[0].Type == 4) return res.redirect('/internal/ordder/list');
+        if(usersSelected[0].Type == 0) return res.redirect('/internal/user/list');
+        if(usersSelected[0].Type == 3) return res.redirect('/internal/offplanProperty/list');
         return res.redirect('/user/' + req.session.user.Id);
     });
 
@@ -51,7 +56,11 @@ exports.user_create_submit = function(req, res, next) {
         var id = result.insertId;
         DB.query('INSERT INTO Sales.Customer SET ?', {BasicUserId:id, ReferralCode: referralCode}, function (err, result){
             if (err) {console.log(err);return res.send('Server Error');}
-            return res.redirect('/user/' + result.insertId);
+            DB.query('INSERT INTO Sales.CustomerRedemptionCode SET ?', {Name:'Common', CustomerId:id}, function (err, result){
+                if (err) {console.log(err);return res.send('Server Error');}
+                return res.redirect('/user/' + result.insertId);
+            });
+
         });
     });
     //console.log(query.sql);

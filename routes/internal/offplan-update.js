@@ -1,13 +1,14 @@
-exports.property_submit = function(req, res, next) {
+var express = require('express');
+var router = express.Router({mergeParams: true});
+
+router.post('/', function(req, res, next) {
+
+    if(!req.session.user || (req.session.user.UserType != 3 && req.session.user.UserType != 0))
+        return res.send('Server Error');
+
+    var PropertyId = req.sanitize('propertyId').escape().trim();
+    console.log(PropertyId);
     var Address = req.sanitize('Address').escape().trim();
-    //console.log(req.sanitize('SuburbCode'));
-    var State = req.sanitize('State').escape().trim();
-    var SuburbCode = req.sanitize('SuburbCode').escape().trim();
-    var locality = req.sanitize('locality').escape().trim();
-    var cityId = 0;
-    if(State == 'NSW') {cityId = 1;}
-    if(State == 'VIC') {cityId = 2;}
-    if(State == 'QLD') {cityId = 3;}
     var District = req.sanitize('District').escape().trim();
     var name = req.sanitize('Name').escape().trim();
     var propertyType = decodeURIComponent(req.sanitize('PropertyType').trim());
@@ -15,11 +16,14 @@ exports.property_submit = function(req, res, next) {
     var Description = req.sanitize('Description').escape().trim();
     var DeveloperAuthBeginDate = decodeURIComponent(req.sanitize('AuthBegindate').trim());
     var DeveloperAuthEndDate = decodeURIComponent(req.sanitize('AuthEnddate').trim());
+    console.log(DeveloperAuthBeginDate);
+    console.log(DeveloperAuthEndDate);
     var commissionRate = req.sanitize('CommissionRate').escape().trim();
     var memo = req.sanitize('Memo').escape().trim();
+    var Status = req.sanitize('Status').escape().trim();
     var DetailLink = req.sanitize('DetailLink').escape().trim();
 
-    var S3 = require("../utility/S3.js");
+    var S3 = require("../../utility/S3.js");
     var bucketName = 'propertypicsstore';
     var PicPath = '';
     var DeveloperAuthContractPath = '';
@@ -42,34 +46,33 @@ exports.property_submit = function(req, res, next) {
             });
         }
     }
-    var DB = require('../utility/db.js');
+    var DB = require('../../utility/db.js');
     var post = {
         Name: name,
-        Status: 0,
-        IsEstablished: 0,
+        Status: parseInt(Status),
         Address: Address,
         District: District,
-        SuburbCode:SuburbCode,
-        SuburbName: locality,
-        CityId:cityId,
         PropertyType: propertyType,
         PicPath: PicPath,
         Description: Description
     };
-    DB.query('INSERT INTO Sales.Property SET ?', post, function (err, result) {
+    DB.query('UPDATE Sales.Property SET ? where ID = ' + PropertyId, post, function (err, result) {
         if (err) {console.log(err);return res.send('Server Error');}
         var propertyId  = result.insertId;
-        var post = {propertyId: propertyId,
-        isHot:(isHot == '1' ? 1:0),
-            DeveloperAuthBeginDate: DeveloperAuthDate,
-            DeveloperAuthEndDate: DeveloperAuthDate,
+        var post = {
+            IsHot:(isHot == '1' ? 1:0),
+            DeveloperAuthBeginDate: DeveloperAuthBeginDate,
+            DeveloperAuthEndDate: DeveloperAuthEndDate,
             DeveloperAuthContractPath:DeveloperAuthContractPath,
-            commissionRate:commissionRate, memo:memo, DetailLink:DetailLink, OffplanCreatedDate: new Date(),OffplanUpdateDate:new Date()};
-
-        DB.query('INSERT INTO Sales.PropertyOffplanExt SET ?', post, function (err, result){
+            CommissionRate:commissionRate, Memo:memo, DetailLink:DetailLink
+        };
+        console.log('before'  + PropertyId);
+        DB.query('UPDATE Sales.PropertyOffplanExt SET ? where PropertyId = ' + PropertyId, post, function (err, result){
             if (err) {console.log(err);return res.send('Server Error');}
             return res.redirect('/internal/offplanProperty/list');
         });
     });
 
-}
+});
+
+module.exports = router;

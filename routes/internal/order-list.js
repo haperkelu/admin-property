@@ -1,18 +1,17 @@
 var express = require('express');
 var router = express.Router();
-var util = require('util');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-    if(!req.session.user)
+    console.log(req.session.user);
+    if(!req.session.user || (req.session.user.UserType != 2 && req.session.user.UserType != 0 && req.session.user.UserType != 4))
         return res.redirect('/login');
 
-  var OrderService = require('../../Biz-Service/OrderService.js');
-    OrderService.getAllOrders(function (err, result) {
-      if (err) {console.log(err);}
-      res.render('InternalSite/Order/order_list', { data: result?result: [] });
-  });
+      var OrderService = require('../../Biz-Service/OrderService.js');
+        OrderService.getAllOrders(function (err, result) {
+          if (err) {console.log(err);}
+          res.render('InternalSite/Order/order_list', { data: result?result: [], isOrderAccessible:true });
+      });
 
 });
 

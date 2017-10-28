@@ -21,6 +21,7 @@ router.post('/', function(req, res, next){
 
     var DB = require('../../utility/db.js');
     var Encryption = require('../../utility/Encryption');
+    console.log(UserPassword);
     var post = {
         Type: parseInt(Type),
         Status: parseInt(CertificateStatus),

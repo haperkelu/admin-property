@@ -71,19 +71,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- DOC: Remove "hor-menu-light" class to have a horizontal menu with theme background instead of white background -->
                             <!-- DOC: This is desktop version of the horizontal menu. The mobile version is defined(duplicated) in the responsive menu below along with sidebar menu. So the horizontal menu has 2 seperate versions -->
                             <div class="hor-menu">
-                                <ul class="nav navbar-nav">
-                                    <!-- DOC: Remove data-hover="megamenu-dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
-                                    <li class="classic-menu-dropdown" aria-haspopup="true">
-                                        <a href="../newhome/newhome_list.html"> 楼盘管理
-                                            <span class="selected"> </span>
-                                        </a>
-                                    </li>
-                                    <li class="classic-menu-dropdown" aria-haspopup="true">
-                                        <a href="../order/order_list.html"> 订单管理
-                                            <span class="selected"> </span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <% include ../common/Nav.ejs%>
                             </div>
                             <!-- END MEGA MENU -->
                             <!-- BEGIN TOP NAVIGATION MENU -->
@@ -237,21 +225,21 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                     <label class="col-md-3 control-label">客户姓名<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-3">
                                                                         <input name="CustomerName" placeholder=""
-                                                                               type="text" class="form-control" minlength="2" maxlength="10" value="<%=data.CustomerName%>"></input>
+                                                                               type="text" class="form-control" minlength="2" maxlength="20" value="<%=data.CustomerName%>"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">客户电话<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-3">
                                                                         <input name="CustomerPhone" placeholder=""
-                                                                               type="text" class="form-control" minlength="2" maxlength="10" value="<%=data.CustomerPhone%>"></input>
+                                                                               type="text" class="form-control" minlength="2" maxlength="20" value="<%=data.CustomerPhone%>"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">客户邮箱<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-9">
                                                                         <input name="CustomerEmail" placeholder=""
-                                                                               type="text" class="form-control" minlength="2" maxlength="10" value="<%=data.CustomerEmail%>"></input>
+                                                                               type="text" class="form-control" minlength="2" maxlength="20" value="<%=data.CustomerEmail%>"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -337,28 +325,28 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                     <label class="col-md-3 control-label">公司名称<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-9">
                                                                         <input name="SolicitorCompany" placeholder=""
-                                                                               type="text" class="form-control" minlength="2" maxlength="10" value="<%=data.SolicitorCompany%>"></input>
+                                                                               type="text" class="form-control" minlength="2" maxlength="20" value="<%=data.SolicitorCompany%>"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">律师姓名<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-3">
                                                                         <input name="SolicitorName" placeholder=""
-                                                                               type="text" class="form-control" minlength="2" maxlength="10" value="<%=data.SolicitorName%>"></input>
+                                                                               type="text" class="form-control" minlength="2" maxlength="20" value="<%=data.SolicitorName%>"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">电话<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-3">
                                                                         <input name="SolicitorPhone" placeholder=""
-                                                                               type="text" class="form-control" minlength="2" maxlength="10" value="<%=data.SolicitorPhone%>"></input>
+                                                                               type="text" class="form-control" minlength="2" maxlength="20" value="<%=data.SolicitorPhone%>"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">邮箱<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-9">
                                                                         <input name="SolicitorEmail" placeholder=""
-                                                                               type="text" class="form-control" minlength="2" maxlength="10" value="<%=data.SolicitorEmail%>"></input>
+                                                                               type="text" class="form-control" minlength="2" maxlength="20" value="<%=data.SolicitorEmail%>"></input>
                                                                     </div>
                                                                 </div>
                                                                  <div class="form-group">
@@ -424,7 +412,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                     <label class="col-md-3 control-label">邮箱<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-9">
                                                                         <input name="SalesEmail" placeholder=""
-                                                                               type="text" class="form-control" minlength="2" maxlength="10" value="<%=data.SalesEmail%>"></input>
+                                                                               type="text" class="form-control" minlength="2" maxlength="20" value="<%=data.SalesEmail%>"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -443,10 +431,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                     <label class="col-md-3 control-label">订单状态</label>
                                                                     <div class="col-md-4">
                                                                         <select name="OrderStatus" class="form-control input-medium">
-                                                                            <option value="0" <%if(data.OrderStatus == 0) { %> selected<% } %>>已下单</option>
-                                                                            <option value="1" <%if(data.OrderStatus == 1) { %> selected<% } %>>已出合同</option>
-                                                                            <option value="2" <%if(data.OrderStatus == 2) { %> selected<% } %>>合同已上传</option>
-                                                                            <option value="3" <%if(data.OrderStatus == 3) { %> selected<% } %>>合同已交换</option>
+                                                                            <option value="0" <%if(data.OrderStatus != 0) { %>disabled<% } %> <%if(data.OrderStatus == 0) { %> selected<% } %>>已下单</option>
+                                                                            <option value="1" <%if(isSales == true) { %>disabled<% } %> <%if(data.OrderStatus == 1) { %> selected<% } %>>已出合同</option>
+                                                                            <option value="2" <%if(isSales == true) { %>disabled<% } %> <%if(data.OrderStatus == 2) { %> selected<% } %>>合同已上传</option>
+                                                                            <option value="3" <%if(isSales == true) { %>disabled<% } %> <%if(data.OrderStatus == 3) { %> selected<% } %>>合同已交换</option>
+                                                                            <option value="4" <%if(isSales == true) { %>disabled<% } %> <%if(data.OrderStatus == 4) { %> selected<% } %>>退款</option>
+
                                                                         </select>
                                                                     </div>
                                                                 </div>

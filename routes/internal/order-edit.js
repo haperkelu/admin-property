@@ -22,7 +22,7 @@ router.get('/', function(req, res, next){
         PropertyService.getOffplanListWithAllStatus(function (err, result) {
             if (err) {console.log(err); return res.render('error/500');}
             res.render('InternalSite/Order/order_edit', {
-                offplanList: result, companyLawyers: companyLayers, data: currentProperty});
+                offplanList: result, companyLawyers: companyLayers, data: currentProperty, isOrderAccessible: true, isSales:req.session.user.UserType == 2 });
         });
     });
 
