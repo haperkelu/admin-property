@@ -61,8 +61,8 @@ exports.property_submit = function(req, res, next) {
         var propertyId  = result.insertId;
         var post = {propertyId: propertyId,
         isHot:(isHot == '1' ? 1:0),
-            DeveloperAuthBeginDate: DeveloperAuthDate,
-            DeveloperAuthEndDate: DeveloperAuthDate,
+            DeveloperAuthBeginDate: DeveloperAuthBeginDate,
+            DeveloperAuthEndDate: DeveloperAuthEndDate,
             DeveloperAuthContractPath:DeveloperAuthContractPath,
             commissionRate:commissionRate, memo:memo, DetailLink:DetailLink, OffplanCreatedDate: new Date(),OffplanUpdateDate:new Date()};
 

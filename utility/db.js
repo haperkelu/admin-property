@@ -10,7 +10,7 @@ var DB = (function () {
 
     function _query(query, params, callback) {
         pool.getConnection(function (err, connection) {
-            if (err) {
+            if (err || connection.state === 'disconnected') {
                 connection.release();
                 callback(err, null);
                 throw err;

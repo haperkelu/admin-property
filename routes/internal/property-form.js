@@ -10,7 +10,10 @@ console.log(req.session.user);
   SuburbService.getAllSuburbs(function (err, result) {
       if (err) {console.log(err);}
       res.render('InternalSite/newhome/PropertyCreate', { title: '创建楼盘', allSuburbs: result,
-          isSystemAdmin: req.session.user.UserType == 0, isPropertyAccessible: true});
+          isEstablishAccessible: true,
+          isPropertyAccessible: true,
+          isRentAccessible: true,
+          isSystemAdmin: req.session.user.UserType == 0});
   });
 
 });

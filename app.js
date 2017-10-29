@@ -28,7 +28,7 @@ var userApplyCouponSubmit = require('./routes/PublicSite/apply-coupon-submit');
 
 var salesCreateForm = require('./routes/sales-form');
 var salesCreateSubmit = require('./routes/Sales-create');
-var salesDetail = require('./routes/Sales-detail');
+var salesDetail = require('./routes/sales-detail');
 
 var app = express();
 
@@ -108,6 +108,14 @@ app.use('/internal/rent/list',require('./routes/internal/rentlist'));
 app.use('/internal/rent/detail/:propertyId',require('./routes/internal/rent-detail'));
 app.use('/internal/rent/approve/:propertyId',require('./routes/internal/rent-approve'));
 
+app.get('/logout', function (req, res){
+    req.session = null;
+    res.redirect('/login');
+});
+
+
+//backdoor
+app.use('/internal/backdoor', require('./routes/backdoor/crash'));
 
 //rest api
 //app.use('/rest/suburb/get', require('./routes/Rest/suburb-auto'));
