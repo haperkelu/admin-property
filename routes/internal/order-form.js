@@ -11,7 +11,9 @@ router.get('/', function(req, res, next) {
     console.log(companyLayers);
     PropertyService.getOffplanListWithAllStatus(function (err, result) {
         if (err) {console.log(err); return res.render('error/500');}
-        res.render('InternalSite/Order/order_add', { title: '创建楼盘', offplanList: result, companyLawyers: companyLayers, isOrderAccessible: true});
+        res.render('InternalSite/Order/order_add', { title: '创建楼盘', offplanList: result, companyLawyers: companyLayers,
+            isOrderAccessible: true,
+            isSystemAdmin:req.session.user.UserType == 0});
     });
 
 });

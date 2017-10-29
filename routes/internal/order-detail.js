@@ -11,7 +11,9 @@ router.get('/', function(req, res, next) {
   var OrderService = require('../../Biz-Service/OrderService.js');
     OrderService.getOrderDetail(orderId, function (err, result) {
       if (err || result.length == 0) {console.log(err); return res.render('error/500')}
-      res.render('InternalSite/Order/order_detail', { data: result[0] });
+      res.render('InternalSite/Order/order_detail', { data: result[0],
+          isOrderAccessible:true,
+          isSystemAdmin:req.session.user.UserType == 0});
   });
 
 });

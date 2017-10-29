@@ -13,7 +13,12 @@ router.get('/', function(req, res, next){
 
         InternalUserService.getSingleSalesUser(userId, function (err, result){
             if (err || result.length == 0) {console.log(err); return res.render('error/500');}
-            res.render('InternalSite/user/user_edit', {data: result[0], isSystemAdmin :true});
+            res.render('InternalSite/user/user_edit', {data: result[0],
+                isEstablishAccessible: true,
+                isPropertyAccessible: true,
+                isRentAccessible: true,
+                isOrderAccessible: true,
+                isSystemAdmin:true});
         });
 
     });

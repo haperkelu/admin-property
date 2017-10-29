@@ -10,7 +10,9 @@ router.get('/', function(req, res, next) {
       var OrderService = require('../../Biz-Service/OrderService.js');
         OrderService.getAllOrders(function (err, result) {
           if (err) {console.log(err);}
-          res.render('InternalSite/Order/order_list', { data: result?result: [], isOrderAccessible:true });
+          res.render('InternalSite/Order/order_list', { data: result?result: [],
+              isOrderAccessible:true,
+              isSystemAdmin:req.session.user.UserType == 0});
       });
 
 });
