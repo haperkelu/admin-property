@@ -49,7 +49,7 @@ exports.user_create_submit = function(req, res, next) {
         //nationality: nationality,
         //address: address,
         //identityStatus: identityStatus,
-        createdBy: 1
+        createdBy: -1
     };
     var query = DB.query('INSERT INTO Sales.BasicUser SET ?', post, function (err, result) {
         if (err) {console.log(err);return res.send('Server Error');}
@@ -58,7 +58,8 @@ exports.user_create_submit = function(req, res, next) {
             if (err) {console.log(err);return res.send('Server Error');}
             DB.query('INSERT INTO Sales.CustomerRedemptionCode SET ?', {Name:'Common', CustomerId:id}, function (err, result){
                 if (err) {console.log(err);return res.send('Server Error');}
-                return res.redirect('/user/' + result.insertId);
+                req.session.user = {Id: id, Email: email, UserType: 1};
+                return res.redirect('/user/' + id);
             });
 
         });

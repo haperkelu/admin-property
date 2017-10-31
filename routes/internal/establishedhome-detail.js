@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
     PropertyService.getSalesDetail(propertyId, function (err, result) {
       if (err || result.length == 0) {console.log(err); return res.render('error/500')}
       res.render('InternalSite/resalehome/resalehome_detail', { data: result[0],
+          isOrderAccessible: req.session.user.UserType == 0,
           isEstablishAccessible: true,
           isPropertyAccessible: true,
           isRentAccessible: true,

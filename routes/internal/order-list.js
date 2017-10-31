@@ -11,7 +11,10 @@ router.get('/', function(req, res, next) {
         OrderService.getAllOrders(function (err, result) {
           if (err) {console.log(err);}
           res.render('InternalSite/Order/order_list', { data: result?result: [],
-              isOrderAccessible:true,
+              isOrderAccessible: true,
+              isEstablishAccessible: req.session.user.UserType == 0,
+              isPropertyAccessible: req.session.user.UserType == 0,
+              isRentAccessible: req.session.user.UserType == 0,
               isSystemAdmin:req.session.user.UserType == 0});
       });
 

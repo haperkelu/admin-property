@@ -16,6 +16,7 @@ router.get('/', function(req, res, next) {
       res.render('InternalSite/newhome/propertyedit', { data: result[0],
           isEstablishAccessible: true,
           isPropertyAccessible: true,
+          isOrderAccessible: req.session.user.UserType == 0,
           isRentAccessible: true,
           isSystemAdmin: req.session.user.UserType == 0});
   });

@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
 
         res.render('InternalSite/rent/rent_list', {
             data: result,
+            isOrderAccessible: req.session.user.UserType == 0,
             isEstablishAccessible: true,
             isPropertyAccessible: true,
             isRentAccessible: true,

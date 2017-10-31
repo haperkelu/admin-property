@@ -13,6 +13,9 @@ router.get('/', function(req, res, next) {
         if (err) {console.log(err); return res.render('error/500');}
         res.render('InternalSite/Order/order_add', { title: '创建楼盘', offplanList: result, companyLawyers: companyLayers,
             isOrderAccessible: true,
+            isEstablishAccessible: req.session.user.UserType == 0,
+            isPropertyAccessible: req.session.user.UserType == 0,
+            isRentAccessible: req.session.user.UserType == 0,
             isSystemAdmin:req.session.user.UserType == 0});
     });
 

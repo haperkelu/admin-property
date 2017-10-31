@@ -22,7 +22,13 @@ router.get('/', function(req, res, next){
         PropertyService.getOffplanListWithAllStatus(function (err, result) {
             if (err) {console.log(err); return res.render('error/500');}
             res.render('InternalSite/Order/order_edit', {
-                offplanList: result, companyLawyers: companyLayers, data: currentProperty, isOrderAccessible: true, isSales:req.session.user.UserType == 2 });
+                offplanList: result, companyLawyers: companyLayers, data: currentProperty,
+                isOrderAccessible: true,
+                isEstablishAccessible: req.session.user.UserType == 0,
+                isPropertyAccessible: req.session.user.UserType == 0,
+                isRentAccessible: req.session.user.UserType == 0,
+                isSystemAdmin:req.session.user.UserType == 0,
+                isSales:req.session.user.UserType == 2 });
         });
     });
 

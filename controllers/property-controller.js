@@ -45,7 +45,7 @@ exports.property_submit = function(req, res, next) {
     var DB = require('../utility/db.js');
     var post = {
         Name: name,
-        Status: 0,
+        Status: 1,
         IsEstablished: 0,
         Address: Address,
         District: District,
