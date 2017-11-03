@@ -66,7 +66,12 @@ exports.user_create_submit = function(req, res, next) {
             var customerId = result.insertId;
             var fs = require('fs');
             var defaultCouponCfg = JSON.parse(fs.readFileSync('./config/default_coupon.json', 'utf8'));
-            console.log(customerId);
+            //console.log(customerId);
+            req.session.user = {Id: id, Email: email,
+                Name: '',
+                Phone: '',
+                UserType: 1};
+
             if(referralCode) {
                 DB.query('Select * from Sales.BasicUser where ?', {SelfReferenceCode: referralCode}, function (err, result){
                     if (err) {console.log(err);return res.send('Server Error');}

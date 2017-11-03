@@ -9,12 +9,12 @@ router.post('/', function(req, res, next){
     var FirstName = req.sanitize('FirstName').escape().trim();
     var UserPassword = req.sanitize('password').escape().trim();
     //console.log('pwd:' + UserPassword);
-    var DateOfBirth = decodeURIComponent(req.sanitize('DateOfBirth').trim())
-    var Gender = req.sanitize('Gender').escape().trim();
-    var Nationality = req.sanitize('Nationality').escape().trim();
-    var IdentityStatus = req.sanitize('IdentityStatus').escape().trim();
-    var Phone = req.sanitize('Phone').escape().trim();
-    var Address = req.sanitize('Address').escape().trim();
+    var DateOfBirth = req.sanitize('DateOfBirth').escape()? decodeURIComponent(req.sanitize('DateOfBirth').trim()): '';
+    var Gender = req.sanitize('Gender').escape()? req.sanitize('Gender').escape().trim(): '';
+    var Nationality = req.sanitize('Nationality')? req.sanitize('Nationality').escape().trim(): '';
+    var IdentityStatus = req.sanitize('IdentityStatus').escape()? req.sanitize('IdentityStatus').escape().trim(): '';
+    var Phone = req.sanitize('Phone').escape()? req.sanitize('Phone').escape().trim(): '';
+    var Address = req.sanitize('Address').escape()? req.sanitize('Address').escape().trim(): '';
     var CertificateStatus = req.sanitize('CertificateStatus').escape().trim();
 
     var DB = require('../../utility/db.js');

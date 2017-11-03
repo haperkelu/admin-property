@@ -159,23 +159,21 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                 </div>
             </div>
-            <div name="detail" style="width: auto; background-color: #fff; height: 300px; margin-left: 50px; margin-right: 50px; margin-top: 20px; padding: 10px; display: block;">
+            <div name="detail" style="width: auto; background-color: #fff; position: relative;overflow: auto; margin-left: 50px; margin-right: 50px; margin-top: 20px; padding: 10px; display: block;">
                 <div class="form-group col-md-12" style="display: block; height: auto">
-                    <label class="caption-subject bold control-label" style="float:left; font-size:18px!important; color: gray"><%=data.Name%>（楼盘名称）</label>
+                    <label class="caption-subject bold control-label" style="font-size:18px!important; color: gray"><%=data.Name%></label>
                 </div>
                 <div class="form-group col-md-12" style="display: block;">
-                    <label class="caption-subject bold control-label" style="float:left; font-size:16px!important; color: gray"><%if(data.CityId == 1){%>悉尼<%}%> <%if(data.CityId == 2){%>墨尔本<%}%><%if(data.CityId == 3){%>布里斯班<%}%>（城市）</label>
+                    <label class="caption-subject bold control-label" style="font-size:16px!important; color: gray"><%if(data.CityId == 1){%>悉尼<%}%> <%if(data.CityId == 2){%>墨尔本<%}%><%if(data.CityId == 3){%>布里斯班<%}%></label>
                 </div>
                 <div class="form-group col-md-12">
-                    <label class="caption-subject bold control-label" style="float:left; font-size:16px!important; color: gray">类型：<%if(data.PropertyType == 'apartment'){%>公寓<%}%><%if(data.PropertyType == 'homeland'){%>Home&Land<%}%></label>
+                    <label class="caption-subject bold control-label" style="font-size:16px!important; color: gray">类型：<%if(data.PropertyType == 'apartment'){%>公寓<%}%><%if(data.PropertyType == 'homeland'){%>Home&Land<%}%></label>
                 </div>
                 <div class="form-group col-md-12">
-                    <label class="caption-subject bold control-label" style="float:left; font-size:16px!important; color: gray">项目介绍：</label>
+                    <label class="caption-subject bold control-label" style="font-size:16px!important; color: gray">项目介绍：</label> <br/>
                 </div>
-                <div id="description" class="form-group col-md-12" style="float:left; font-size:15px; color: gray">
-
+                <div id="description" class="form-group col-md-12" style="font-size:15px; color: gray">
                 </div>
-                
             </div>
             <div style="width: auto; background-color: #fff; height: auto; margin-left: 50px; margin-right: 50px; margin-top: 20px; padding: 10px; display: block;">
                 <div id="gmap_marker" class="gmaps"> </div>
@@ -247,7 +245,8 @@ License: You must have a valid license purchased only from themeforest(the above
             });
             jQuery(document).ready(function() {
                 MapsGoogle.init('<%=data.Address%>');
-                $('#description').html($("<div/>").html('<%- data.Description%>'));
+                //$('#description').html($("<div/>").html('<%- data.Description%>'));
+                $('#description').html($("<div/>").html('<%- data.Description%>').text());
             });
 
           </script>

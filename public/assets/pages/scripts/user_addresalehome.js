@@ -19,16 +19,16 @@ var Profile = function() {
                 errorClass: 'help-block', // default input error message class
                 focusInvalid: false, // do not focus the last invalid input
                 rules: {
-                    propertytype: {
+                    PropertyType: {
                         required: true
                     },
-                    bed: {
+                    NumOfRoom: {
                         required: true
                     },
-                    bath: {
+                    NumOfBath: {
                         required: true
                     },
-                    carpark: {
+                    NumOfPark: {
                         required: true
                     },
                     saletype: {
