@@ -56,7 +56,17 @@ exports.user_create_submit = function(req, res, next) {
         var id = result.insertId;
         DB.query('INSERT INTO Sales.Customer SET ?', {BasicUserId:id, ReferralCode: referralCode}, function (err, result){
             if (err) {console.log(err);return res.send('Server Error');}
-            DB.query('INSERT INTO Sales.CustomerRedemptionCode SET ?', {Name:'Common', CustomerId:id}, function (err, result){
+            var customerId = result.insertId;
+            var fs = require('fs');
+            var defaultCouponCfg = JSON.parse(fs.readFileSync('./config/default_coupon.json', 'utf8'));
+            console.log(customerId);
+            DB.query('INSERT INTO Sales.CustomerRedemptionCode SET ?',
+                {Name:defaultCouponCfg.data.Name,  DateOfAcquisition: new Date(),
+                    DateOfExpiration: new Date(defaultCouponCfg.data.DateOfExpiration),
+                    CustomerId:customerId,
+                    Status: 1
+                },
+                function (err, result){
                 if (err) {console.log(err);return res.send('Server Error');}
                 req.session.user = {Id: id, Email: email, UserType: 1};
                 return res.redirect('/user/' + id);

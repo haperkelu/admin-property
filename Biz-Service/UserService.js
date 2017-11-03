@@ -19,8 +19,8 @@ var UserService = {
         var DB = require('../utility/db.js');
         var sql = 'SELECT co.ID, co.CustomerId, co.DateOfAcquisition, co.DateOfExpiration, co.Name, co.`Status`, co.Description\n' +
             'FROM Sales.BasicUser b \n' +
-            'left join Sales.Customer c on b.ID = c.BasicUserId\n' +
-            'left join Sales.CustomerRedemptionCode co on c.ID = co.CustomerId\n' +
+            'join Sales.Customer c on b.ID = c.BasicUserId\n' +
+            'join Sales.CustomerRedemptionCode co on c.ID = co.CustomerId\n' +
             'where b.id = ' + userId;
         DB.query(sql,null, function (err, result) {
             if (err) {console.log(err); callback(err, result); return;}

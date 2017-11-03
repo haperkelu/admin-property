@@ -10,7 +10,15 @@ router.get('/', function(req, res, next) {
       var OrderService = require('../../Biz-Service/OrderService.js');
         OrderService.getAllOrders(function (err, result) {
           if (err) {console.log(err);}
-          res.render('InternalSite/Order/order_list', { data: result?result: [],
+          var filteredResult = [];
+          for(var i in result){
+              if((req.session.user.UserType == 2 && result[i].SalesEmail == req.session.user.Email)
+              || req.session.user.UserType == 0 || req.session.user.UserType == 4){
+                  filteredResult.push(result[i]);
+              }
+          }
+
+          res.render('InternalSite/Order/order_list', { data: filteredResult?filteredResult: [],
               isOrderAccessible: true,
               isEstablishAccessible: req.session.user.UserType == 0,
               isPropertyAccessible: req.session.user.UserType == 0,

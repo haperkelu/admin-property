@@ -198,7 +198,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">项目介绍</label>
                                                                     <div id="description" class="col-md-9"  style="text-align: left">
-                                                                        <%- data.Description%>
+
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -218,7 +218,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <div class="form-group">
                                                                     <label class="control-label col-md-3">项目佣金比例</label>
                                                                     <div class="col-md-9"  style="text-align: left">
-                                                                      <label class="control-label"><%=data.CommissionRate%></label>
+                                                                      <label class="control-label"><%=data.CommissionRate%></label>&nbsp;%
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -372,7 +372,7 @@ License: You must have a valid license purchased only from themeforest(the above
         }
         };
             jQuery(document).ready(function() {
-                //$('#description').html($("<div/>").html('<%- data.Description%>').text());
+                $('#description').html($("<div/>").html('<%- data.Description%>').text());
             });
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8ndJ6gLThwNptg293aNENd9Gp9pqKvJs&libraries=places&callback=initAutocomplete"
