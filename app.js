@@ -28,7 +28,7 @@ var userApplyCouponSubmit = require('./routes/PublicSite/apply-coupon-submit');
 
 var salesCreateForm = require('./routes/sales-form');
 var salesCreateSubmit = require('./routes/Sales-create');
-var salesDetail = require('./routes/Sales-detail');
+var salesDetail = require('./routes/sales-detail');
 
 var app = express();
 
@@ -82,8 +82,41 @@ app.use('/internal/offplanProperty/create', require('./routes/internal/property-
 app.use('/internal/offplanProperty/submit', require('./routes/internal/property-create'));
 app.use('/internal/offplanProperty/list', require('./routes/internal/offplan-list'));
 app.use('/internal/offplanProperty/detail/:propertyId', require('./routes/internal/offplan-detail'));
+app.use('/internal/offplanProperty/edit/:propertyId', require('./routes/internal/offplan-edit'));
+app.use('/internal/offplanProperty/update', require('./routes/internal/offplan-update'));
+
+
 app.use('/internal/ordder/create', require('./routes/internal/order-form'));
 app.use('/internal/ordder/submit', require('./routes/internal/order-create'));
+app.use('/internal/ordder/update', require('./routes/internal/order-update'));
+app.use('/internal/ordder/refund/:orderId', require('./routes/internal/order-refund'));
+app.use('/internal/ordder/list', require('./routes/internal/order-list'));
+app.use('/internal/ordder/detail/:orderId', require('./routes/internal/order-detail'));
+app.use('/internal/ordder/edit/:orderId', require('./routes/internal/order-edit'));
+
+app.use('/internal/user/create', require('./routes/internal/user-form'));
+app.use('/internal/user/submit', require('./routes/internal/user-create'));
+app.use('/internal/user/update', require('./routes/internal/user-update'));
+app.use('/internal/user/list', require('./routes/internal/user-list'));
+app.use('/internal/user/detail/:userId', require('./routes/internal/user-edit'));
+
+app.use('/internal/established/list',require('./routes/internal/establishedhomelist'));
+app.use('/internal/established/detail/:propertyId',require('./routes/internal/establishedhome-detail'));
+app.use('/internal/established/approve/:propertyId',require('./routes/internal/establish-approve'));
+
+app.use('/internal/rent/list',require('./routes/internal/rentlist'));
+app.use('/internal/rent/detail/:propertyId',require('./routes/internal/rent-detail'));
+app.use('/internal/rent/approve/:propertyId',require('./routes/internal/rent-approve'));
+
+app.get('/logout', function (req, res){
+    req.session = null;
+    res.redirect('/login');
+});
+
+
+//backdoor
+app.use('/internal/backdoor', require('./routes/backdoor/crash'));
+
 //rest api
 //app.use('/rest/suburb/get', require('./routes/Rest/suburb-auto'));
 

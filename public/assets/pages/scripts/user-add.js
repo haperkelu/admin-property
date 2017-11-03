@@ -3,42 +3,24 @@ var Profile = function() {
     var handleValidation = function() {
 
             var jsonRules = {
-                    role: {
+                    Type: {
                         required: true
                     },
-                    email: {
+                    Email: {
                         required: true,
                         email: true
                     },
-                    level: {
+                    LastName: {
                         required: true
                     },
-                    surname: {
+                    FirstName: {
                         required: true
                     },
-                    firstname: {
+                    Password: {
                         required: true
                     },
-                    password: {
+                    Passwordconfirm: {
                         required: true
-                    },
-                    passwordconfirm: {
-                        required: true
-                    },
-                    fullname: {
-                        required: true
-                    },
-                    bank: {
-                        required: true
-                    },
-                    BSB: {
-                        required: true
-                    },
-                    ACC: {
-                        required: true
-                    },
-                    ABN: {
-                        required: true   
                     }
             };
             //console.log(jsonRules);

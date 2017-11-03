@@ -71,19 +71,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- DOC: Remove "hor-menu-light" class to have a horizontal menu with theme background instead of white background -->
                             <!-- DOC: This is desktop version of the horizontal menu. The mobile version is defined(duplicated) in the responsive menu below along with sidebar menu. So the horizontal menu has 2 seperate versions -->
                             <div class="hor-menu">
-                                <ul class="nav navbar-nav">
-                                    <!-- DOC: Remove data-hover="megamenu-dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
-                                    <li class="classic-menu-dropdown" aria-haspopup="true">
-                                        <a href="../newhome/newhome_list.html"> 楼盘管理
-                                            <span class="selected"> </span>
-                                        </a>
-                                    </li>
-                                    <li class="classic-menu-dropdown" aria-haspopup="true">
-                                        <a href="../order/order_list.html"> 订单管理
-                                            <span class="selected"> </span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <% include ../common/Nav.ejs%>
                             </div>
                             <!-- END MEGA MENU -->
                             <!-- BEGIN TOP NAVIGATION MENU -->
@@ -104,7 +92,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <i class="icon-user"></i> 基本信息 </a>
                                     </li>
                                     <li>
-                                        <a href="page_user_login_1.html">
+                                        <a href="/logout">
                                             <i class="icon-key"></i> 退出登录 </a>
                                     </li>
                                 </ul>
@@ -199,6 +187,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                     </div>
                                                                     <div class="col-md-5" style="text-align: left">
                                                                         佣金比例：<label class=" control-label" id="CommissionRate"></label>
+                                                                        <input type="text" style="display: none" id="CommissionRateTxt" name="CommissionRateTxt"/>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -250,7 +239,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                     <label class="col-md-3 control-label">客户邮箱<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-9">
                                                                         <input name="CustomerEmail" placeholder=""
-                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
+                                                                               type="text" class="form-control" minlength="2" maxlength="20"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -420,21 +409,21 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                     <label class="col-md-3 control-label">销售姓名<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-3">
                                                                         <input name="SalesName" placeholder=""
-                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
+                                                                               type="text" class="form-control" minlength="2" maxlength="20" value="<%=currentName%>"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">电话<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-3">
                                                                         <input name="SalesMobile" placeholder=""
-                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
+                                                                               type="text" class="form-control" minlength="2" maxlength="20" value="<%=currentPhone%>"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">邮箱<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-9">
                                                                         <input name="SalesEmail" placeholder=""
-                                                                               type="text" class="form-control" minlength="2" maxlength="10"></input>
+                                                                               type="text" class="form-control" minlength="2" maxlength="50" value="<%=currentEmail%>"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -596,6 +585,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     var currentCommissionRate = $('#PropertyName option:selected').attr('CommissionRate');
                     $('#PropertyType').html(currentPropertyType);
                     $('#CommissionRate').html(currentCommissionRate);
+                    $('#CommissionRateTxt').val(currentCommissionRate);
                     console.log(currentPropertyType);
                     if(currentPropertyType == 'apartment'){
                         //console.log('aaaa');

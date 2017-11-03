@@ -11,10 +11,10 @@ exports.property_submit = function(req, res, next) {
     var District = req.sanitize('District').escape().trim();
     var name = req.sanitize('Name').escape().trim();
     var propertyType = decodeURIComponent(req.sanitize('PropertyType').trim());
-    var isHot = req.sanitize('IsHot').escape().trim();
+    var isHot = req.sanitize('IsHot').escape()? req.sanitize('IsHot').escape().trim(): '0';
     var Description = req.sanitize('Description').escape().trim();
-    var DeveloperAuthDate = decodeURIComponent(req.sanitize('AuthBegindate').trim() + ' ' + req.sanitize('AuthEnddate').trim());
-    console.log(DeveloperAuthDate);
+    var DeveloperAuthBeginDate = decodeURIComponent(req.sanitize('AuthBegindate').trim());
+    var DeveloperAuthEndDate = decodeURIComponent(req.sanitize('AuthEnddate').trim());
     var commissionRate = req.sanitize('CommissionRate').escape().trim();
     var memo = req.sanitize('Memo').escape().trim();
     var DetailLink = req.sanitize('DetailLink').escape().trim();
@@ -45,7 +45,7 @@ exports.property_submit = function(req, res, next) {
     var DB = require('../utility/db.js');
     var post = {
         Name: name,
-        Status: 0,
+        Status: 1,
         IsEstablished: 0,
         Address: Address,
         District: District,
@@ -60,7 +60,10 @@ exports.property_submit = function(req, res, next) {
         if (err) {console.log(err);return res.send('Server Error');}
         var propertyId  = result.insertId;
         var post = {propertyId: propertyId,
-        isHot:(isHot == '1' ? 1:0), DeveloperAuthDate: DeveloperAuthDate,DeveloperAuthContractPath:DeveloperAuthContractPath,
+        isHot:(isHot == '1' ? 1:0),
+            DeveloperAuthBeginDate: DeveloperAuthBeginDate,
+            DeveloperAuthEndDate: DeveloperAuthEndDate,
+            DeveloperAuthContractPath:DeveloperAuthContractPath,
             commissionRate:commissionRate, memo:memo, DetailLink:DetailLink, OffplanCreatedDate: new Date(),OffplanUpdateDate:new Date()};
 
         DB.query('INSERT INTO Sales.PropertyOffplanExt SET ?', post, function (err, result){

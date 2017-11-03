@@ -3,55 +3,52 @@ var Profile = function() {
     var handleValidation = function() {
 
             var jsonRules = {
-                    date: {
+                    OrderDate: {
                         required: true
                     },
-                    type: {
+                    PropertyType: {
                         required: true
                     },
-                    projectname: {
+                    UnitNumber: {
                         required: true
                     },
-                    UnitNum: {
+                    BuildingPrice: {
                         required: true
                     },
-                    propertyprice: {
+                    CustomerName: {
                         required: true
                     },
-                    clientname: {
-                        required: true
-                    },
-                    clientphone: {
+                    CustomerPhone: {
                         required: true,
                         phone: true
                     },
-                    clientemail: {
+                    CustomerEmail: {
                         email: true,
                         required: true
                     },
-                    clientaddress: {
+                    CustomerAddress: {
                         required: true
                     },
-                    clientfrom: {
+                    ClientSituation: {
                         required: true
                     },
-                    purpose: {
+                    InvestmentOption: {
                         required: true
                     },
-                    deposit: {
+                    DepositPath: {
                         required: true   
                     },
-                    clientIDPhoto: {
+                    CustomerIDPath: {
                         required: true
                     },
-                    salesname: {
+                    SalesName: {
                         required: true
                     },
-                    salesphone: {
+                    SalesMobile: {
                         required: true,
                         phone: true
                     },
-                    salesemail: {
+                    SalesEmail: {
                         email: true,
                         required: true
                     }

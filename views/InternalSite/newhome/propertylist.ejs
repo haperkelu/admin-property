@@ -70,14 +70,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- DOC: Remove "hor-menu-light" class to have a horizontal menu with theme background instead of white background -->
                     <!-- DOC: This is desktop version of the horizontal menu. The mobile version is defined(duplicated) in the responsive menu below along with sidebar menu. So the horizontal menu has 2 seperate versions -->
                     <div class="hor-menu">
-                        <ul class="nav navbar-nav">
-                            <!-- DOC: Remove data-hover="megamenu-dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
-                            <li class="classic-menu-dropdown" aria-haspopup="true">
-                                <a href="../newhome/newhome_list.html"> 楼盘管理
-                                    <span class="selected"> </span>
-                                </a>
-                            </li>
-                        </ul>
+                        <% include ../common/Nav.ejs%>
                     </div>
                     <!-- END MEGA MENU -->
                     <!-- BEGIN TOP NAVIGATION MENU -->
@@ -94,11 +87,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="page_user_profile.html">
+                                        <a href="/logout">
                                             <i class="icon-user"></i> 基本信息 </a>
                                     </li>
                                     <li>
-                                        <a href="page_user_login_1.html">
+                                        <a href="/logout">
                                             <i class="icon-key"></i> 退出登录 </a>
                                     </li>
                                 </ul>
@@ -163,7 +156,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="btn-group">
-                                                        <a href="newhome_add.html" class="btn green"> 新建楼盘 </a>
+                                                        <a href="/internal/offplanProperty/create" class="btn green"> 新建楼盘 </a>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -202,7 +195,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <td> <%=data[i].Memo%> </td>
                                                 <td> <%if(data[i].Status == 1) { %><span class="label label-sm label-default"> Approved </span><% } %><%if(data[i].Status == 0) { %>待审核<% } %></td>
                                                 <td>
-                                                    <a href="/internal/offplanProperty/detail/<%=data[i].PropertyId%>" class="btn btn-outline btn-circle btn-sm purple">
+                                                    <a href="/internal/offplanProperty/detail/<%=data[i].PropertyId%>" class="btn btn-outline btn-circle btn-sm purple" target="_blank">
                                                         <i class="fa fa-edit"></i> 详情 </a>
                                                 </td>
                                             </tr>

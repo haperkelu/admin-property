@@ -7,38 +7,37 @@ var Profile = function() {
                 errorClass: 'help-block', // default input error message class
                 focusInvalid: false, // do not focus the last invalid input
                 rules: {
-                    address: {
+                    Address: {
                         required: true
                     },
-                    area: {
+                    District: {
                         required: true
                     },
-                    propertytype: {
+                    PropertyType: {
                         required: true
                     },
-                    name: {
+                    Name: {
                         required: true
                     },
-                    popular: {
+                    IsHot: {
                         required: true
                     },
-                    img: {
+                    PicPath: {
                         required: true
                     },
-                    begindate: {
+                    AuthBegindate: {
                         required: true
                     },
-                    enddate: {
+                    AuthEnddate: {
                         required: true
                     },
-                    commission: {
+                    CommissionRate: {
                         required: true,
                         number: true
                     },
-                    link: {
+                    DetailLink: {
                         url: true
                     }
-
 
                 },
 
