@@ -67,25 +67,31 @@ exports.user_create_submit = function(req, res, next) {
             var fs = require('fs');
             var defaultCouponCfg = JSON.parse(fs.readFileSync('./config/default_coupon.json', 'utf8'));
             console.log(customerId);
+            if(referralCode) {
+                DB.query('Select * from Sales.BasicUser where ?', {SelfReferenceCode: referralCode}, function (err, result){
+                    if (err) {console.log(err);return res.send('Server Error');}
+                    console.log(result);
+                    if(result && result.length > 0){
 
-            DB.query('Select * from Sales.BasicUser where ?', {SelfReferenceCode: referralCode}, function (err, result){
-                if (err) {console.log(err);return res.send('Server Error');}
-                if(result && result.length > 0){
+                        DB.query('INSERT INTO Sales.CustomerRedemptionCode SET ?',
+                            {Name:defaultCouponCfg.data.Name,  DateOfAcquisition: new Date(),
+                                DateOfExpiration: new Date(defaultCouponCfg.data.DateOfExpiration),
+                                CustomerId: customerId,
+                                Status: 1
+                            },
+                            function (err, result){
+                                if (err) {console.log(err);return res.send('Server Error');}
+                                req.session.user = {Id: id, Email: email, UserType: 1};
+                                return res.redirect('/user/' + id);
+                            });
+                    } else {
+                        return res.redirect('/user/' + id);
+                    }
 
-                    DB.query('INSERT INTO Sales.CustomerRedemptionCode SET ?',
-                        {Name:defaultCouponCfg.data.Name,  DateOfAcquisition: new Date(),
-                            DateOfExpiration: new Date(defaultCouponCfg.data.DateOfExpiration),
-                            CustomerId:customerId,
-                            Status: 1
-                        },
-                        function (err, result){
-                            if (err) {console.log(err);return res.send('Server Error');}
-                            req.session.user = {Id: id, Email: email, UserType: 1};
-                            return res.redirect('/user/' + id);
-                        });
-                }
+                });
+            }else {
                 return res.redirect('/user/' + id);
-            });
+            }
 
         });
     });

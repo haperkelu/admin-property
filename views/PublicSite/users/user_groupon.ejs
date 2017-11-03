@@ -95,7 +95,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                             <i class="icon-home"></i> 我的新房 </a>
                                     </li>
                                     <li>
-                                        <a href="page_user_resalehome.html">
+                                        <a href="/user/<%=Id%>/userNewHomeList">
                                             <i class="icon-home"></i> 我的二手房 </a>
                                     </li>
                                     <li>
@@ -176,7 +176,28 @@ License: You must have a valid license purchased only from themeforest(the above
                                         <!-- END SIDEBAR BUTTONS -->
                                         <!-- SIDEBAR MENU -->
                                         <div class="profile-usermenu">
-                                            <% include nav.html %>
+                                            <ul class="nav">
+                                                <li>
+                                                    <a href="/user/<%=Id%>">
+                                                        <i class="icon-user"></i> 基本信息 </a>
+                                                </li>
+                                                <li class="active">
+                                                    <a href="/user/<%=Id%>/coupon">
+                                                        <i class="icon-envelope"></i> 我的卡券 </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/user/<%=Id%>/userNewHomeList">
+                                                        <i class="icon-home"></i> 我的新房 </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/user/<%=Id%>/userEstablishedHomeList">
+                                                        <i class="icon-home"></i> 我的二手房 </a>
+                                                </li>
+                                                <li>
+                                                    <a href="/user/<%=Id%>/rentlist">
+                                                        <i class="icon-home"></i> 我的租房 </a>
+                                                </li>
+                                            </ul>
                                         </div>
                                         <!-- END MENU -->
                                     </div>
