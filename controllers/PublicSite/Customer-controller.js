@@ -7,7 +7,7 @@ exports.user_login_submit = function(req, res, next) {
 
     var Encryption = require('../../utility/Encryption');
     var DB = require('../../utility/db.js');
-    DB.query('Select ID, Email, Password,Type from Sales.BasicUser where status = 1 and ?', {Email: username}, function (err, result) {
+    DB.query('Select ID, Email,Password,Type,LastName,FirstName,Phone from Sales.BasicUser where status = 1 and ?', {Email: username}, function (err, result) {
 
         if (err) {console.log(err);return res.render('error/500');}
         //console.log(Encryption.encrypt('5555'));
@@ -16,7 +16,10 @@ exports.user_login_submit = function(req, res, next) {
         console.log(Encryption.encrypt(password));
         console.log(usersSelected[0]);
         if(!(Encryption.encrypt(password) === usersSelected[0].Password)) return res.redirect(req.get('referer') + '?msg=userNotFound');
-        req.session.user = {Id: usersSelected[0].ID, Email: usersSelected[0].Email, UserType: usersSelected[0].Type};
+        req.session.user = {Id: usersSelected[0].ID, Email: usersSelected[0].Email,
+            Name: usersSelected[0].LastName + usersSelected[0].FirstName,
+            Phone: usersSelected[0].Phone,
+            UserType: usersSelected[0].Type};
         console.log(req.session.user);
         if(usersSelected[0].Type == 2 || usersSelected[0].Type == 4) return res.redirect('/internal/ordder/list');
         if(usersSelected[0].Type == 0) return res.redirect('/internal/user/list');
@@ -36,6 +39,8 @@ exports.user_create_submit = function(req, res, next) {
     if(!email || !password) return res.render('error/500');
 
     var DB = require('../../utility/db.js');
+    var shortid = require('shortid');
+    var Encryption = require('../../utility/Encryption');
     var post = {
         type: 1,
         status:1,
@@ -45,7 +50,8 @@ exports.user_create_submit = function(req, res, next) {
         //gender: gender,
         email: email,
         //phone: phone,
-        password: password,
+        password: Encryption.encrypt(password),
+        SelfReferenceCode: shortid.generate(),
         //nationality: nationality,
         //address: address,
         //identityStatus: identityStatus,
@@ -54,21 +60,30 @@ exports.user_create_submit = function(req, res, next) {
     var query = DB.query('INSERT INTO Sales.BasicUser SET ?', post, function (err, result) {
         if (err) {console.log(err);return res.send('Server Error');}
         var id = result.insertId;
+
         DB.query('INSERT INTO Sales.Customer SET ?', {BasicUserId:id, ReferralCode: referralCode}, function (err, result){
             if (err) {console.log(err);return res.send('Server Error');}
             var customerId = result.insertId;
             var fs = require('fs');
             var defaultCouponCfg = JSON.parse(fs.readFileSync('./config/default_coupon.json', 'utf8'));
             console.log(customerId);
-            DB.query('INSERT INTO Sales.CustomerRedemptionCode SET ?',
-                {Name:defaultCouponCfg.data.Name,  DateOfAcquisition: new Date(),
-                    DateOfExpiration: new Date(defaultCouponCfg.data.DateOfExpiration),
-                    CustomerId:customerId,
-                    Status: 1
-                },
-                function (err, result){
+
+            DB.query('Select * from Sales.BasicUser where ?', {SelfReferenceCode: referralCode}, function (err, result){
                 if (err) {console.log(err);return res.send('Server Error');}
-                req.session.user = {Id: id, Email: email, UserType: 1};
+                if(result && result.length > 0){
+
+                    DB.query('INSERT INTO Sales.CustomerRedemptionCode SET ?',
+                        {Name:defaultCouponCfg.data.Name,  DateOfAcquisition: new Date(),
+                            DateOfExpiration: new Date(defaultCouponCfg.data.DateOfExpiration),
+                            CustomerId:customerId,
+                            Status: 1
+                        },
+                        function (err, result){
+                            if (err) {console.log(err);return res.send('Server Error');}
+                            req.session.user = {Id: id, Email: email, UserType: 1};
+                            return res.redirect('/user/' + id);
+                        });
+                }
                 return res.redirect('/user/' + id);
             });
 

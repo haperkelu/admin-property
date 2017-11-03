@@ -15,10 +15,9 @@ router.get('/', function(req, res, next){
         if(result[0].OrderStatus != 0 && result[0].OrderStatus != 1) {
             return res.render('error/500');
         }
-        if(result[0].SalesEmail != req.session.user.Email) {
+        if(req.session.user.UserType == 2 && result[0].SalesEmail != req.session.user.Email) {
             return res.render('error/500');
         }
-
         var DB = require('../../utility/db.js');
         var post = {
             isRefund:1,

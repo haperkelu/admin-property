@@ -203,8 +203,12 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <td><%=data[i].SalesName%></td>
                                                     <td><%=data[i].CommissionRate%></td>
                                                     <td><%=data[i].SalesCommissionRate%></td>
-                                                    <td>Settle:
-                                                        <%=parseFloat(data[i].BuildingPrice) * parseFloat(data[i].CommissionRate) * parseFloat(data[i].SalesCommissionRate) /10000%>
+                                                    <td>
+                                                        合同交换：
+                                                        <%=parseFloat(data[i].BuildingPrice) * parseFloat(data[i].CommissionRate) * parseFloat(data[i].SalesCommissionRate) /20000%>
+                                                        <br/>
+                                                        Settle:
+                                                        <%=parseFloat(data[i].BuildingPrice) * parseFloat(data[i].CommissionRate) * parseFloat(data[i].SalesCommissionRate) /20000%>
                                                         </td>
                                                     <td>
                                                         <a href="/internal/ordder/edit/<%=data[i].OrderId%>" class="btn btn-outline btn-circle btn-sm purple" target="_blank">
