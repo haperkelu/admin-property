@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
     var suburbCode = suburbStr? suburbStr.substr(suburbStr.indexOf('(') + 1, 4):'';
     var source = req.query.source? req.query.source:'';
     var type = req.query.propertytype? req.query.propertytype:'';
-
+    console.log(type);
     var PropertyService = require('../../../Biz-Service/PropertyService');
     PropertyService.getEstablishedHomeList(function (err, result){
         if (err) {console.log(err);return res.render('error/500');}
@@ -40,10 +40,9 @@ var filterResultByCondition = function (result, suburbCode, type, source) {
     var filteredResult = [];
     for(var i in result){
         var item = result[i];
-        //console.log(item);
-        if((!suburbCode || item.SuburbCode == suburbCode)) {
-            if(!type || item.PropertyType == type){
-                if(!source || item.Source == source){
+        if((!suburbCode || ((item.SuburbCode) && item.SuburbCode.toUpperCase() == suburbCode.toUpperCase()))) {
+            if(!type || item.PropertyType.toUpperCase() == type.toUpperCase()){
+                if(!source.toUpperCase() || item.Source.toUpperCase() == source.toUpperCase()){
                     filteredResult.push(item);
                 }
             }

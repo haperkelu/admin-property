@@ -251,6 +251,7 @@ License: You must have a valid license purchased only from themeforest(the above
               });
             });
             jQuery(document).ready(function() {
+                MapsGoogle.init('<%=data.Address%>');
                 $('#description').html($("<div/>").html('<%- data.Description%>').text());
             });
 

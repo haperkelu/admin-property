@@ -1,7 +1,7 @@
 {
   "data": [
-    {"Level":"A", "Value": 80},
+    {"Level":"A", "Value": 70},
     {"Level":"B", "Value": 60},
-    {"Level":"C", "Value": 30}
+    {"Level":"C", "Value": 50}
   ]
 }

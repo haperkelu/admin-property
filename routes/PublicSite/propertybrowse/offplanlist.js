@@ -8,9 +8,9 @@ router.get('/', function(req, res, next) {
 
     var cityId = req.query.city? req.query.city:1;
     var district = req.query.district? req.query.district:'';
+    console.log(district);
     var suburbStr = req.query.suburb? req.query.suburb:'';
     var suburbCode = suburbStr? suburbStr.substr(suburbStr.indexOf('(') + 1, 4):'';
-    console.log(suburbCode);
     var type = req.query.type? req.query.type:'';
 
     var PropertyService = require('../../../Biz-Service/PropertyService');
@@ -47,10 +47,15 @@ router.get('/', function(req, res, next) {
 
 var filterResultByCondition = function (result, cityId, suburbCode, district, type) {
     var filteredResult = [];
+
     for(var i in result){
         var item = result[i];
+        //console.log(item.CityId == cityId && (!suburbCode || item.SuburbCode == suburbCode));
+        console.log(item.district);
+        console.log(district);
+        //console.log(!type || item.PropertyType == type);
         if(item.CityId == cityId && (!suburbCode || item.SuburbCode == suburbCode)) {
-            if(!district || item.district == district) {
+            if(!district || item.District == district) {
                 if(!type || item.PropertyType == type){
                     filteredResult.push(item);
                 }

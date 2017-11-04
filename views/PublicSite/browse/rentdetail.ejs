@@ -157,7 +157,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div>
                 </div>
             </div>
-            <div name="detail" class="detail-div" style=" position: relative;overflow: auto">
+            <div name="detail" class="detail-div" style="height: auto; position: relative;overflow: auto">
                 <div class="form-group col-md-12" style="display: block; height: auto;margin-top: 25px!important;">
                     <label class="caption-subject bold control-label" style="font-size:18px!important; color: gray">地址：<%=data.Address%></label>
                 </div>
@@ -266,6 +266,7 @@ License: You must have a valid license purchased only from themeforest(the above
             });
 
             jQuery(document).ready(function() {
+                MapsGoogle.init('<%=data.Address%>');
                 $('#description').html($("<div/>").html('<%- data.Description%>').text());
             });
 

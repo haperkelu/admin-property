@@ -10,16 +10,24 @@ router.get('/', function(req, res, next){
     var InternalUserService = require('../../Biz-Service/InternalUserService.js');
     InternalUserService.getSingleUser(userId, function (err, result) {
         if (err || result.length == 0) {console.log(err); return res.render('error/500');}
-
-        InternalUserService.getSingleSalesUser(userId, function (err, result){
-            if (err || result.length == 0) {console.log(err); return res.render('error/500');}
+        if(req.session.user.UserType == 2){
+            InternalUserService.getSingleSalesUser(userId, function (err, result){
+                if (err || result.length == 0) {console.log(err); return res.render('error/500');}
+                res.render('InternalSite/user/user_edit', {data: result[0],
+                    isEstablishAccessible: true,
+                    isPropertyAccessible: true,
+                    isRentAccessible: true,
+                    isOrderAccessible: true,
+                    isSystemAdmin:true});
+            });
+        } else {
             res.render('InternalSite/user/user_edit', {data: result[0],
                 isEstablishAccessible: true,
                 isPropertyAccessible: true,
                 isRentAccessible: true,
                 isOrderAccessible: true,
                 isSystemAdmin:true});
-        });
+        }
 
     });
 

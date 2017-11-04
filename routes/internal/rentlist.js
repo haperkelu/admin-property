@@ -8,10 +8,10 @@ router.get('/', function(req, res, next) {
 
     var PropertyService = require('../../Biz-Service/PropertyService');
     PropertyService.getRentListWithAllStatus(function (err, result){
-        if (err || result.length == 0) {console.log(err);return res.render('error/500');}
+        if (err) {console.log(err);return res.render('error/500');}
 
         res.render('InternalSite/rent/rent_list', {
-            data: result,
+            data: result? result:[],
             isOrderAccessible: req.session.user.UserType == 0,
             isEstablishAccessible: true,
             isPropertyAccessible: true,
