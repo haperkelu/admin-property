@@ -11,7 +11,12 @@ router.get('/', function(req, res, next) {
     var PropertyService = require('../../../Biz-Service/PropertyService');
     PropertyService.getSalesDetail(propertyId, function (err, result){
         if (err) {console.log(err);return res.render('error/500');}
-        res.render('PublicSite/browse/salesdetail', {data: result[0]});
+        var paras = {data: result[0]};
+        if(req.session.user){
+            paras.Name = req.session.user.Name;
+            paras.Id = req.session.user.Id;
+        }
+        res.render('PublicSite/browse/salesdetail', paras);
     });
 
 });

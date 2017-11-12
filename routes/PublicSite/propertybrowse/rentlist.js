@@ -22,8 +22,7 @@ router.get('/', function(req, res, next) {
             paginationResult.push(filteredResult[i]);
         }
         var pageCount = filteredResult.length / pageSize;
-
-        res.render('PublicSite/browse/rentlist', {
+        var paras = {
             title: '租房',
             currentSuburb: suburbStr,
             currentType: type,
@@ -33,7 +32,12 @@ router.get('/', function(req, res, next) {
             currentPage:currentPage,
             pageCount: pageCount,
             currentURL: '/public/rent/list'
-        });
+        };
+        if(req.session.user){
+            paras.Name = req.session.user.Name;
+            paras.Id = req.session.user.Id;
+        }
+        res.render('PublicSite/browse/rentlist', paras);
     });
 
 });

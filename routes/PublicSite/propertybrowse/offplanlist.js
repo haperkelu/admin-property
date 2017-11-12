@@ -28,7 +28,8 @@ router.get('/', function(req, res, next) {
             paginationResult.push(filteredResult[i]);
         }
         var pageCount = filteredResult.length / pageSize;
-        res.render('PublicSite/browse/offplanlist', {
+
+        var paras = {
             title: '新房',
             currentCity: cityId,
             currentDistrict: district,
@@ -40,7 +41,12 @@ router.get('/', function(req, res, next) {
             pageCount: pageCount,
             currentURL: '/public/offplan/list',
             cityId: cityId
-        });
+        };
+        if(req.session.user){
+            paras.Name = req.session.user.Name;
+            paras.Id = req.session.user.Id;
+        }
+        res.render('PublicSite/browse/offplanlist', paras);
     });
 
 });
