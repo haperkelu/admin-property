@@ -176,7 +176,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <th> 项目佣金 </th>
                                                     <th> 详细信息 </th>
                                                     <th> 备注 </th>
-                                                    <th> 状态 </th>
                                                     <th>  </th>                                                
                                                 </tr>
                                             </thead>
@@ -193,7 +192,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <td> <%=data[i].CommissionRate%></td>
                                                 <td> <%=data[i].DetailLink%></td>
                                                 <td> <%=data[i].Memo%> </td>
-                                                <td> <%if(data[i].Status == 1) { %><span class="label label-sm label-default"> Approved </span><% } %><%if(data[i].Status == 0) { %>待审核<% } %></td>
                                                 <td>
                                                     <a href="/internal/offplanProperty/detail/<%=data[i].PropertyId%>" class="btn btn-outline btn-circle btn-sm purple" target="_blank">
                                                         <i class="fa fa-edit"></i> 详情 </a>

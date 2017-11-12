@@ -50,19 +50,36 @@ var filterResultByCondition = function (result, cityId, suburbCode, district, ty
 
     for(var i in result){
         var item = result[i];
-        //console.log(item.CityId == cityId && (!suburbCode || item.SuburbCode == suburbCode));
-        console.log(item.district);
-        console.log(district);
-        //console.log(!type || item.PropertyType == type);
         if(item.CityId == cityId && (!suburbCode || item.SuburbCode == suburbCode)) {
             if(!district || item.District == district) {
                 if(!type || item.PropertyType == type){
+                    console.log(item.PropertyId);
+                    console.log(item.DeveloperAuthBeginDate);
+                    console.log(convertStringToDate(item.DeveloperAuthBeginDate));
+                    console.log(item.DeveloperAuthEndDate);
+                    console.log(convertStringToDate(item.DeveloperAuthEndDate));
+                    if(item.DeveloperAuthBeginDate && convertStringToDate(item.DeveloperAuthBeginDate) > Date.now()){
+                        continue;
+                    }
+
+                    if(item.DeveloperAuthEndDate && convertStringToDate(item.DeveloperAuthEndDate) < Date.now()){
+                        continue;
+                    }
+
+                    if(!item.DeveloperAuthContractPath) continue;
                     filteredResult.push(item);
                 }
             }
         }
     }
     return filteredResult;
+}
+
+var convertStringToDate = function (dateStr) {
+    var parts = dateStr.split('/');
+    return new Date(dateStr);
+    //10/19/2017
+    //return new Date(parts[1], parts[0] - 1, parts[2]);
 }
 
 module.exports = router;
