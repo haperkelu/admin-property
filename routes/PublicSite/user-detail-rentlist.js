@@ -14,7 +14,8 @@ router.get('/', function(req, res, next) {
         console.log(result.length / pageSize);
         if (err) {console.log(err);return res.render('error/500');}
         return res.render('PublicSite/users/UserRentList',
-            {Id:req.session.user.Id, pageCount: result.length / pageSize, pageSize: pageSize, currentPage: currentPage,
+            {Id:req.session.user.Id, Name: req.session.user.Name,
+                pageCount: result.length / pageSize, pageSize: pageSize, currentPage: currentPage,
                 currentURL: '/user/' + req.session.user.Id + '/rentlist',
                 data:result});
     });

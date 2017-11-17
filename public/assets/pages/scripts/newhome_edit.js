@@ -65,6 +65,7 @@ var Profile = function() {
                 },
 
                 submitHandler: function(form) {
+                    nicEditors.findEditor('Description').saveContent();
                     form.submit(); // form validation success, call ajax form submit
                 }
             });

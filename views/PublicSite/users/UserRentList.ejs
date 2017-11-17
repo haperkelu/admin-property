@@ -80,38 +80,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <!-- BEGIN USER LOGIN DROPDOWN -->
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user">
-                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img alt="" class="img-circle" src="../../../public/assets/layouts/layout/img/avatar3_small.jpg">
-                            <span class="username username-hide-on-mobile"> Nick </span>
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-default">
-                            <li>
-                                <a href="/user/<%=Id%>">
-                                    <i class="icon-user"></i> 基本信息 </a>
-                            </li>
-                            <li>
-                                <a href="/user/<%=Id%>/coupon">
-                                    <i class="icon-envelope"></i> 我的卡券 </a>
-                            </li>
-                            <li>
-                                <a href="/user/<%=Id%>/userNewHomeList">
-                                    <i class="icon-home"></i> 我的新房 </a>
-                            </li>
-                            <li>
-                                <a href="/user/<%=Id%>/userEstablishedHomeList">
-                                    <i class="icon-home"></i> 我的二手房 </a>
-                            </li>
-                            <li>
-                                <a href="/user/<%=Id%>/rentlist">
-                                    <i class="icon-home"></i> 我的租房 </a>
-                            </li>
-                            <li>
-                                <a href="/logout">
-                                    <i class="icon-key"></i> 退出登录 </a>
-                            </li>
-                        </ul>
-
+                        <% include ../common/profile.ejs%>
                     </li>
                     <!-- END USER LOGIN DROPDOWN -->
                     <!-- BEGIN QUICK SIDEBAR TOGGLER -->

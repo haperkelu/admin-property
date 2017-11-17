@@ -7,7 +7,10 @@ router.get('/', function(req, res, next) {
     var UserService = require('../../Biz-Service/UserService');
     UserService.getCouponList(req.session.user.Id, function (err, result) {
         if (err) {console.log(err);return res.render('error/500');}
-        return res.render('PublicSite/users/user_groupon', {Id:req.session.user.Id, data:result});
+        return res.render('PublicSite/users/user_groupon', {
+            Id:req.session.user.Id,
+            Name: req.session.user.Name,
+            data:result});
     });
 
 });

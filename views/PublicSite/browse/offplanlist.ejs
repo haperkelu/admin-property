@@ -117,7 +117,9 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- BEGIN POPULAR NEWHOME -->
             <form method="get" action="/public/offplan/list" id="searchpanel">
             <div class="title-div" style="margin-left: 50px;">
-                悉尼新房
+                <%if(cityId == 1){%>悉尼新房<%}%>
+                <%if(cityId == 2){%>墨尔本新房<%}%>
+                <%if(cityId == 3){%>布里斯班新房<%}%>
             </div>
             <div class="carousel-wrapper">
                 <div class="owl-carousel owl-theme">

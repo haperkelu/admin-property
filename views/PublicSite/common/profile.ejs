@@ -1,11 +1,19 @@
 <%if(typeof Name == 'undefined'){%>
-<a href="/login" style="color: black">登陆</a>
+<a href="/login" style="color: white">登陆</a>
 <%}%>
 
 <%if(typeof Name != 'undefined'){%>
 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
     <img alt="" class="img-circle" src="../../../public/assets/layouts/layout/img/avatar3_small.jpg">
-    <span class="username username-hide-on-mobile"> <%=Name%> </span>
+    <span class="username username-hide-on-mobile">
+        <%if(Name){%>
+        <%=Name%>
+        <%}%>
+        <%if(!Name){%>
+        个人中心
+        <%}%>
+
+    </span>
     <i class="fa fa-angle-down"></i>
 </a>
 <ul class="dropdown-menu dropdown-menu-default">

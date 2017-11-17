@@ -20,7 +20,7 @@ router.post('/', function(req, res, next) {
     console.log(DeveloperAuthEndDate);
     var commissionRate = req.sanitize('CommissionRate').escape().trim();
     var memo = req.sanitize('Memo').escape().trim();
-    var Status = req.sanitize('Status').escape().trim();
+    //var Status = req.sanitize('Status').escape().trim();
     var DetailLink = req.sanitize('DetailLink').escape().trim();
 
     var S3 = require("../../utility/S3.js");
@@ -49,7 +49,6 @@ router.post('/', function(req, res, next) {
     var DB = require('../../utility/db.js');
     var post = {
         Name: name,
-        Status: parseInt(Status),
         Address: Address,
         District: District,
         PropertyType: propertyType,
