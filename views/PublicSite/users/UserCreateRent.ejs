@@ -217,9 +217,6 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                         <option value="Unit">Unit</option>
                                                                         <option value="Townhouse">Townhouse</option>
                                                                         <option value="Villa">Villa</option>
-                                                                        <option value="Land">Land</option>
-                                                                        <option value="Acreage">Acreage</option>
-                                                                        <option value="Rural">Rural</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
@@ -312,6 +309,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                            id="country" disabled="true"></input>
                                                                 </div>
                                                             </div>
+                                                            <!--
                                                             <div class="form-group">
                                                                 <label class="col-md-3 control-label">标题<span class="required" aria-required="true">*</span></label>
                                                                 <div class="col-md-9">
@@ -326,10 +324,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                            type="text" class="form-control" maxlength="50"></input>
                                                                 </div>
                                                             </div>
+                                                            -->
                                                             <div class="form-group">
                                                                 <label class="col-md-3 control-label">描述</label>
                                                                 <div class="col-md-9">
-                                                                    <textarea id="Description" name="Description" style="width:400px;height:300px"></textarea>
+                                                                    <textarea id="Description" name="Description"  class="form-control" rows="3"></textarea>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
@@ -339,7 +338,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label class="control-label col-md-3">电子邮箱</label>
+                                                                <label class="control-label col-md-3">电子邮箱<span class="required" aria-required="true">*</span></label>
                                                                 <div class="col-md-6">
                                                                     <input class="form-control" type="text" placeholder="电子邮箱" maxlength="50" name="Email"/>
                                                                 </div>
@@ -357,7 +356,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                             <span class="btn btn-outline btn-circle btn-sm purple  btn-file">
                                                                                 <span class="fileinput-new"> 选择文件 </span>
                                                                                 <span class="fileinput-exists"> 重新选择 </span>
-                                                                                <input type="file" name="img1">
+                                                                                <input type="file" name="MainPicPath">
                                                                             </span>
                                                                         <span class="fileinput-filename"> </span> &nbsp;
                                                                         <a href="javascript:;" class="close fileinput-exists" data-dismiss="fileinput"> </a>
@@ -372,7 +371,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                             <span class="btn btn-outline btn-circle btn-sm purple  btn-file">
                                                                                 <span class="fileinput-new"> 选择文件 </span>
                                                                                 <span class="fileinput-exists"> 重新选择 </span>
-                                                                                <input type="file" name="img2">
+                                                                                <input type="file" name="PicPath2">
                                                                             </span>
                                                                         <span class="fileinput-filename"> </span> &nbsp;
                                                                         <a href="javascript:;" class="close fileinput-exists" data-dismiss="fileinput"> </a>
@@ -386,7 +385,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                             <span class="btn btn-outline btn-circle btn-sm purple  btn-file">
                                                                                 <span class="fileinput-new"> 选择文件 </span>
                                                                                 <span class="fileinput-exists"> 重新选择 </span>
-                                                                                <input type="file" name="img3">
+                                                                                <input type="file" name="PicPath3">
                                                                             </span>
                                                                         <span class="fileinput-filename"> </span> &nbsp;
                                                                         <a href="javascript:;" class="close fileinput-exists" data-dismiss="fileinput"> </a>
@@ -400,7 +399,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                             <span class="btn btn-outline btn-circle btn-sm purple btn-file">
                                                                                 <span class="fileinput-new"> 选择文件 </span>
                                                                                 <span class="fileinput-exists"> 重新选择 </span>
-                                                                                <input type="file" name="img4">
+                                                                                <input type="file" name="PicPath4">
                                                                             </span>
                                                                         <span class="fileinput-filename"> </span> &nbsp;
                                                                         <a href="javascript:;" class="close fileinput-exists" data-dismiss="fileinput"> </a>
@@ -551,7 +550,7 @@ License: You must have a valid license purchased only from themeforest(the above
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8ndJ6gLThwNptg293aNENd9Gp9pqKvJs&libraries=places&callback=initAutocomplete"
         async defer></script>
-<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+<!-- <script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script> -->
 </body>
 
 </html>

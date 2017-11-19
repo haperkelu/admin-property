@@ -19,7 +19,8 @@ router.post('/', function(req, res, next) {
         if (err) {console.log(err);return res.render('error/500');}
         var usersSelected = JSON.parse(JSON.stringify(result));
         if(usersSelected.length != 1) return res.render('error/500');
-        if(usersSelected[0].Password != oldpassword) return res.redirect('/user/' + req.session.user.Id + '?msg=pwdwrong');
+        console.log(Encryption.encrypt(oldpassword));
+        if(usersSelected[0].Password != Encryption.encrypt(oldpassword)) return res.redirect('/user/' + req.session.user.Id + '?msg=pwdwrong');
         var userId = usersSelected[0].ID;
         var newPwdEncrypted = Encryption.encrypt(newpassword);
         DB.query('Update Sales.BasicUser SET ? where ID = ' + userId, {Password: newPwdEncrypted}, function (err, result) {

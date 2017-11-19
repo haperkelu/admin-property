@@ -112,25 +112,13 @@ exports.user_update_basic = function(req, res, next) {
     var firstName = req.sanitize('FirstName').escape().trim();
     var lastName = req.sanitize('LastName').escape().trim();
     var DOB = req.sanitize('DateOfBirth').escape().trim();
-    var gender = req.sanitize('Gender').escape().trim();
+    var gender = req.sanitize('Gender').escape()?req.sanitize('Gender').escape().trim():'';
     var nationality = req.sanitize('Nationality').escape().trim();
     var identityStatus = req.sanitize('IdentityStatus').escape().trim();
     var phone = req.sanitize('Phone').escape().trim();
     var address = req.sanitize('Address').escape().trim();
     var DB = require('../../utility/db.js');
-    /**
-    var post = [
-        firstName,
-        lastName,
-        DOB,
-        gender,
-        email,
-        phone,
-        nationality,
-        address,
-        identityStatus,
-        Id
-    ]; **/
+
     var post = {
         Firstname: firstName,
         Lastname: lastName,
@@ -178,10 +166,10 @@ exports.user_detail_establishhome_submit = function(req, res, next) {
     var PurchaseType = req.sanitize('PurchaseType').escape().trim();
     var Source = req.sanitize('Source').escape().trim();
     var Address = req.sanitize('Address').escape().trim();
-    var Title = req.sanitize('Title').escape().trim();
+    //var Title = req.sanitize('Title').escape().trim();
 
-    var Subtitle = req.sanitize('Subtitle')? req.sanitize('Subtitle').escape().trim():'';
-    var Description = req.sanitize('Description')? req.sanitize('Subtitle').escape().trim():'';
+    //var Subtitle = req.sanitize('Subtitle')? req.sanitize('Subtitle').escape().trim():'';
+    var Description = req.sanitize('Description')? req.sanitize('Description').escape().trim():'';
     var Email = req.sanitize('Email').escape().trim();
     var Phone = req.sanitize('Phone').escape().trim();
     var OtherContact = req.sanitize('OtherContact').escape().trim();
@@ -241,8 +229,8 @@ exports.user_detail_establishhome_submit = function(req, res, next) {
                 PicPath2: PicPath2,
                 PicPath3: PicPath3,
                 PicPath4:PicPath4,
-                Title: Title,
-                Subtitle: Subtitle,
+                //Title: Title,
+                //Subtitle: Subtitle,
                 Description: Description,
                 Email: Email,
                 Phone: Phone,
@@ -288,16 +276,14 @@ exports.user_detail_rent_submit = function(req, res, next) {
 
     var Source = req.sanitize('Source').escape().trim();
     var Address = req.sanitize('Address').escape().trim();
-    var Title = req.sanitize('Title').escape().trim();
-    var SubTitle = req.sanitize('SubTitle')? req.sanitize('SubTitle').escape().trim():'';
+    //var Title = req.sanitize('Title').escape().trim();
+    //var SubTitle = req.sanitize('SubTitle')? req.sanitize('SubTitle').escape().trim():'';
 
     var Description = req.sanitize('Description')? req.sanitize('Description').escape().trim():'';
     var Email = req.sanitize('Email').escape().trim();
     var Phone = req.sanitize('Phone').escape().trim();
     var OtherContact = req.sanitize('OtherContact').escape().trim();
-    console.log(Description);
-    console.log(Email);
-    console.log(Phone);
+
     var DB = require('../../utility/db.js');
     var post = {
         Name: 'Customer upload rent property',
@@ -328,8 +314,8 @@ exports.user_detail_rent_submit = function(req, res, next) {
                 PicPath2: imagePath.PicPath2,
                 PicPath3: imagePath.PicPath3,
                 PicPath4: imagePath.PicPath4,
-                Title: Title,
-                SubTitle: SubTitle,
+                //Title: Title,
+                //SubTitle: SubTitle,
                 Description: Description,
                 Email: Email,
                 Phone: Phone,
@@ -376,10 +362,10 @@ var saveAllImages = function (req) {
         for(var key in req.files) {
             var keyName = new Date().getTime() + '_' + key;
             PicPath = '/' + bucketName + '/' + keyName;
-            if(key == 'img1') MainPicPath = PicPath;
-            if(key == 'img2') PicPath2 = PicPath;
-            if(key == 'img3') PicPath3 = PicPath;
-            if(key == 'img4') PicPath4 = PicPath;
+            if(key == 'MainPicPath') MainPicPath = PicPath;
+            if(key == 'PicPath2') PicPath2 = PicPath;
+            if(key == 'PicPath3') PicPath3 = PicPath;
+            if(key == 'PicPath4') PicPath4 = PicPath;
             var params = {Bucket: bucketName, Key: keyName, Body:req.files[key].data, ACL:'public-read'};
             S3.putObject(params, function(err, data) {
                 if (err)

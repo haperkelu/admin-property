@@ -23,34 +23,38 @@ var Profile = function() {
                         required: true
                     },
                     NumOfRoom: {
-                        required: true
+                        required: true,
+                        range: [1, 10]
                     },
                     NumOfBath: {
-                        required: true
+                        required: true,
+                        range: [0, 10]
                     },
                     NumOfPark: {
+                        required: true,
+                        range: [0, 10]
+                    },
+                    PurchaseType: {
                         required: true
                     },
-                    saletype: {
+                    Source: {
                         required: true
                     },
-                    sourcetype: {
-                        required: true
-                    },
-                    address: {
+                    Address: {
                         required: true
                     },
                     title: {
                         required: true
                     },
-                    phone: {
+                    Phone: {
                         required: true,
                         phone: true
                     },
-                    email: {
+                    Email: {
+                        required: true,
                         email: true
                     },
-                    img1: {
+                    MainPicPath: {
                         required: true
                     }
 
@@ -99,7 +103,7 @@ var Profile = function() {
     }
 
     var handleSummernote = function () {
-        $('#summernote_1').summernote({height: 300});
+        //$('#summernote_1').summernote({height: 300});
         //API:
         //var sHTML = $('#summernote_1').code(); // get code
         //$('#summernote_1').destroy(); // destroy
