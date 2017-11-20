@@ -1,0 +1,33 @@
+<ul class="nav navbar-nav">
+    <!-- DOC: Remove data-hover="megamenu-dropdown" and data-close-others="true" attributes below to disable the horizontal opening on mouse hover -->
+    <li class="classic-menu-dropdown" aria-haspopup="true" <%if(typeof isPropertyAccessible == 'undefined' || isPropertyAccessible != true) { %>style="display: none" <% } %>>
+        <a href="/internal/offplanProperty/list"> 楼盘管理
+            <span class="selected"> </span>
+        </a>
+    </li>
+    <li class="classic-menu-dropdown" aria-haspopup="true" <%if(typeof isOrderAccessible == 'undefined' || isOrderAccessible != true) { %>style="display: none" <% } %>>
+        <a href="/internal/ordder/list"> 订单管理
+            <span class="selected"> </span>
+        </a>
+    </li>
+    <li class="classic-menu-dropdown" aria-haspopup="true" <%if(typeof isEstablishAccessible == 'undefined' || isEstablishAccessible != true) { %>style="display: none" <% } %>>
+        <a href="/internal/established/list"> 二手房管理
+            <span class="selected"> </span>
+        </a>
+    </li>
+    <li class="classic-menu-dropdown" aria-haspopup="true" <%if(typeof isRentAccessible == 'undefined' || isRentAccessible != true) { %>style="display: none" <% } %>>
+        <a href="/internal/rent/list"> 租房管理
+            <span class="selected"> </span>
+        </a>
+    </li>
+    <li class="classic-menu-dropdown" aria-haspopup="true" <%if(typeof isSystemAdmin == 'undefined' || isSystemAdmin != true) { %>style="display: none" <% } %> >
+        <a href="/internal/user/list"> 用户管理
+            <span class="selected"> </span>
+        </a>
+    </li>
+    <li class="classic-menu-dropdown" aria-haspopup="true" <%if(typeof isQueryAccessible == 'undefined' || isQueryAccessible != true) { %>style="display: none" <% } %> >
+        <a href="/internal/query/list"> 用户咨询
+            <span class="selected"> </span>
+        </a>
+    </li>
+</ul>

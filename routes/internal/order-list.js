@@ -23,7 +23,9 @@ router.get('/', function(req, res, next) {
               isEstablishAccessible: req.session.user.UserType == 0,
               isPropertyAccessible: req.session.user.UserType == 0,
               isRentAccessible: req.session.user.UserType == 0,
-              isSystemAdmin:req.session.user.UserType == 0});
+              isSystemAdmin:req.session.user.UserType == 0,
+              isQueryAccessible: req.session.user.UserType == 0
+          });
       });
 
 });

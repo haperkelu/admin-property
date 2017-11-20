@@ -110,6 +110,9 @@ app.use('/internal/rent/list',require('./routes/internal/rentlist'));
 app.use('/internal/rent/detail/:propertyId',require('./routes/internal/rent-detail'));
 app.use('/internal/rent/approve/:propertyId',require('./routes/internal/rent-approve'));
 
+app.use('/internal/query/list',require('./routes/internal/inquery-list'));
+
+
 app.get('/logout', function (req, res){
     req.session = null;
     res.redirect('/login');
