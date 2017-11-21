@@ -18,6 +18,7 @@ router.post('/', function(req, res, next){
     var CertificateStatus = req.sanitize('CertificateStatus').escape().trim();
 
     var DB = require('../../utility/db.js');
+    var shortid = require('shortid');
     var Encryption = require('../../utility/Encryption');
     var post = {
         Type: parseInt(Type),
@@ -25,6 +26,7 @@ router.post('/', function(req, res, next){
         FirstName: FirstName,
         LastName: LastName,
         Password: Encryption.encrypt(UserPassword),
+        SelfReferenceCode: shortid.generate(),
         DateOfBirth: DateOfBirth,
         Gender: Gender,
         Nationality: Nationality,
@@ -81,7 +83,7 @@ router.post('/', function(req, res, next){
                 if(Level == SalesLevelArr.data[1].Level) SalesCommissionRate = SalesLevelArr.data[1].Value;
                 if(Level == SalesLevelArr.data[2].Level) SalesCommissionRate = SalesLevelArr.data[2].Value;
             }
-            var shortid = require('shortid');
+
             var post = {
                 BasicUserId: userId,
                 Level: Level,

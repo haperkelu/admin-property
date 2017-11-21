@@ -47,66 +47,34 @@ exports.user_create_submit = function(req, res, next) {
     var post = {
         type: 1,
         status:0,
-        //firstname: firstName,
-        //lastname: lastName,
-        //DateOfBirth: DOB,
-        //gender: gender,
         email: email,
-        //phone: phone,
         password: Encryption.encrypt(password),
         SelfReferenceCode: shortid.generate(),
-        //nationality: nationality,
-        //address: address,
-        //identityStatus: identityStatus,
+        ReferralCode: referralCode? referralCode: '',
         createdBy: -1
     };
     var query = DB.query('INSERT INTO Sales.BasicUser SET ?', post, function (err, result) {
         if (err) {console.log(err);return res.send('Server Error');}
         var id = result.insertId;
+        var fs = require('fs');
+        var defaultCouponCfg = JSON.parse(fs.readFileSync('./config/default_coupon.json', 'utf8'));
 
-        DB.query('INSERT INTO Sales.Customer SET ?', {BasicUserId:id, ReferralCode: referralCode}, function (err, result){
-            if (err) {console.log(err);return res.send('Server Error');}
-            var customerId = result.insertId;
-            var fs = require('fs');
-            var defaultCouponCfg = JSON.parse(fs.readFileSync('./config/default_coupon.json', 'utf8'));
-            req.session.user = {Id: id, Email: email,
-                Name: '',
-                Phone: '',
-                UserType: 1};
+        var EmailUtil = require('../../utility/mail');
+        var Encryption = require('../../utility/Encryption');
 
-            var EmailUtil = require('../../utility/mail');
-            var Encryption = require('../../utility/Encryption');
-
-            var content = '请确认您的邮箱: ' + 'http://' + req.get('host') + '/verify?email=' + email + '&code=' + Encryption.encrypt(email);
-            EmailUtil.sendEmail('admin@Ausun.com.au', email, '邮箱验证',content, content);
-
-            if(referralCode) {
-                DB.query('Select * from Sales.BasicUser where ?', {SelfReferenceCode: referralCode}, function (err, result){
-                    if (err) {console.log(err);return res.send('Server Error');}
-                    console.log(result);
-                    if(result && result.length > 0){
-
-                        DB.query('INSERT INTO Sales.CustomerRedemptionCode SET ?',
-                            {Name:defaultCouponCfg.data.Name,  DateOfAcquisition: new Date(),
-                                DateOfExpiration: new Date(defaultCouponCfg.data.DateOfExpiration),
-                                CustomerId: customerId,
-                                Status: 1
-                            },
-                            function (err, result){
-                                if (err) {console.log(err);return res.send('Server Error');}
-                                req.session.user = {Id: id, Email: email, UserType: 1};
-                                return res.redirect('/login');
-                            });
-                    } else {
-                        return res.redirect('/login');
-                    }
-
-                });
-            }else {
+        var content = '请确认您的邮箱: ' + 'http://' + req.get('host') + '/verify?email=' + email + '&code=' + Encryption.encrypt(email);
+        EmailUtil.sendEmail('admin@Ausun.com.au', email, '邮箱验证',content, content);
+        DB.query('INSERT INTO Sales.CustomerRedemptionCode SET ?',
+            {Name:defaultCouponCfg.data.Name,  DateOfAcquisition: new Date(),
+                DateOfExpiration: new Date(defaultCouponCfg.data.DateOfExpiration),
+                CustomerId: id,
+                Status: 1
+            },
+            function (err, result){
+                if (err) {console.log(err);return res.send('Server Error');}
+                req.session.user = {Id: id, Email: email, UserType: 1};
                 return res.redirect('/login');
-            }
-
-        });
+            });
     });
     //console.log(query.sql);
 

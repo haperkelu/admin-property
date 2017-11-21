@@ -167,28 +167,32 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <th> 邮箱 </th>
                                                     <th> 角色 </th>
                                                     <th> 姓名 </th>
-                                                    <th> 性别 </th>
+                                                    <!--<th> 性别 </th> -->
                                                     <th> 电话 </th>
-                                                    <th>生日</th>
-                                                    <th> 状态 </th>
-                                                    <th>  </th>                                                
+                                                    <!--<th>生日</th>-->
+                                                    <th>状态</th>
+                                                    <th>标识码</th>
+                                                    <th>推荐码</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             <% for(var i=0; i < data.length; i++) { %>
                                             <tr class="odd gradeX">
-                                                <td> <%=data[i].Email%></td>
+                                                <td style="max-width: 120px"> <%=data[i].Email%></td>
                                                 <td><%if(data[i].Type == 0) { %>管理员<% } %>
                                                     <%if(data[i].Type == 1) { %>客户<% } %>
                                                     <%if(data[i].Type == 2) { %>销售<% } %>
                                                     <%if(data[i].Type == 3) { %>市场<% } %>
                                                     <%if(data[i].Type == 4) { %>合同<% } %>
                                                 </td>
-                                                <td> <%=data[i].FirstName%> <%=data[i].LastName%> </td>
-                                                <td><%=data[i].Gender%></td>
+                                                <td style="max-width: 50px"> <%=data[i].FirstName%> <%=data[i].LastName%> </td>
+                                                <!-- <td style="max-width: 10px"><%=data[i].Gender%></td> -->
                                                 <td> <%=data[i].Phone%> </td>
-                                                <td> <%=data[i].DateOfBirth%></td>
-                                                <td><%if(data[i].Status == 1) { %>可用<% } %><%if(data[i].Status == 0) { %>停用<% } %></td>
+                                                <!-- <td style="max-width: 50px"> <%=data[i].DateOfBirth%></td> -->
+                                                <td style="max-width: 15px"><%if(data[i].Status == 1) { %>可用<% } %><%if(data[i].Status == 0) { %>停用<% } %></td>
+                                                <td><%=data[i].SelfReferenceCode%></td>
+                                                <td><%=data[i].ReferralCode%></td>
                                                 <td>
                                                     <a href="/internal/user/detail/<%=data[i].ID%>" class="btn btn-outline btn-circle btn-sm purple" target="_blank">
                                                         <i class="fa fa-edit"></i> 详情 </a>
