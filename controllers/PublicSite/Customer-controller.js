@@ -7,7 +7,7 @@ exports.user_login_submit = function(req, res, next) {
 
     var Encryption = require('../../utility/Encryption');
     var DB = require('../../utility/db.js');
-    DB.query('Select ID, Email,Password,Type,LastName,FirstName,Phone from Sales.BasicUser where status = 1 and ?', {Email: username}, function (err, result) {
+    DB.query('Select ID, Email,Password,Type,LastName,FirstName,Phone,Status from Sales.BasicUser where ?', {Email: username}, function (err, result) {
 
         if (err) {console.log(err);return res.render('error/500');}
         //console.log(Encryption.encrypt('5555'));
@@ -16,11 +16,14 @@ exports.user_login_submit = function(req, res, next) {
         console.log(Encryption.encrypt(password));
         console.log(usersSelected[0]);
         if(!(Encryption.encrypt(password) === usersSelected[0].Password)) return res.redirect(req.get('referer') + '?msg=userNotFound');
+        if(usersSelected[0].Status == 0) return res.redirect(req.get('referer') + '?msg=notverified');
+
         req.session.user = {Id: usersSelected[0].ID, Email: usersSelected[0].Email,
             Name: usersSelected[0].LastName + usersSelected[0].FirstName,
             Phone: usersSelected[0].Phone,
             UserType: usersSelected[0].Type};
-        console.log(req.session.user);
+        //console.log(req.session.user);
+
         if(usersSelected[0].Type == 2 || usersSelected[0].Type == 4) return res.redirect('/internal/ordder/list');
         if(usersSelected[0].Type == 0) return res.redirect('/internal/user/list');
         if(usersSelected[0].Type == 3) return res.redirect('/internal/offplanProperty/list');
@@ -43,7 +46,7 @@ exports.user_create_submit = function(req, res, next) {
     var Encryption = require('../../utility/Encryption');
     var post = {
         type: 1,
-        status:1,
+        status:0,
         //firstname: firstName,
         //lastname: lastName,
         //DateOfBirth: DOB,
@@ -66,11 +69,16 @@ exports.user_create_submit = function(req, res, next) {
             var customerId = result.insertId;
             var fs = require('fs');
             var defaultCouponCfg = JSON.parse(fs.readFileSync('./config/default_coupon.json', 'utf8'));
-            //console.log(customerId);
             req.session.user = {Id: id, Email: email,
                 Name: '',
                 Phone: '',
                 UserType: 1};
+
+            var EmailUtil = require('../../utility/mail');
+            var Encryption = require('../../utility/Encryption');
+
+            var content = '请确认您的邮箱: ' + 'http://' + req.get('host') + '/verify?email=' + email + '&code=' + Encryption.encrypt(email);
+            EmailUtil.sendEmail('admin@Ausun.com.au', email, '邮箱验证',content, content);
 
             if(referralCode) {
                 DB.query('Select * from Sales.BasicUser where ?', {SelfReferenceCode: referralCode}, function (err, result){
@@ -87,15 +95,15 @@ exports.user_create_submit = function(req, res, next) {
                             function (err, result){
                                 if (err) {console.log(err);return res.send('Server Error');}
                                 req.session.user = {Id: id, Email: email, UserType: 1};
-                                return res.redirect('/user/' + id);
+                                return res.redirect('/login');
                             });
                     } else {
-                        return res.redirect('/user/' + id);
+                        return res.redirect('/login');
                     }
 
                 });
             }else {
-                return res.redirect('/user/' + id);
+                return res.redirect('/login');
             }
 
         });

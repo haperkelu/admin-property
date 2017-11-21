@@ -188,7 +188,13 @@ License: You must have a valid license purchased only from themeforest(the above
     var msg  = GetURLParameter('msg');
     //console.log(msg !== undefined);
     if(msg !== undefined) {
-        $('#message').html('无法找到匹配的用户名密码');
+        if(msg == 'userNotFound'){
+            $('#message').html('无法找到匹配的用户名密码');
+        }
+        if(msg == 'notverified') {
+            $('#message').html('请验证邮箱');
+        }
+
     }
 
 </script>

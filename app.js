@@ -51,6 +51,7 @@ app.use('/', index);
 app.use('/login', userLogin);
 app.use('/forgetpassword', require('./routes/PublicSite/forgetpassword'));
 app.use('/changepwd', require('./routes/PublicSite/changepassword'));
+app.use('/verify', require('./routes/PublicSite/verifyemail'));
 app.use('/loginSubmit', userLoginSubmit);
 app.use('/user/:id', userDetail);
 app.use('/user/:id/coupon', userDetailCoupon);
