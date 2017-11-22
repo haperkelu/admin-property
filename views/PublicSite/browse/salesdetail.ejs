@@ -143,8 +143,11 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="contact-div">
                     <label class="caption-subject bold control-label" style="float:left; font-size:14px!important; color: gray; width: 100%">来源：<%if(data.Source == 'agency'){%>中介<%}%><%if(data.Source == 'individual'){%>个人<%}%></label>
                     <button class="btn green" style="padding-left: 20px; padding-right: 20px; margin-top: 5px; ">联系方式</button>
-                    <label class="caption-subject bold control-label" style="float:left; font-size:14px!important; color: gray; width: 100%;display: none;">电话：<%=data.Phone%></label>
-                    <label class="caption-subject bold control-label" style="float:left; font-size:14px!important; color: gray; width: 100%;display: none;">邮箱：<%=data.Email%></label>
+                    <%if(typeof Id != 'undefined') {%>
+                        <label class="caption-subject bold control-label" style="float:left; font-size:14px!important; color: gray; width: 100%;">电话：<%=data.Phone%></label>
+                        <label class="caption-subject bold control-label" style="float:left; font-size:14px!important; color: gray; width: 100%;">邮箱：<%=data.Email%></label>
+                    <%}%>
+
                 </div>
                 <div class="form-group col-md-12" style="display: block;">
                     <label class="caption-subject control-label" style="float:left; font-size:14px!important; color: gray"><%=data.Address%></label>
