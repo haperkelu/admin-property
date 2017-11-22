@@ -123,7 +123,14 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="owl-carousel owl-theme">
                     <div class="carousel-img-div" style="background-image: url(<%='https://s3-ap-southeast-2.amazonaws.com' + data.MainPicPath%>);">
                     </div>
-                    </div>
+                    <%if(data.PicPath2){%><div class="carousel-img-div" style="background-image: url(<%='https://s3-ap-southeast-2.amazonaws.com' + data.PicPath2%>);">
+                    </div><%}%>
+                    <%if(data.PicPath3){%><div class="carousel-img-div" style="background-image: url(<%='https://s3-ap-southeast-2.amazonaws.com' + data.PicPath3%>);">
+                    </div><%}%>
+                    <%if(data.PicPath4){%><div class="carousel-img-div" style="background-image: url(<%='https://s3-ap-southeast-2.amazonaws.com' + data.PicPath4%>);">
+                    </div><%}%>
+                    <%if(data.PicPath5){%><div class="carousel-img-div" style="background-image: url(<%='https://s3-ap-southeast-2.amazonaws.com' + data.PicPath5%>);">
+                    </div><%}%>
                 </div>
             </div>
             <div name="detail" class="detail-div" style="height: auto; position: relative;overflow: auto">

@@ -179,6 +179,7 @@ exports.user_detail_establishhome_submit = function(req, res, next) {
             var PicPath2 = '';
             var PicPath3 = '';
             var PicPath4 = '';
+            var PicPath5 = '';
             if(req.files) {
                 for(var key in req.files) {
                     var keyName = new Date().getTime() + '_' + key;
@@ -187,6 +188,8 @@ exports.user_detail_establishhome_submit = function(req, res, next) {
                     if(count++ == 2) PicPath2 = PicPath;
                     if(count++ == 3) PicPath3 = PicPath;
                     if(count++ == 4) PicPath4 = PicPath;
+                    if(count++ == 5) PicPath4 = PicPath;
+
                     var params = {Bucket: bucketName, Key: keyName, Body:req.files[key].data, ACL:'public-read'};
                     S3.putObject(params, function(err, data) {
                         if (err)
@@ -205,6 +208,7 @@ exports.user_detail_establishhome_submit = function(req, res, next) {
                 PicPath2: PicPath2,
                 PicPath3: PicPath3,
                 PicPath4:PicPath4,
+                PicPath5:PicPath5,
                 //Title: Title,
                 //Subtitle: Subtitle,
                 Description: Description,
@@ -290,6 +294,7 @@ exports.user_detail_rent_submit = function(req, res, next) {
                 PicPath2: imagePath.PicPath2,
                 PicPath3: imagePath.PicPath3,
                 PicPath4: imagePath.PicPath4,
+                PicPath5: imagePath.PicPath5,
                 //Title: Title,
                 //SubTitle: SubTitle,
                 Description: Description,
@@ -334,6 +339,7 @@ var saveAllImages = function (req) {
     var PicPath2 = '';
     var PicPath3 = '';
     var PicPath4 = '';
+    var PicPath5 = '';
     if(req.files) {
         for(var key in req.files) {
             var keyName = new Date().getTime() + '_' + key;
@@ -342,6 +348,7 @@ var saveAllImages = function (req) {
             if(key == 'PicPath2') PicPath2 = PicPath;
             if(key == 'PicPath3') PicPath3 = PicPath;
             if(key == 'PicPath4') PicPath4 = PicPath;
+            if(key == 'PicPath5') PicPath5 = PicPath;
             var params = {Bucket: bucketName, Key: keyName, Body:req.files[key].data, ACL:'public-read'};
             S3.putObject(params, function(err, data) {
                 if (err)
@@ -355,6 +362,7 @@ var saveAllImages = function (req) {
         MainPicPath:MainPicPath,
         PicPath2: PicPath2,
         PicPath3: PicPath3,
-        PicPath4:PicPath4
+        PicPath4:PicPath4,
+        PicPath5: PicPath5
     }
 }
