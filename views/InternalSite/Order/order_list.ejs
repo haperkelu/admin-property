@@ -177,7 +177,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <th> 销售姓名 </th>
                                                     <th> 项目佣金% </th>
                                                     <th> 个人佣金% </th>
-                                                    <th> 佣金结算$ </th> 
+                                                    <th> 佣金结算$ </th>
+                                                    <th> 卡券使用 </th>
                                                     <th></th>
                                                     <th></th>
                                                 </tr>
@@ -188,7 +189,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                 <tr class="odd gradeX">
                                                     <td><%=data[i].OrderId%></td>
                                                     <td><%=data[i].OrderDate%></td>
-                                                    <td><%=data[i].Name%></td>
+                                                    <td><%=data[i].PropertyName%></td>
                                                     <td><%=data[i].PropertyCode%></td>
                                                     <td><%=data[i].BuildingPrice%></td>
                                                     <td><%=data[i].CustomerName%></td>
@@ -209,7 +210,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <br/>
                                                         Settle:
                                                         <%=parseFloat(data[i].BuildingPrice) * parseFloat(data[i].CommissionRate) * parseFloat(data[i].SalesCommissionRate) /20000%>
-                                                        </td>
+                                                    </td>
+                                                    <td>
+                                                        <%if(data[i].CouponId) { %> 已经使用(<%=data[i].CouponName%>)<% } %>
+                                                    </td>
                                                     <td>
                                                         <a href="/internal/ordder/edit/<%=data[i].OrderId%>" class="btn btn-outline btn-circle btn-sm purple" target="_blank">
                                                                 <i class="fa fa-edit"></i> 详情 </a>

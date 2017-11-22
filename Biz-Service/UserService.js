@@ -5,7 +5,7 @@ var UserService = {
 
     getBasicInfo: function (userId, callback) {
         var DB = require('../utility/db.js');
-        var sql = 'SELECT b.Id,Email,FirstName, LastName,DateOfBirth,Gender,Phone,Nationality,Address,IdentityStatus,ReferralCode,SelfReferenceCode FROM Sales.BasicUser b left join Sales.Customer c on b.ID = c.BasicUserId where b.id = ' + userId;
+        var sql = 'SELECT ID, Email,FirstName, LastName,DateOfBirth,Gender,Phone,Nationality,Address,IdentityStatus,ReferralCode,SelfReferenceCode FROM Sales.BasicUser where Id = ' + userId;
         DB.query(sql,null, function (err, result) {
             if (err) {console.log(err); callback(err, result); return;}
             if(!result) {
@@ -19,8 +19,7 @@ var UserService = {
         var DB = require('../utility/db.js');
         var sql = 'SELECT co.ID, co.CustomerId, co.DateOfAcquisition, co.DateOfExpiration, co.Name, co.`Status`, co.Description\n' +
             'FROM Sales.BasicUser b \n' +
-            'join Sales.Customer c on b.ID = c.BasicUserId\n' +
-            'join Sales.CustomerRedemptionCode co on c.ID = co.CustomerId\n' +
+            'join Sales.CustomerRedemptionCode co on b.ID = co.CustomerId\n' +
             'where b.id = ' + userId;
         DB.query(sql,null, function (err, result) {
             if (err) {console.log(err); callback(err, result); return;}
