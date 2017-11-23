@@ -140,13 +140,14 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label bold" style="font-size: 15px; color: #578ebe">销售信息</label>
                                                                 </div>
+                                                                <!--
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">日期<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-4">
                                                                         <input class="form-control form-control-inline input-medium date-picker placeholder-no-fix" size="16" type="text" value="" name="OrderDate" id="OrderDate"/>
                                                                     </div>
                                                                 </div>
-                                                                <!--
+
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">房屋类型<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-4">
@@ -222,7 +223,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                     <label class="col-md-3 control-label">客户邮箱<span class="required" aria-required="true">*</span></label>
                                                                     <div class="col-md-9">
                                                                         <input name="CustomerEmail" placeholder=""
-                                                                               type="text" class="form-control" minlength="2" maxlength="20" value="<%=data.CustomerEmail%>"></input>
+                                                                               type="text" class="form-control" minlength="2" maxlength="30" value="<%=data.CustomerEmail%>"></input>
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">
@@ -350,6 +351,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <div class="form-group">
                                                                     <label class="control-label col-md-3">定金截图</label>
                                                                     <div class="col-md-9">
+                                                                        <%if(data.DepositPath) { %> <a href="https://s3-ap-southeast-2.amazonaws.com<%=data.DepositPath%>">已保存截图</a><% } %>
                                                                         <div class="fileinput fileinput-new" data-provides="fileinput" style="float: left">
                                                                             <span class="btn btn-outline btn-circle btn-sm purple  btn-file">
                                                                                 <span class="fileinput-new"> 选择文件 </span>
@@ -365,6 +367,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <div class="form-group">
                                                                     <label class="control-label col-md-3">客户ID</label>
                                                                     <div class="col-md-9">
+                                                                        <%if(data.CustomerIDPath) { %> <a href="https://s3-ap-southeast-2.amazonaws.com<%=data.CustomerIDPath%>">已保存ID</a><% } %>
                                                                         <div class="fileinput fileinput-new" data-provides="fileinput" style="float: left">
                                                                             <span class="btn btn-outline btn-circle btn-sm purple  btn-file">
                                                                                 <span class="fileinput-new"> 选择文件 </span>
@@ -499,7 +502,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <script src="../../../public/assets/global/scripts/app.min.js" type="text/javascript"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-         <script src="../../../public/assets/pages/scripts/order_add.js" type="text/javascript"></script>           <script src="../../../public/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.js" type="text/javascript"></script>        <!-- END PAGE LEVEL SCRIPTS -->
+         <script src="../../../public/assets/pages/scripts/order_edit.js" type="text/javascript"></script>           <script src="../../../public/assets/global/plugins/bootstrap-touchspin/bootstrap.touchspin.min.js" type="text/javascript"></script>        <!-- END PAGE LEVEL SCRIPTS -->
         
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <script src="../../../public/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript"></script>

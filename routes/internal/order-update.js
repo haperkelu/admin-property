@@ -70,7 +70,6 @@ router.post('/', function(req, res, next){
             CustomerPhone: CustomerPhone,
             CustomerEmail: CustomerEmail,
             CustomerAddress: CustomerAddress,
-            CustomerIDPath: CustomerIDPath,
             InvestmentOption: req.sanitize('InvestmentOption').escape().trim(),
             ClientSituation: req.sanitize('ClientSituation').escape().trim()
         };
