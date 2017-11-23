@@ -322,7 +322,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">描述</label>
                                                                     <div class="col-md-9">
-                                                                        <textarea name="Description" placeholder="请输入描述信息"
+                                                                        <textarea id="Description" name="Description" placeholder="请输入描述信息"
                                                                                type="text" class="form-control" rows="3"></textarea>
                                                                     </div>
                                                                 </div>
@@ -487,6 +487,8 @@ License: You must have a valid license purchased only from themeforest(the above
 
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
         <script src="../../../public/assets/layouts/layout/scripts/layout.min.js" type="text/javascript"></script>
+        <script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+
         <!-- END THEME LAYOUT SCRIPTS -->
         <script>
             // This example displays an address form, using the autocomplete feature
@@ -558,6 +560,15 @@ License: You must have a valid license purchased only from themeforest(the above
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8ndJ6gLThwNptg293aNENd9Gp9pqKvJs&libraries=places&callback=initAutocomplete"
         async defer></script>
+
+        <script type="text/javascript">
+            bkLib.onDomLoaded(function() {
+                nicEditors.editors.push(
+                    new nicEditor().panelInstance(
+                        document.getElementById('Description')
+                    )
+                );
+            });</script>
 
     </body>
 

@@ -157,7 +157,8 @@ exports.user_detail_establishhome_submit = function(req, res, next) {
         PropertyType: PropertyType,
         Address: Address,
         IsEstablished: 1,
-        Source: Source
+        Source: Source,
+        Description: Description
     };
     DB.query('INSERT INTO Sales.Property SET ?', post, function (err, result) {
         if (err) {console.log(err);return res.send('Server Error');}
@@ -174,7 +175,6 @@ exports.user_detail_establishhome_submit = function(req, res, next) {
             var S3 = require("../../utility/S3.js");
             var bucketName = 'propertypicsstore';
             var PicPath = '';
-            var count = 1;
             var MainPicPath = '';
             var PicPath2 = '';
             var PicPath3 = '';
@@ -182,13 +182,14 @@ exports.user_detail_establishhome_submit = function(req, res, next) {
             var PicPath5 = '';
             if(req.files) {
                 for(var key in req.files) {
+                    console.log('pic added:' + key);
                     var keyName = new Date().getTime() + '_' + key;
                     PicPath = '/' + bucketName + '/' + keyName;
-                    if(count++ == 1) MainPicPath = PicPath;
-                    if(count++ == 2) PicPath2 = PicPath;
-                    if(count++ == 3) PicPath3 = PicPath;
-                    if(count++ == 4) PicPath4 = PicPath;
-                    if(count++ == 5) PicPath4 = PicPath;
+                    if(key == 'MainPicPath') MainPicPath = PicPath;
+                    if(key == 'PicPath2') PicPath2 = PicPath;
+                    if(key == 'PicPath3') PicPath3 = PicPath;
+                    if(key == 'PicPath4') PicPath4 = PicPath;
+                    if(key == 'PicPath5') PicPath4 = PicPath;
 
                     var params = {Bucket: bucketName, Key: keyName, Body:req.files[key].data, ACL:'public-read'};
                     S3.putObject(params, function(err, data) {
@@ -211,7 +212,7 @@ exports.user_detail_establishhome_submit = function(req, res, next) {
                 PicPath5:PicPath5,
                 //Title: Title,
                 //Subtitle: Subtitle,
-                Description: Description,
+                //Description: Description,
                 Email: Email,
                 Phone: Phone,
                 OtherContact: OtherContact,
@@ -271,7 +272,8 @@ exports.user_detail_rent_submit = function(req, res, next) {
         PropertyType: PropertyType,
         Address: Address,
         IsEstablished: 1,
-        Source: Source
+        Source: Source,
+        Description: Description
     };
     DB.query('INSERT INTO Sales.Property SET ?', post, function (err, result) {
         if (err) {console.log(err);return res.send('Server Error');}
@@ -297,7 +299,7 @@ exports.user_detail_rent_submit = function(req, res, next) {
                 PicPath5: imagePath.PicPath5,
                 //Title: Title,
                 //SubTitle: SubTitle,
-                Description: Description,
+                //Description: Description,
                 Email: Email,
                 Phone: Phone,
                 OtherContact: OtherContact,
@@ -334,7 +336,6 @@ var saveAllImages = function (req) {
     var S3 = require("../../utility/S3.js");
     var bucketName = 'propertypicsstore';
     var PicPath = '';
-    var count = 1;
     var MainPicPath = '';
     var PicPath2 = '';
     var PicPath3 = '';
@@ -348,7 +349,7 @@ var saveAllImages = function (req) {
             if(key == 'PicPath2') PicPath2 = PicPath;
             if(key == 'PicPath3') PicPath3 = PicPath;
             if(key == 'PicPath4') PicPath4 = PicPath;
-            if(key == 'PicPath5') PicPath5 = PicPath;
+            if(key == 'PicPath5') PicPath4 = PicPath;
             var params = {Bucket: bucketName, Key: keyName, Body:req.files[key].data, ACL:'public-read'};
             S3.putObject(params, function(err, data) {
                 if (err)
