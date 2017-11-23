@@ -6,7 +6,7 @@ router.post('/', function(req, res, next){
     if(!req.session.user || (req.session.user.UserType != 2 && req.session.user.UserType != 0))
         return res.redirect('/login');
 
-    var OrderDate = decodeURIComponent(req.sanitize('OrderDate').trim());
+    //var OrderDate = decodeURIComponent(req.sanitize('OrderDate').trim());
     //console.log(OrderDate);
     var PropertyId = req.sanitize('PropertyName').escape().trim();
     //var PropertyType = req.sanitize('PropertyType').escape().trim();s
@@ -24,7 +24,7 @@ router.post('/', function(req, res, next){
     var DB = require('../../utility/db.js');
     var post = {
         PropertyId: PropertyId,
-        OrderDate: OrderDate,
+        OrderDate: new Date().toLocaleDateString('en-US') + ' ' + new Date().toLocaleTimeString('en-US', {hour12: false}),
         UnitNumber: UnitNumber,
         BuildingPrice: BuildingPrice,
         LotNumber: LotNumber,

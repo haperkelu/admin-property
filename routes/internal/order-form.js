@@ -17,9 +17,12 @@ router.get('/', function(req, res, next) {
             isPropertyAccessible: req.session.user.UserType == 0,
             isRentAccessible: req.session.user.UserType == 0,
             isSystemAdmin:req.session.user.UserType == 0,
-                currentEmail: req.session.user.UserType == 2? req.session.user.Email:'',
+            isQueryAccessible: req.session.user.UserType == 0,
+            currentEmail: req.session.user.UserType == 2? req.session.user.Email:'',
                 currentPhone: req.session.user.UserType == 2? req.session.user.Phone:'',
-                currentName: req.session.user.UserType == 2? req.session.user.Name:''
+                currentName: req.session.user.UserType == 2? req.session.user.Name:'',
+            Name: req.session.user.Name,
+            Id: req.session.user.Id
         });
     });
 

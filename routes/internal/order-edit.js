@@ -28,7 +28,10 @@ router.get('/', function(req, res, next){
                 isPropertyAccessible: req.session.user.UserType == 0,
                 isRentAccessible: req.session.user.UserType == 0,
                 isSystemAdmin:req.session.user.UserType == 0,
-                isSales:req.session.user.UserType == 2 });
+                isSales:req.session.user.UserType == 2,
+                Name: req.session.user.Name,
+                Id: req.session.user.Id
+            });
         });
     });
 
