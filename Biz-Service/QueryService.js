@@ -5,7 +5,8 @@ var QueryService = {
 
     addQuery: function (propertyId, name, phone, email, detail, callback) {
         var DB = require('../utility/db.js');
-        var post = {PropertyId: propertyId, CustomerName:name, Email:email, Phone: phone, Content:detail};
+        var post = {PropertyId: propertyId, CustomerName:name, Email:email, Phone: phone, Content:detail,
+            CreatedDate: new Date().toLocaleDateString('en-US') + ' ' + new Date().toLocaleTimeString('en-US', {hour12: false})};
         console.log(post);
         DB.query('Insert Sales.PropertyInqury Set ?',post, function (err, result) {
             if (err) {console.log(err); callback(err, result); return;}

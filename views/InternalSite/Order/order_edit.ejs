@@ -80,7 +80,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                     <!-- END TODO DROPDOWN -->
                                     <!-- BEGIN USER LOGIN DROPDOWN -->
                                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-                                    <% include ../common/Profile.ejs%>
+                                    <% include ../common/profile.ejs%>
                                     <!-- END USER LOGIN DROPDOWN -->
                                     <!-- BEGIN QUICK SIDEBAR TOGGLER -->
                                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
@@ -429,6 +429,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <div class="form-group">
                                                                     <label class="control-label col-md-3">合同首页</label>
                                                                     <div class="col-md-9">
+                                                                        <%if(data.ContractHomePage) { %> <a href="https://s3-ap-southeast-2.amazonaws.com<%=data.ContractHomePage%>">已保存合同</a><% } %>
                                                                         <div class="fileinput fileinput-new" data-provides="fileinput" style="float: left">
                                                                             <span class="btn btn-outline btn-circle btn-sm purple  btn-file">
                                                                                 <span class="fileinput-new"> 选择文件 </span>
