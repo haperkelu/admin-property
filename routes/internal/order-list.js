@@ -32,24 +32,17 @@ router.get('/', function(req, res, next) {
             if (err) {console.log(err);return res.send('Server Error');}
             var currentSelfCode = req.session.user.SelfCode;
             var firstLevelSub;
-            var secondLevelSub = [];
-            var thirdLevelSub = [];
             var finalSub = [];
             if(result.length > 0 && currentSelfCode){
 
                 for(var i in result){
                     if(result[i].SelfReferenceCode == currentSelfCode) {
-                        firstLevelSub = convertToArray(result[i].CombinedCode);
+                        firstLevelSub = result[i].CombinedCode.split(',');
                         break;
                     }
                 }
                 if(firstLevelSub && firstLevelSub.length > 0){
-                    populateParentLevel(firstLevelSub, secondLevelSub, result);
-                    populateParentLevel(secondLevelSub, thirdLevelSub, result);
-
-                    generateFinalResult(firstLevelSub, finalSub);
-                    generateFinalResult(secondLevelSub, finalSub);
-                    generateFinalResult(thirdLevelSub, finalSub);
+                    finalSub = populateParentLevel(firstLevelSub, result);
                 }
             }
             console.log(finalSub);
@@ -60,8 +53,8 @@ router.get('/', function(req, res, next) {
 
                 for(var i in result) {
                     var orderReferalCode = result[i].SalesSelfReferenceCode;
-                    console.log(orderReferalCode);
-                    console.log(result[i].SalesEmail);
+                    //console.log(orderReferalCode);
+                    //console.log(result[i].SalesEmail);
                     if(result[i].SalesEmail == req.session.user.Email){
                         filteredResult.push(result[i]);
                         continue;
@@ -88,38 +81,31 @@ router.get('/', function(req, res, next) {
 
 });
 
-var convertToArray = function (str) {
-    if(!str) return [];
-    var result = [];
-    var arr = str.split(',');
-    for(var i in arr){
-        result.push(arr[i]);
-    }
-    return result;
-}
+var populateParentLevel = function (current, wholeResult) {
 
-var appendArray = function (original, str) {
-    if(!str) return original;
-    var result = convertToArray(str);
-    for(var i in result){
-        original.push(result[i]);
-    }
-    return original;
-}
+    var finalRecords = [];
+    if(!current || current.lenght == 0) return finalRecords;
 
-var populateParentLevel = function (current, next, wholeResult) {
-    if(current && current.length > 0){
-        for(var i in current){
-            var code = current[i];
-            for(var i in wholeResult){
-                if(wholeResult[i].SelfReferenceCode == code) {
-                    next = appendArray(next, wholeResult[i].CombinedCode);
-                    break;
-                }
+    finalRecords = current.slice();
+    var next = [];
+    for(var i in current){
+        var code = current[i];
+        for(var i in wholeResult){
+            if(wholeResult[i].SelfReferenceCode == code) {
+                Array.prototype.push.apply(next, wholeResult[i].CombinedCode.split(','));
+                break;
             }
         }
     }
+    if(next.length == 0) {
+       return finalRecords;
+    }
+
+    Array.prototype.push.apply(finalRecords, populateParentLevel(next, wholeResult));
+    return finalRecords;
 }
+
+
 
 var generateFinalResult = function (current, finalSub) {
     if(current && current.length > 0){

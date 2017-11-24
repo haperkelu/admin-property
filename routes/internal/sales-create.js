@@ -2,27 +2,27 @@ var express = require('express');
 var router = express.Router();
 
 router.post('/', function(req, res, next){
-    var Type = decodeURIComponent(req.sanitize('Type').trim());
+
     var Email = req.sanitize('Email').escape().trim();
-    var Level = req.sanitize('Level').escape().trim();
+    var Level = 'C';
+    var ReferralCode = req.sanitize('ReferralCode').escape()? req.sanitize('ReferralCode').escape(): '';
     var LastName = req.sanitize('LastName').escape().trim();
     var FirstName = req.sanitize('FirstName').escape().trim();
     var UserPassword = req.sanitize('Password').escape().trim();
-    //console.log('pwd:' + UserPassword);
+
     var DateOfBirth = req.sanitize('DateOfBirth').escape()? decodeURIComponent(req.sanitize('DateOfBirth').trim()): '';
     var Gender = req.sanitize('Gender').escape()? req.sanitize('Gender').escape().trim(): '';
     var Nationality = req.sanitize('Nationality').escape()? req.sanitize('Nationality').escape().trim(): '';
     var IdentityStatus = req.sanitize('IdentityStatus').escape()? req.sanitize('IdentityStatus').escape().trim(): '';
     var Phone = req.sanitize('Phone').escape()? req.sanitize('Phone').escape().trim(): '';
     var Address = req.sanitize('Address').escape()? req.sanitize('Address').escape().trim(): '';
-    var CertificateStatus = req.sanitize('CertificateStatus').escape().trim();
 
     var DB = require('../../utility/db.js');
     var shortid = require('shortid');
     var Encryption = require('../../utility/Encryption');
     var post = {
-        Type: parseInt(Type),
-        Status: CertificateStatus,
+        Type: 2,
+        Status: 1,
         FirstName: FirstName,
         LastName: LastName,
         Password: Encryption.encrypt(UserPassword),
@@ -34,7 +34,7 @@ router.post('/', function(req, res, next){
         Phone: Phone,
         Email: Email,
         CreatedDate: new Date(),
-        createdBy: req.session.user.Id
+        createdBy: -1
     };
     DB.query('INSERT INTO Sales.BasicUser SET ?', post, function (err, result) {
         if (err) {console.log(err);return res.send('Server Error');}
@@ -44,7 +44,6 @@ router.post('/', function(req, res, next){
         var BSB = req.sanitize('BSB').escape().trim();
         var AccountNumber = req.sanitize('AccountNumber').escape().trim();
         var ABN = req.sanitize('ABN').escape().trim();
-
 
         var post = {
             SalesId: userId,
@@ -77,27 +76,23 @@ router.post('/', function(req, res, next){
             }
             var fs = require('fs');
             var SalesCommissionRate = '';
-            if(parseInt(Type) == 2) {
-                var SalesLevelArr = JSON.parse(fs.readFileSync('./config/commission_level.json', 'utf8'));
-                if(Level == SalesLevelArr.data[0].Level) SalesCommissionRate = SalesLevelArr.data[0].Value;
-                if(Level == SalesLevelArr.data[1].Level) SalesCommissionRate = SalesLevelArr.data[1].Value;
-                if(Level == SalesLevelArr.data[2].Level) SalesCommissionRate = SalesLevelArr.data[2].Value;
-            }
+
+            var SalesLevelArr = JSON.parse(fs.readFileSync('./config/commission_level.json', 'utf8'));
+            if(Level == SalesLevelArr.data[0].Level) SalesCommissionRate = SalesLevelArr.data[0].Value;
+            if(Level == SalesLevelArr.data[1].Level) SalesCommissionRate = SalesLevelArr.data[1].Value;
+            if(Level == SalesLevelArr.data[2].Level) SalesCommissionRate = SalesLevelArr.data[2].Value;
 
             var post = {
                 BasicUserId: userId,
                 Level: Level,
-                GeneratedToken: shortid.generate(),
                 CertificatePath: CertificatePath,
-                CertificateStatus: CertificateStatus,
                 SalesCommissionRate:SalesCommissionRate
             };
 
 
             DB.query('INSERT INTO Sales.Sales SET ?', post, function (err, result) {
                 if (err) {console.log(err);return res.send('Server Error');}
-
-                return res.redirect('/internal/user/list');
+                return res.redirect('/login');
             });
 
         });

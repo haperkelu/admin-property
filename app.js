@@ -112,7 +112,8 @@ app.use('/internal/rent/detail/:propertyId',require('./routes/internal/rent-deta
 app.use('/internal/rent/approve/:propertyId',require('./routes/internal/rent-approve'));
 
 app.use('/internal/query/list',require('./routes/internal/inquery-list'));
-
+app.use('/public/salessregister', require('./routes/PublicSite/sales-form'));
+app.use('/public/sales/submit', require('./routes/internal/sales-create'));
 
 app.get('/logout', function (req, res){
     req.session = null;
