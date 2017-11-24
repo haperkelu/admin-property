@@ -87,7 +87,6 @@ router.post('/', function(req, res, next){
             var post = {
                 BasicUserId: userId,
                 Level: Level,
-                GeneratedToken: shortid.generate(),
                 CertificatePath: CertificatePath,
                 CertificateStatus: CertificateStatus,
                 SalesCommissionRate:SalesCommissionRate

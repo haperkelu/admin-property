@@ -21,6 +21,21 @@ var Profile = function() {
                     },
                     Passwordconfirm: {
                         required: true
+                    },
+                    AccountName: {
+                        required: true
+                    },
+                    BankName: {
+                        required: true
+                    },
+                    BSB: {
+                        required: true
+                    },
+                    AccountNumber: {
+                        required: true
+                    },
+                    ABN: {
+                        required: true
                     }
             };
             //console.log(jsonRules);
