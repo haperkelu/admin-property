@@ -20,13 +20,15 @@ router.post('/', function(req, res, next){
     var DB = require('../../utility/db.js');
     var shortid = require('shortid');
     var Encryption = require('../../utility/Encryption');
+    var personalCode = shortid.generate();
+    var emailContent = '您的推荐码是：' + personalCode;
     var post = {
         Type: 2,
         Status: 1,
         FirstName: FirstName,
         LastName: LastName,
         Password: Encryption.encrypt(UserPassword),
-        SelfReferenceCode: shortid.generate(),
+        SelfReferenceCode: personalCode,
         ReferralCode: ReferralCode,
         DateOfBirth: DateOfBirth,
         Gender: Gender,
@@ -93,6 +95,8 @@ router.post('/', function(req, res, next){
 
             DB.query('INSERT INTO Sales.Sales SET ?', post, function (err, result) {
                 if (err) {console.log(err);return res.send('Server Error');}
+                var EmailUtil = require('../../utility/mail');
+                EmailUtil.sendEmail('admin@Ausun.com.au', Email, '推荐码', emailContent, emailContent);
                 return res.redirect('/login');
             });
 

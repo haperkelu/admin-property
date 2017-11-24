@@ -3,9 +3,6 @@ var Profile = function() {
     var handleValidation = function() {
 
             var jsonRules = {
-                    ReferralCode: {
-                        required: true
-                    },
                     Email: {
                         required: true,
                         email: true
