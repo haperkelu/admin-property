@@ -13,7 +13,10 @@ router.get('/', function(req, res, next) {
         isPropertyAccessible: true,
         isRentAccessible: true,
         isOrderAccessible: true,
-        isSystemAdmin:true});
+        isSystemAdmin:true,
+        isQueryAccessible:true,
+        Name: req.session.user.Name,
+        Id: req.session.user.Id});
 
 });
 

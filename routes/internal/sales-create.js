@@ -27,6 +27,7 @@ router.post('/', function(req, res, next){
         LastName: LastName,
         Password: Encryption.encrypt(UserPassword),
         SelfReferenceCode: shortid.generate(),
+        ReferralCode: ReferralCode,
         DateOfBirth: DateOfBirth,
         Gender: Gender,
         Nationality: Nationality,

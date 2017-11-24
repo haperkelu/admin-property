@@ -47,13 +47,13 @@ exports.user_create_submit = function(req, res, next) {
     var shortid = require('shortid');
     var Encryption = require('../../utility/Encryption');
     var post = {
-        type: 1,
-        status:0,
-        email: email,
-        password: Encryption.encrypt(password),
+        Type: 1,
+        Status:0,
+        Email: email,
+        Password: Encryption.encrypt(password),
         SelfReferenceCode: shortid.generate(),
         ReferralCode: referralCode? referralCode: '',
-        createdBy: -1
+        CreatedBy: -1
     };
     var query = DB.query('INSERT INTO Sales.BasicUser SET ?', post, function (err, result) {
         if (err) {console.log(err);return res.send('Server Error');}

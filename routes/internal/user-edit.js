@@ -18,7 +18,10 @@ router.get('/', function(req, res, next){
                     isPropertyAccessible: true,
                     isRentAccessible: true,
                     isOrderAccessible: true,
-                    isSystemAdmin:true});
+                    isSystemAdmin:true,
+                    isQueryAccessible: true,
+                    Name: req.session.user.Name,
+                    Id: req.session.user.Id});
             });
         } else {
             res.render('InternalSite/user/user_edit', {data: result[0],
@@ -26,7 +29,10 @@ router.get('/', function(req, res, next){
                 isPropertyAccessible: true,
                 isRentAccessible: true,
                 isOrderAccessible: true,
-                isSystemAdmin:true});
+                isSystemAdmin:true,
+                isQueryAccessible: true,
+                Name: req.session.user.Name,
+                Id: req.session.user.Id});
         }
 
     });
