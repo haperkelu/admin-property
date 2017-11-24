@@ -14,7 +14,11 @@ console.log(req.session.user);
           isEstablishAccessible: true,
           isPropertyAccessible: true,
           isRentAccessible: true,
-          isSystemAdmin: req.session.user.UserType == 0});
+          isSystemAdmin: req.session.user.UserType == 0,
+          isQueryAccessible: true,
+          Name: req.session.user.Name,
+          Id: req.session.user.Id
+      });
   });
 
 });

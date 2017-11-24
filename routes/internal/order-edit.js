@@ -8,13 +8,11 @@ router.get('/', function(req, res, next){
     if(!req.session.user)
         return res.redirect('/login');
     console.log(req.session.user);
+
     var OrderService = require('../../Biz-Service/OrderService.js');
     OrderService.getOrderDetail(orderId, function (err, result) {
         if (err || result.length == 0) {console.log(err); return res.render('error/500');}
 
-        if(result[0].SalesEmail != req.session.user.Email && req.session.user.UserType != 0 && req.session.user.UserType != 4){
-            return res.render('error/500');
-        }
         var currentProperty = result[0];
         var PropertyService = require('../../Biz-Service/PropertyService.js');
         var fs = require('fs');

@@ -17,7 +17,9 @@ router.get('/', function(req, res, next) {
           isRentAccessible: true,
           isOrderAccessible: req.session.user.UserType == 0,
           isSystemAdmin: req.session.user.UserType == 0,
-          isQueryAccessible: true
+          isQueryAccessible: true,
+          Name: req.session.user.Name,
+          Id: req.session.user.Id
       });
   });
 
