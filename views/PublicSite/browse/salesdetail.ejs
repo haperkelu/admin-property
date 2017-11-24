@@ -143,13 +143,13 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="contact-div">
                     <label class="caption-subject bold control-label" style="float:left; font-size:14px!important; color: gray; width: 100%">来源：<%if(data.Source == 'Individual'){%>个人<%}%> <%if(data.Source == 'Agency'){%>中介<%}%></label>
 
-                    <button class="btn green" style="padding-left: 20px; padding-right: 20px; margin-top: 5px; ">联系方式</button>
                     <%if(typeof Id != 'undefined') {%>
                         <label class="caption-subject bold control-label" style="float:left; font-size:14px!important; color: gray; width: 100%;">电话：<%=data.Phone%></label>
                         <label class="caption-subject bold control-label" style="float:left; font-size:14px!important; color: gray; width: 100%;">邮箱：<%=data.Email%></label>
                     <%}%>
 
                     <%if(typeof Id == 'undefined') {%>
+                    <button class="btn green" style="padding-left: 20px; padding-right: 20px; margin-top: 5px; ">联系方式</button>
                     <br/> <a href="/login">请登录查看联系方式</a>
                     <%}%>
 

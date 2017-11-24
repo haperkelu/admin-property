@@ -108,7 +108,10 @@ router.post('/', function(req, res, next){
                 DB.query('Select * from Sales.Sales as s\n' +
                     'join Sales.BasicUser as bu on s.BasicUserId = bu.ID where ?', {Email: req.sanitize('SalesEmail').escape().trim()}, function (err, result){
                     if (err) {console.log(err);return res.send('Server Error');}
-                    if(result[0]) {post.SalesCommissionRate = result[0].SalesCommissionRate;}
+                    if(result[0]) {
+                        post.SalesCommissionRate = result[0].SalesCommissionRate;
+                        post.SalesSelfReferenceCode = result[0].SelfReferenceCode;
+                    }
                     DB.query('INSERT INTO Sales.OrderSales SET ?', post, function (err, result){
                         if (err) {console.log(err);return res.send('Server Error');}
                         return res.redirect('/internal/ordder/list');

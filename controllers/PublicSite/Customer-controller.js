@@ -7,7 +7,7 @@ exports.user_login_submit = function(req, res, next) {
 
     var Encryption = require('../../utility/Encryption');
     var DB = require('../../utility/db.js');
-    DB.query('Select ID, Email,Password,Type,LastName,FirstName,Phone,Status from Sales.BasicUser where ?', {Email: username}, function (err, result) {
+    DB.query('Select ID, Email,Password,Type,LastName,FirstName,Phone,Status,SelfReferenceCode from Sales.BasicUser where ?', {Email: username}, function (err, result) {
 
         if (err) {console.log(err);return res.render('error/500');}
         //console.log(Encryption.encrypt('5555'));
@@ -21,7 +21,9 @@ exports.user_login_submit = function(req, res, next) {
         req.session.user = {Id: usersSelected[0].ID, Email: usersSelected[0].Email,
             Name: usersSelected[0].LastName + usersSelected[0].FirstName,
             Phone: usersSelected[0].Phone,
-            UserType: usersSelected[0].Type};
+            UserType: usersSelected[0].Type,
+            SelfCode: usersSelected[0].SelfReferenceCode
+        };
         //console.log(req.session.user);
 
         if(usersSelected[0].Type == 2 || usersSelected[0].Type == 4) return res.redirect('/internal/ordder/list');
