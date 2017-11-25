@@ -22,6 +22,10 @@ var Profile = function() {
                     PropertyType: {
                         required: true
                     },
+                    LowPrice: {
+                        required: true,
+                        number: true
+                    },
                     NumOfRoom: {
                         required: true,
                         range: [1, 10]
