@@ -72,7 +72,7 @@ var filterResultByCondition = function (result, cityId, suburbCode, district, ty
                         continue;
                     }
 
-                    if(!item.DeveloperAuthContractPath) continue;
+                    //if(!item.DeveloperAuthContractPath) continue;
                     filteredResult.push(item);
                 }
             }

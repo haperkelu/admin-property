@@ -138,7 +138,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     </div><%}%>
                 </div>
             </div>
-            <div name="detail" class="detail-div" style="height: 200px">
+            <div name="detail" class="detail-div" style="height: auto; position: relative;overflow: auto">
                 <div class="form-group col-md-12" style="display: block; height: auto;margin-top: 25px!important;">
                     <label class="caption-subject bold control-label" style="float:left; font-size:18px!important; color: gray"><%=data.PurchaseType%><%if(data.PurchaseType == 'For Sale'){%>
                         <%if(data.HighPrice){%>
@@ -170,14 +170,11 @@ License: You must have a valid license purchased only from themeforest(the above
                 <div class="form-group col-md-12" style="display: block;">
                     <label class="caption-subject control-label" style="float:left; font-size:14px!important; color: gray"><%=data.Address%></label>
                 </div>
-            </div>
-            <div class="detail-div" style="height: 450px">
-                <div id="description" class="form-group col-md-12">
-
+                <div id="description" class="form-group col-md-12" style="font-size:15px; color: gray">
                 </div>
             </div>
 
-            <div class="detail-div">
+            <div style="max-width:1000px; background-color: #fff; height: auto; margin: 0 auto; display: block;">
                 <div id="gmap_marker" class="gmaps"> </div>
             </div>
                 <!-- END POPULAR NEWHOME -->
