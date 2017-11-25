@@ -194,7 +194,7 @@ exports.user_detail_establishhome_submit = function(req, res, next) {
                     if(key == 'PicPath2') PicPath2 = PicPath;
                     if(key == 'PicPath3') PicPath3 = PicPath;
                     if(key == 'PicPath4') PicPath4 = PicPath;
-                    if(key == 'PicPath5') PicPath4 = PicPath;
+                    if(key == 'PicPath5') PicPath5 = PicPath;
 
                     var params = {Bucket: bucketName, Key: keyName, Body:req.files[key].data, ACL:'public-read'};
                     S3.putObject(params, function(err, data) {
@@ -356,7 +356,7 @@ var saveAllImages = function (req) {
             if(key == 'PicPath2') PicPath2 = PicPath;
             if(key == 'PicPath3') PicPath3 = PicPath;
             if(key == 'PicPath4') PicPath4 = PicPath;
-            if(key == 'PicPath5') PicPath4 = PicPath;
+            if(key == 'PicPath5') PicPath5 = PicPath;
             var params = {Bucket: bucketName, Key: keyName, Body:req.files[key].data, ACL:'public-read'};
             S3.putObject(params, function(err, data) {
                 if (err)

@@ -118,6 +118,8 @@ app.use('/public/establish/delete/:propertyId', require('./routes/PublicSite/del
 app.use('/public/rent/delete/:propertyId', require('./routes/PublicSite/deletion/rent-delete'));
 app.use('/internal/established/reject/:propertyId', require('./routes/internal/establish-reject'));
 app.use('/internal/rent/reject/:propertyId', require('./routes/internal/rent-reject'));
+app.use('/public/establish/edit/:propertyId', require('./routes/PublicSite/Edit/establish-edit'))
+app.use('/user/:id/userEstablishedHome/update', require('./routes/PublicSite/Edit/establish-update'))
 
 
 app.get('/logout', function (req, res){

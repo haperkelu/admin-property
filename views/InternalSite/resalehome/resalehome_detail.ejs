@@ -143,11 +143,11 @@ License: You must have a valid license purchased only from themeforest(the above
                     <label class="caption-subject bold control-label" style="float:left; font-size:18px!important; color: gray"><%=data.PurchaseType%><%if(data.PurchaseType == 'For Sale'){%>
 
                         <%if(data.LowPrice && data.HighPrice){%>
-                        From $<%=parseFloat(data.LowPrice).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')%> to $<%=parseFloat(data.HighPrice).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')%>
+                        From $<%=parseFloat(data.LowPrice).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')%> to $<%=parseFloat(data.HighPrice).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')%>
                         <%}%>
 
                         <%if(data.LowPrice && !data.HighPrice){%>
-                        From $<%=parseFloat(data.LowPrice).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')%>
+                        From $<%=parseFloat(data.LowPrice).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')%>
                         <%}%>
 
                         <%}%></label>
