@@ -35,6 +35,21 @@ var Profile = function() {
                     InvestmentOption: {
                         required: true
                     },
+                    SolicitorCompany: {
+                        required: true
+                    },
+                    SolicitorName: {
+                        required: true
+                    },
+                    SolicitorPhone: {
+                        required: true
+                    },
+                    SolicitorEmail: {
+                        required: true
+                    },
+                    SolicitorAddress: {
+                        required: true
+                    },
                     DepositPath: {
                         required: true   
                     },
