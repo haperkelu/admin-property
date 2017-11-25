@@ -211,7 +211,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                             </div>
                                                                             <p class="search-desc"> <%=data[i].Address%> </p>
                                                                             <p class="search-desc2"> 最后更新时间：<%= data[i].PropertySalePostUpdatedByDate.substring(0, data[i].PropertySalePostUpdatedByDate.indexOf('T')) %> </p>
-                                                                            <p class="search-desc2"> <%if(data[i].Status == 0)  { %>待审核<% } %></p>
+                                                                            <p class="search-desc2">
+                                                                                <%if(data[i].Status == 0)  { %>待审核<% } %>
+                                                                                <%if(data[i].Status == 1)  { %>审核已通过<% } %>
+                                                                                <%if(data[i].Status == 2)  { %>
+                                                                                驳回（理由：<%=data[i].RejectReason%>）
+                                                                                <% } %>
+                                                                            </p>
                                                                         </div>
 
                                                                     </li>

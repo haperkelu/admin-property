@@ -15,7 +15,7 @@ router.get('/', function(req, res, next) {
         var DB = require('../../../utility/db.js');
         DB.query('delete from Sales.Property where Id=' + PropertyId, null, function (err, result) {
                 if (err) {console.log(err);return res.send('Server Error');}
-                return res.redirect('/user/' + req.session.user.Id);
+                return res.redirect('/user/' + req.session.user.Id + '/rentlist');
         });
     });
 
