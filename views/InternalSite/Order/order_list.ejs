@@ -174,7 +174,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <td><%=data[i].OrderDate%></td>
                                                     <td><%=data[i].PropertyName%></td>
                                                     <td><%=data[i].PropertyCode%></td>
-                                                    <td><%=data[i].BuildingPrice%></td>
+                                                    <td>
+                                                        <%if(data[i].PropertyType == 'land/package') { %><%=parseFloat(data[i].BuildingPrice) + parseFloat(data[i]. LandPrice)%> <% } %>
+                                                        <%if(data[i].PropertyType == 'apartment') { %> <%=data[i].BuildingPrice%><% } %>
+                                                    </td>
                                                     <td><%=data[i].CustomerName%></td>
                                                     <td><%=data[i].SolicitorName%></td>
                                                     <td>
@@ -189,10 +192,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <td><%=data[i].SalesCommissionRate%></td>
                                                     <td>
                                                         合同交换：
+                                                        <% if(data[i].PropertyType == 'land/package'){ %>
+                                                        <%=(parseFloat(data[i].BuildingPrice) + parseFloat(data[i]. LandPrice)) * parseFloat(data[i].CommissionRate) * parseFloat(data[i].SalesCommissionRate) /20000%>
+                                                        <br/>
+                                                        Settle:
+                                                        <%=(parseFloat(data[i].BuildingPrice) + parseFloat(data[i]. LandPrice)) * parseFloat(data[i].CommissionRate) * parseFloat(data[i].SalesCommissionRate) /20000%>
+                                                        <% } else{ %>
                                                         <%=parseFloat(data[i].BuildingPrice) * parseFloat(data[i].CommissionRate) * parseFloat(data[i].SalesCommissionRate) /20000%>
                                                         <br/>
                                                         Settle:
                                                         <%=parseFloat(data[i].BuildingPrice) * parseFloat(data[i].CommissionRate) * parseFloat(data[i].SalesCommissionRate) /20000%>
+                                                        <% } %>
+
                                                     </td>
                                                     <td>
                                                         <%if(data[i].CouponId) { %> 已经使用(<%=data[i].CouponName%>)<% } %>
