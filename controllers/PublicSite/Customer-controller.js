@@ -63,9 +63,13 @@ exports.user_create_submit = function(req, res, next) {
 
         var EmailUtil = require('../../utility/mail');
         var Encryption = require('../../utility/Encryption');
-
-        var content = '请确认您的邮箱: ' + 'http://' + req.get('host') + '/verify?email=' + email + '&code=' + Encryption.encrypt(email);
-        EmailUtil.sendEmail('admin@Ausun.com.au', email, '邮箱验证',content, content);
+        var htmlContent = '尊敬的会员，\n' +
+            '<br/>感谢您的注册，请点击下面的链接完成邮箱验证，谢谢！<br/>';
+        htmlContent += 'http://' + req.get('host') + '/verify?email=' + email + '&code=' + Encryption.encrypt(email);
+        var textContent = '尊敬的会员，\n' +
+            '感谢您的注册，请点击下面的链接完成邮箱验证，谢谢！';
+        textContent += 'http://' + req.get('host') + '/verify?email=' + email + '&code=' + Encryption.encrypt(email);
+        EmailUtil.sendEmail('admin@Ausun.com.au', email, '邮箱验证', htmlContent, textContent);
         DB.query('INSERT INTO Sales.CustomerRedemptionCode SET ?',
             {Name:defaultCouponCfg.data.Name,  DateOfAcquisition: new Date(),
                 DateOfExpiration: new Date(defaultCouponCfg.data.DateOfExpiration),
@@ -75,7 +79,7 @@ exports.user_create_submit = function(req, res, next) {
             function (err, result){
                 if (err) {console.log(err);return res.send('Server Error');}
                 req.session.user = {Id: id, Email: email, UserType: 1};
-                return res.redirect('/login');
+                return res.redirect('/login?msg=plsverify');
             });
     });
     //console.log(query.sql);

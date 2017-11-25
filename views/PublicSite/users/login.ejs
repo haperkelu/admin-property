@@ -66,7 +66,7 @@ License: You must have a valid license purchased only from themeforest(the above
   <!-- BEGIN LOGIN FORM -->
   <form class="login-form" action="/loginSubmit" method="post">
     <h3 class="form-title font-green">登录</h3>
-    <div id="message"></div>
+    <div id="message" style="color: red"></div>
     <div class="alert alert-danger display-hide">
       <button class="close" data-close="alert"></button>
       <span> Enter any username and password. </span>
@@ -193,6 +193,10 @@ License: You must have a valid license purchased only from themeforest(the above
         }
         if(msg == 'notverified') {
             $('#message').html('请验证邮箱');
+        }
+
+        if(msg == 'plsverify'){
+            $('#message').html('注册成功，请登录您的邮箱进行验证');
         }
 
     }
