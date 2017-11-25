@@ -5,7 +5,7 @@ router.get('/', function(req, res, next) {
     console.log(req.session.user);
     if(!req.session.user || (req.session.user.UserType != 2 && req.session.user.UserType != 0 && req.session.user.UserType != 4))
         return res.redirect('/login');
-
+    var isSales = (req.session.user.UserType == 2);
     if(req.session.user.UserType == 0 || req.session.user.UserType == 4) {
         var OrderService = require('../../Biz-Service/OrderService.js');
         OrderService.getAllOrders(function (err, result) {
@@ -18,7 +18,8 @@ router.get('/', function(req, res, next) {
                 isSystemAdmin:req.session.user.UserType == 0,
                 isQueryAccessible: req.session.user.UserType == 0,
                 Name: req.session.user.Name,
-                Id: req.session.user.Id
+                Id: req.session.user.Id,
+                isSales: isSales
             });
         });
     } else {
@@ -72,7 +73,8 @@ router.get('/', function(req, res, next) {
                     isSystemAdmin:req.session.user.UserType == 0,
                     isQueryAccessible: req.session.user.UserType == 0,
                     Name: req.session.user.Name,
-                    Id: req.session.user.Id
+                    Id: req.session.user.Id,
+                    isSales:isSales
                 });
             });
 

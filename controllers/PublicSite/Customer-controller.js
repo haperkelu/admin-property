@@ -89,7 +89,8 @@ exports.user_update_basic = function(req, res, next) {
     var referralCode = req.sanitize('Referralcode').escape().trim();
     var firstName = req.sanitize('FirstName').escape().trim();
     var lastName = req.sanitize('LastName').escape().trim();
-    var DOB = req.sanitize('DateOfBirth').escape().trim();
+    var DOB = decodeURIComponent(req.sanitize('DateOfBirth').trim());
+    console.log(DOB);
     var gender = req.sanitize('Gender').escape()?req.sanitize('Gender').escape().trim():'';
     var nationality = req.sanitize('Nationality').escape().trim();
     var identityStatus = req.sanitize('IdentityStatus').escape().trim();

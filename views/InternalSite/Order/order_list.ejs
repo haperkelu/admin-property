@@ -160,7 +160,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <th> 销售姓名 </th>
                                                     <th> 项目佣金% </th>
                                                     <th> 个人佣金% </th>
-                                                    <th> 佣金结算$ </th>
+                                                    <!-- <th> 佣金结算$ </th> -->
                                                     <th> 卡券使用 </th>
                                                     <th></th>
                                                     <th></th>
@@ -190,6 +190,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <td><%=data[i].SalesName%></td>
                                                     <td><%=data[i].CommissionRate%></td>
                                                     <td><%=data[i].SalesCommissionRate%></td>
+                                                    <!--
                                                     <td>
                                                         合同交换：
                                                         <% if(data[i].PropertyType == 'land/package'){ %>
@@ -205,6 +206,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <% } %>
 
                                                     </td>
+                                                    -->
                                                     <td>
                                                         <%if(data[i].CouponId) { %> 已经使用(<%=data[i].CouponName%>)<% } %>
                                                     </td>
@@ -213,8 +215,10 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <i class="fa fa-edit"></i> 详情 </a>
                                                     </td>
                                                     <td>
+                                                        <%if(!isSales) { %>
                                                         <a href="/internal/ordder/refund/<%=data[i].OrderId%>" class="btn btn-outline btn-circle btn-sm purple" id="refund" target="_blank">
-                                                                <i class="fa fa-edit"></i> 退款 </a>
+                                                            <i class="fa fa-edit"></i> 退款 </a>
+                                                        <% } %>
                                                     </td>
 
                                                 </tr>
