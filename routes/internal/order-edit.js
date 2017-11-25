@@ -5,8 +5,9 @@ router.get('/', function(req, res, next){
 
     var orderId = req.params.orderId;
     if(!orderId) return res.render('error/500');
-    if(!req.session.user)
+    if(!req.session.user || (req.session.user.UserType != 2 && req.session.user.UserType != 0 && req.session.user.UserType != 4))
         return res.redirect('/login');
+
     console.log(req.session.user);
 
     var OrderService = require('../../Biz-Service/OrderService.js');
