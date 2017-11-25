@@ -13,7 +13,7 @@ router.get('/', function(req, res, next){
     OrderService.getOrderDetail(orderId, function (err, result) {
         if (err || !result[0]) {console.log(err); return res.render('error/500');}
         if(result[0].OrderStatus != 0 && result[0].OrderStatus != 1) {
-            return res.send('已交换合同的订单不能退款');
+            return res.send('该订单不能退款');
         }
         if(req.session.user.UserType == 2 && result[0].SalesEmail != req.session.user.Email) {
             return res.render('error/500');

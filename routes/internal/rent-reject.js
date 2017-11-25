@@ -15,7 +15,7 @@ router.get('/', function(req, res, next){
     DB.query('Update Sales.Property SET ? where Id=' + propertyId,
         {Status: 2, RejectReason: reason}, function (err, result) {
         if (err) {console.log(err);return res.send('Server Error');}
-        return res.redirect('/internal/established/list');
+        return res.redirect('/internal/rent/list');
     });
 
 });

@@ -50,11 +50,11 @@ var TableDatatablesManaged = function () {
             "columnDefs": [
                 {  // set default column settings
                     'orderable': false,
-                    'targets': [8,9,11]
+                    'targets': [8,9]
                 }, 
                 {
                     "searchable": false,
-                    "targets": [8,11]
+                    "targets": [8]
                 },
                 {
                     "className": "dt-right", 
