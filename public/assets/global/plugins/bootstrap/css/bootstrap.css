@@ -1516,7 +1516,7 @@ pre {
       width: 970px; } }
   @media (min-width: 1200px) {
     .container {
-      width: 1170px; } }
+      width: 100%; } }
 
 .container-fluid {
   margin-right: auto;
