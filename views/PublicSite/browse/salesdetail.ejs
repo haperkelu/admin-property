@@ -141,12 +141,12 @@ License: You must have a valid license purchased only from themeforest(the above
             <div name="detail" class="detail-div" style="height: auto; position: relative;overflow: auto">
                 <div class="form-group col-md-12" style="display: block; height: auto;margin-top: 25px!important;">
                     <label class="caption-subject bold control-label" style="float:left; font-size:18px!important; color: gray"><%=data.PurchaseType%><%if(data.PurchaseType == 'For Sale'){%>
-                        <%if(data.HighPrice){%>
-                        ($<%=data.LowPrice%> to $<%=data.HighPrice%>)
+                        <%if(data.LowPrice && data.HighPrice){%>
+                        From $<%=parseFloat(data.LowPrice).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')%> to $<%=parseFloat(data.HighPrice).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')%>
                         <%}%>
 
-                        <%if(!data.HighPrice){%>
-                        (From $<%=data.LowPrice%>)
+                        <%if(data.LowPrice && !data.HighPrice){%>
+                        From $<%=parseFloat(data.LowPrice).toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')%>
                         <%}%>
                         <%}%></label>
                     <div class="property-feature" style="color: gray!important">
