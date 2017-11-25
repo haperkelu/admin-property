@@ -3,8 +3,8 @@ var router = express.Router({mergeParams: true});
 
 router.get('/', function(req, res, next){
 
-    if(!req.session.user || (req.session.user.UserType != 2 && req.session.user.UserType != 0))
-        return res.redirect('/login');
+    if(!req.session.user || (req.session.user.UserType != 2 && req.session.user.UserType != 0 && req.session.user.UserType != 4))
+        return res.send('无权限退款');
 
     var orderId = req.params.orderId;
     if(!orderId) return res.render('error/500');

@@ -10,7 +10,7 @@ router.post('/', function(req, res, next){
     var OrderId = decodeURIComponent(req.sanitize('OrderId').trim());
 
     if(req.session.user.UserType == 2 && (parseInt(OrderStatus) != 0 && parseInt(OrderStatus) != 1)) {
-        return res.send('无法修改');
+        return res.send('订单已出合同，不可修改');
     }
 
     var DB = require('../../utility/db.js');
