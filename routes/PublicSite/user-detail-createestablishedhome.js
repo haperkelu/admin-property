@@ -7,7 +7,10 @@ router.get('/', function(req, res, next) {
 
     return res.render('PublicSite/users/UserCreateEstablishedHome',
         {Id:req.session.user.Id,
-            currentURL: '/user/' + req.session.user.Id + '/userEstablishedHome/create'});
+            currentURL: '/user/' + req.session.user.Id + '/userEstablishedHome/create',
+            Id:req.session.user.Id,
+            Name: req.session.user.Name
+        });
 
 });
 

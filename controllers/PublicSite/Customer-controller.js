@@ -142,6 +142,8 @@ exports.user_detail_establishhome_submit = function(req, res, next) {
     var NumOfBath = req.sanitize('NumOfBath').escape().trim();
     var NumOfPark = req.sanitize('NumOfPark').escape().trim();
     var PurchaseType = req.sanitize('PurchaseType').escape().trim();
+    var LowPrice = req.sanitize('LowPrice').escape()? req.sanitize('LowPrice').escape().trim(): '';
+    var HighPrice = req.sanitize('HighPrice').escape()? req.sanitize('HighPrice').escape().trim(): '';
     var Source = req.sanitize('Source').escape().trim();
     var Address = req.sanitize('Address').escape().trim();
     //var Title = req.sanitize('Title').escape().trim();
@@ -207,6 +209,8 @@ exports.user_detail_establishhome_submit = function(req, res, next) {
                 PropertyId:propertyId,
                 CustomerId: Id,
                 PurchaseType: PurchaseType,
+                LowPrice: LowPrice,
+                HighPrice: HighPrice,
                 MainPicPath:MainPicPath,
                 PicPath2: PicPath2,
                 PicPath3: PicPath3,
