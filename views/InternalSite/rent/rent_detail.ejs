@@ -115,6 +115,9 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- BEGIN POPULAR NEWHOME -->
             <div class="title-div">
                 租房详情
+                <div class="btn-group" style="float: right; padding-left: 10px">
+                    <a id="reject" class="btn green" href="/internal/rent/reject/<%=data.PropertyId%>">驳回</a>
+                </div>
                 <div class="btn-group" style="float: right">
                     <a id="approve" target="_blank" class="btn green" href="/internal/rent/approve/<%=data.PropertyId%>"> 审核通过 </a>
                 </div>
@@ -254,6 +257,11 @@ License: You must have a valid license purchased only from themeforest(the above
                     return window.confirm("确认要审核通过吗？");
                 });
 
+                $('#reject').click(function(){
+                    var reason = prompt("驳回原因");
+                    window.open('/internal/rent/reject/<%=data.PropertyId%>?reason=' + reason);
+                    return false;
+                });
             });
 
           </script>

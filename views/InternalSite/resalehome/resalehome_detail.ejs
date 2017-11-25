@@ -115,6 +115,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- BEGIN POPULAR NEWHOME -->
             <div class="title-div">
                 二手房详情
+                <div class="btn-group" style="float: right; padding-left: 10px">
+                    <a id="reject" class="btn green" href="/internal/established/reject/<%=data.PropertyId%>">驳回</a>
+                </div>
+
                 <div class="btn-group" style="float: right">
                     <a id="approve" class="btn green" href="/internal/established/approve/<%=data.PropertyId%>" target="_blank"> 审核通过 </a>
                 </div>
@@ -235,6 +239,12 @@ License: You must have a valid license purchased only from themeforest(the above
                 $('#approve').click(function(){
                     //bootbox.alert("确认要申请退款吗？");
                     return window.confirm("确认要审核通过吗？");
+                });
+
+                $('#reject').click(function(){
+                    var reason = prompt("驳回原因");
+                    window.open('/internal/established/reject/<%=data.PropertyId%>?reason=' + reason);
+                    return false;
                 });
 
             });

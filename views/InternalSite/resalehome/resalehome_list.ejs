@@ -166,7 +166,9 @@ License: You must have a valid license purchased only from themeforest(the above
                                                     <%= data[i].PropertySalePostCreatedByDate.substring(0, data[i].PropertySalePostCreatedByDate.indexOf('T')) %>
                                                     <% } %> </td>
                                                 <td> <%if(data[i].Status == 0)  { %>待审核<% } %>
-                                                    <%if(data[i].Status == 1)  { %>审核通过<% } %></td>
+                                                    <%if(data[i].Status == 1)  { %>审核通过<% } %>
+                                                    <%if(data[i].Status == 2)  { %>驳回<% } %>
+                                                </td>
                                                 <td>
                                                     <a href="/internal/established/detail/<%=data[i].PropertyId%>" class="btn btn-outline btn-circle btn-sm purple" target="_blank">
                                                         <i class="fa fa-edit"></i> 详情 </a>
