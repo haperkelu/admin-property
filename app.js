@@ -114,6 +114,9 @@ app.use('/internal/rent/approve/:propertyId',require('./routes/internal/rent-app
 app.use('/internal/query/list',require('./routes/internal/inquery-list'));
 app.use('/public/salessregister', require('./routes/PublicSite/sales-form'));
 app.use('/public/sales/submit', require('./routes/internal/sales-create'));
+app.use('/public/establish/delete/:propertyId', require('./routes/PublicSite/deletion/establish-delete'));
+app.use('/public/rent/delete/:propertyId', require('./routes/PublicSite/deletion/rent-delete'));
+
 
 app.get('/logout', function (req, res){
     req.session = null;

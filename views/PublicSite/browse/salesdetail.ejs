@@ -117,6 +117,11 @@ License: You must have a valid license purchased only from themeforest(the above
                             <!-- BEGIN POPULAR NEWHOME -->
             <div class="title-div">
                 二手房详情
+                <%if(typeof isCurrentUser != 'undefined' && isCurrentUser == true){%>
+                <div class="btn-group" style="float: right">
+                    <a id="delete" class="btn green" href="/public/establish/delete/<%=data.PropertyId%>">删除</a>
+                </div>
+                <%}%>
             </div>
 
             <div class="carousel-wrapper">
@@ -241,6 +246,17 @@ License: You must have a valid license purchased only from themeforest(the above
             });
 
           </script>
+
+        <script>
+            $( document ).ready(function() {
+                $('#delete').click(function(){
+                    //bootbox.alert("确认要申请退款吗？");
+                    return window.confirm("确认要删除吗？");
+                });
+            });
+
+
+        </script>
     </body>
 
 </html>

@@ -197,7 +197,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                                         <div class="search-container">
                                                             <ul>
                                                                 <% for(var i=0; i < data.length; i++) { %>
-                                                                <a>
+                                                                <a href="/public/sales/detail/<%=data[i].PropertyId%>">
                                                                     <li class="search-item clearfix">
 
                                                                         <img src="<%='https://s3-ap-southeast-2.amazonaws.com' + data[i].MainPicPath%>">
@@ -209,10 +209,11 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                                     <%=data[i].NumOfRoom%> <i class="fa fa-bed"></i> <%=data[i].NumOfBath%> <i class="fa fa-bath"></i> <%=data[i].NumOfPark%> <i class="fa fa-car"></i>
                                                                                 </div>
                                                                             </div>
-                                                                            <p class="search-desc">  <%=data[i].Address%> </p>
+                                                                            <p class="search-desc"> <%=data[i].Address%> </p>
                                                                             <p class="search-desc2"> 最后更新时间：<%= data[i].PropertySalePostUpdatedByDate.substring(0, data[i].PropertySalePostUpdatedByDate.indexOf('T')) %> </p>
                                                                             <p class="search-desc2"> <%if(data[i].Status == 0)  { %>待审核<% } %></p>
                                                                         </div>
+
                                                                     </li>
                                                                 </a>
                                                                 <% } %>

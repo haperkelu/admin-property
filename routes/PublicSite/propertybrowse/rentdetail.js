@@ -15,6 +15,8 @@ router.get('/', function(req, res, next) {
         if(req.session.user){
             paras.Name = req.session.user.Name;
             paras.Id = req.session.user.Id;
+            paras.Email = req.session.user.Email;
+            paras.isCurrentUser = req.session.user.Id == result[0].CustomerId;
         }
         res.render('PublicSite/browse/rentdetail', paras);
     });
