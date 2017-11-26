@@ -9,9 +9,10 @@ router.post('/', function(req, res, next){
     var OrderStatus = req.sanitize('OrderStatus').escape().trim();
     var OrderOldStatus = req.sanitize('OrderStatus').escape().trim();
 
-    if((parseInt(OrderOldStatus) >= 2)) {
+    if((parseInt(OrderOldStatus) >= 2) && req.session.user.UserType == 2) {
         return res.send('订单已出合同，不可修改');
     }
+
 
     var OrderId = decodeURIComponent(req.sanitize('OrderId').trim());
 
@@ -44,7 +45,7 @@ router.post('/', function(req, res, next){
                 });
             });
         } else {
-            return res.redirect('/internal/ordder/edit/' + OrderId);
+            return res.send('订单已出合同，不可修改');
         }
     } else {
 
