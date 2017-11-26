@@ -120,6 +120,8 @@ app.use('/internal/established/reject/:propertyId', require('./routes/internal/e
 app.use('/internal/rent/reject/:propertyId', require('./routes/internal/rent-reject'));
 app.use('/public/establish/edit/:propertyId', require('./routes/PublicSite/Edit/establish-edit'))
 app.use('/user/:id/userEstablishedHome/update', require('./routes/PublicSite/Edit/establish-update'))
+app.use('/public/rent/edit/:propertyId', require('./routes/PublicSite/Edit/rent-edit'))
+app.use('/user/:id/rent/update', require('./routes/PublicSite/Edit/rent-update'))
 
 
 app.get('/logout', function (req, res){

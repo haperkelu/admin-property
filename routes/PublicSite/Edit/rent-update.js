@@ -10,12 +10,11 @@ router.post('/', function(req, res, next) {
     if(!PropertyId || !Id) return res.render('error/500');
 
     var PropertyType = req.sanitize('PropertyType').escape().trim();
+    var RentType = req.sanitize('RentType').escape().trim();
     var NumOfRoom = req.sanitize('NumOfRoom').escape().trim();
     var NumOfBath = req.sanitize('NumOfBath').escape().trim();
     var NumOfPark = req.sanitize('NumOfPark').escape().trim();
-    var PurchaseType = req.sanitize('PurchaseType').escape().trim();
-    var LowPrice = req.sanitize('LowPrice').escape()? req.sanitize('LowPrice').escape().trim(): '';
-    var HighPrice = req.sanitize('HighPrice').escape()? req.sanitize('HighPrice').escape().trim(): '';
+
     var Source = req.sanitize('Source').escape().trim();
     var Address = req.sanitize('Address').escape().trim();
 
@@ -24,12 +23,12 @@ router.post('/', function(req, res, next) {
     var Phone = req.sanitize('Phone').escape().trim();
     var OtherContact = req.sanitize('OtherContact').escape().trim();
 
+
     var DB = require('../../../utility/db.js');
     var post = {
         Status: 0,
         PropertyType: PropertyType,
         Address: Address,
-        IsEstablished: 1,
         Source: Source,
         Description: Description
     };
@@ -75,13 +74,11 @@ router.post('/', function(req, res, next) {
 
             var mainPost = {
                 PropertyId:PropertyId,
-                PurchaseType: PurchaseType,
-                LowPrice: LowPrice,
-                HighPrice: HighPrice,
+                RentType: RentType,
                 Email: Email,
                 Phone: Phone,
                 OtherContact: OtherContact,
-                PropertySalePostUpdatedByDate: new Date()
+                PropertyRentPostUpdatedByDate: new Date()
             };
             if(MainPicPath) mainPost.MainPicPath = MainPicPath;
             if(PicPath2) mainPost.PicPath2 = PicPath2;
@@ -89,7 +86,7 @@ router.post('/', function(req, res, next) {
             if(PicPath4) mainPost.PicPath4 = PicPath4;
             if(PicPath5) mainPost.PicPath5 = PicPath5;
 
-            DB.query('Update Sales.PropertySalePost SET ? where PropertyId = ' + PropertyId, mainPost, function (err, result){
+            DB.query('Update Sales.PropertyRentPost SET ? where PropertyId = ' + PropertyId, mainPost, function (err, result){
                 if (err) {console.log(err);return res.send('Server Error');}
                 var items = Address.split(',');
                 if(items.length >= 3){
@@ -97,16 +94,16 @@ router.post('/', function(req, res, next) {
                     SuburbService.getSuburbByName(items[1].trim(), items[2].trim(),function (err, result) {
                         if (err || result.length == 0) {
                             console.log(err);
-                            return res.redirect('/user/' + Id + '/userEstablishedHomeList');
+                            return res.redirect('/user/' + Id + '/rentlist');
                         }
                         var suburbId = result[0].Id;
                         DB.query('Update Sales.Property SET ? where ID = ' + PropertyId, {SuburbId:suburbId}, function (err, result){
                             console.log(err);
-                            return res.redirect('/user/' + Id + '/userEstablishedHomeList');
+                            return res.redirect('/user/' + Id + '/rentlist');
                         });
                     })
                 } else {
-                    return res.redirect('/user/' + Id + '/userEstablishedHomeList');
+                    return res.redirect('/user/' + Id + '/rentlist');
                 }
 
             });

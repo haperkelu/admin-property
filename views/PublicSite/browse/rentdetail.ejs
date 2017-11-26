@@ -118,8 +118,11 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="title-div">
                 租房详情
                 <%if(typeof isCurrentUser != 'undefined' && isCurrentUser == true){%>
-                <div class="btn-group" style="float: right">
+                <div class="btn-group" style="float: right; padding-left: 10px">
                     <a id="delete" class="btn green" href="/public/rent/delete/<%=data.PropertyId%>">删除</a>
+                </div>
+                <div class="btn-group" style="float: right">
+                    <a id="delete" class="btn green" href="/public/rent/edit/<%=data.PropertyId%>">编辑</a>
                 </div>
                 <%}%>
             </div>
