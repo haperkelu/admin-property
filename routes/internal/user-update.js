@@ -12,7 +12,7 @@ router.post('/', function(req, res, next){
     var UserPassword = req.sanitize('password').escape().trim();
 
     var DateOfBirth = decodeURIComponent(req.sanitize('DateOfBirth').trim())
-    var Gender = req.sanitize('Gender').escape().trim();
+    var Gender = req.sanitize('Gender').escape()?req.sanitize('Gender').escape().trim(): '';
     var Nationality = req.sanitize('Nationality').escape().trim();
     var IdentityStatus = req.sanitize('IdentityStatus').escape().trim();
     var Phone = req.sanitize('Phone').escape().trim();
@@ -21,7 +21,7 @@ router.post('/', function(req, res, next){
 
     var DB = require('../../utility/db.js');
     var Encryption = require('../../utility/Encryption');
-    console.log(UserPassword);
+
     var post = {
         Type: parseInt(Type),
         Status: parseInt(Status),

@@ -24,6 +24,7 @@ router.get('/', function(req, res, next){
                     Id: req.session.user.Id});
             });
         } else {
+            console.log(result[0]);
             res.render('InternalSite/user/user_edit', {data: result[0],
                 isEstablishAccessible: true,
                 isPropertyAccessible: true,
