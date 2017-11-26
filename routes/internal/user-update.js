@@ -17,14 +17,14 @@ router.post('/', function(req, res, next){
     var IdentityStatus = req.sanitize('IdentityStatus').escape().trim();
     var Phone = req.sanitize('Phone').escape().trim();
     var Address = req.sanitize('Address').escape().trim();
-    var CertificateStatus = req.sanitize('CertificateStatus').escape().trim();
+    var Status = req.sanitize('Status').escape().trim();
 
     var DB = require('../../utility/db.js');
     var Encryption = require('../../utility/Encryption');
     console.log(UserPassword);
     var post = {
         Type: parseInt(Type),
-        Status: parseInt(CertificateStatus),
+        Status: parseInt(Status),
         FirstName: FirstName,
         LastName: LastName,
         Password: Encryption.encrypt(UserPassword),
@@ -86,7 +86,6 @@ router.post('/', function(req, res, next){
                 BasicUserId: userId,
                 Level: Level,
                 CertificatePath: CertificatePath,
-                CertificateStatus: CertificateStatus,
                 SalesCommissionRate:SalesCommissionRate
             };
 
