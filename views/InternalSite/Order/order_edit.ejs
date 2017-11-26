@@ -422,14 +422,18 @@ License: You must have a valid license purchased only from themeforest(the above
                                                                 <div class="form-group">
                                                                     <label class="col-md-3 control-label">订单状态</label>
                                                                     <div class="col-md-4">
-                                                                        <select name="OrderStatus" class="form-control input-medium">
-                                                                            <option value="0" <%if(data.OrderStatus != 0) { %>disabled<% } %> <%if(data.OrderStatus == 0) { %> selected<% } %>>已下单</option>
-                                                                            <option value="1" <%if(isSales == true) { %>disabled<% } %> <%if(data.OrderStatus == 1) { %> selected<% } %>>已出合同</option>
-                                                                            <option value="2" <%if(isSales == true) { %>disabled<% } %> <%if(data.OrderStatus == 2) { %> selected<% } %>>合同已上传</option>
-                                                                            <option value="3" <%if(isSales == true) { %>disabled<% } %> <%if(data.OrderStatus == 3) { %> selected<% } %>>合同已交换</option>
-                                                                            <option value="4" <%if(isSales == true) { %>disabled<% } %> <%if(data.OrderStatus == 4) { %> selected<% } %>>退款</option>
 
+                                                                        <select name="OrderStatus" class="form-control input-medium">
+                                                                            <option value="0"  <%if(data.OrderStatus == 0) { %> selected<% } %>>已下单</option>
+                                                                            <option value="1"  <%if(data.OrderStatus == 1) { %> selected<% } %>>已出合同</option>
+                                                                            <option value="2"  <%if(data.OrderStatus == 2) { %> selected<% } %>>合同已上传</option>
+                                                                            <option value="3"  <%if(data.OrderStatus == 3) { %> selected<% } %>>合同已交换</option>
+                                                                            <option value="4"  <%if(data.OrderStatus == 4) { %> selected<% } %>>退款</option>
                                                                         </select>
+                                                                        <select name="OrderOldStatus" style="display:none">
+                                                                            <option value="<%=data.OrderStatus%>" selected></option>
+                                                                        </select>
+
                                                                     </div>
                                                                 </div>
                                                                 <div class="form-group">

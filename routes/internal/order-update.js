@@ -1,17 +1,19 @@
 var express = require('express');
-var router = express.Router();
+var router = express.Router({mergeParams: true});
 
 router.post('/', function(req, res, next){
 
     if(!req.session.user || (req.session.user.UserType != 2 && req.session.user.UserType != 0 && req.session.user.UserType != 4))
         return res.redirect('/login');
 
-    var OrderStatus = req.sanitize('OrderStatus').trim();
-    var OrderId = decodeURIComponent(req.sanitize('OrderId').trim());
+    var OrderStatus = req.sanitize('OrderStatus').escape().trim();
+    var OrderOldStatus = req.sanitize('OrderStatus').escape().trim();
 
-    if(req.session.user.UserType == 2 && (parseInt(OrderStatus) != 0 && parseInt(OrderStatus) != 1)) {
+    if((parseInt(OrderOldStatus) >= 2)) {
         return res.send('订单已出合同，不可修改');
     }
+
+    var OrderId = decodeURIComponent(req.sanitize('OrderId').trim());
 
     var DB = require('../../utility/db.js');
     var S3 = require("../../utility/S3.js");
@@ -45,6 +47,7 @@ router.post('/', function(req, res, next){
             return res.redirect('/internal/ordder/edit/' + OrderId);
         }
     } else {
+
         var PropertyId = req.sanitize('PropertyName').escape().trim();
         //var PropertyType = req.sanitize('PropertyType').escape().trim();s
         var UnitNumber = req.sanitize('UnitNumber').escape().trim();
