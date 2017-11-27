@@ -187,6 +187,17 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <div class="search-content">
                                     <div class="search-title">
                                         <%=establishedhomelist[i].PurchaseType%>
+                                        <%if(establishedhomelist[i].PurchaseType == 'For Sale'){%>
+
+                                        <%if(establishedhomelist[i].LowPrice && establishedhomelist[i].HighPrice){%>
+                                        $<%=parseFloat(establishedhomelist[i].LowPrice).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')%> to $<%=parseFloat(establishedhomelist[i].HighPrice).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')%>
+                                        <%}%>
+
+                                        <%if(establishedhomelist[i].LowPrice && !establishedhomelist[i].HighPrice){%>
+                                        $<%=parseFloat(establishedhomelist[i].LowPrice).toFixed(0).replace(/(\d)(?=(\d{3})+\.)/g, '$1,')%>
+                                        <%}%>
+
+                                        <%}%>
                                         <div class="property-feature">
                                             <%=establishedhomelist[i].NumOfRoom%> <i class="fa fa-bed"></i> <%=establishedhomelist[i].NumOfBath%> <i class="fa fa-bath"></i> <%=establishedhomelist[i].NumOfPark%><i class="fa fa-car"></i>
                                         </div>
