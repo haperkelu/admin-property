@@ -127,7 +127,9 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="carousel-img-div" style="background-image: url(<%='https://s3-ap-southeast-2.amazonaws.com' + hotPropertyList[i].PicPath%>);">
                         <div class="photo-credits">
                             <p style="font-size: 30px"><%=hotPropertyList[i].Name%></p>
+                            <!--
                             <a href="#Consultant" data-name="<%=hotPropertyList[i].Name%>"  data-id="<%=hotPropertyList[i].PropertyId%>" class="btn green consultant" style="font-size: 15px; width: 100px; text-align: center; margin-top: 20px" data-toggle="modal">咨 询</a>
+                            -->
                         </div>
                         <a href="/public/offplan/detail/<%=offplanList[i].PropertyId%>"><div style="width: 100%; height: 100%"></div></a>
                     </div>
@@ -241,15 +243,7 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- END CONTAINER -->
             <!-- END BOX CONTAINER -->
             <!-- BEGIN FOOTER -->
-            <div class="page-footer">
-                <div class="page-footer-inner"> 2016 &copy; Metronic Theme By
-                    <a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;
-                    <a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>
-                </div>
-                <div class="scroll-to-top">
-                    <i class="icon-arrow-up"></i>
-                </div>
-            </div>
+            <% include ../common/footer.ejs%>
             <!-- END FOOTER -->
         </div>
         <div id="Consultant" class="modal" tabindex="-1" role="basic" aria-hidden="true">
